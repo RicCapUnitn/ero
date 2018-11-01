@@ -26,6 +26,11 @@ Next, use pip to install the required python packages. If you are not using virt
 
     $ pip2.7 install --upgrade -r requirements.txt
 
+Download snap from the [official repository](http://snap.stanford.edu/snappy/index.html).
+Unpack it and put the file \_snap.so in the src/ folder.
+
+Download then the facebook network from [here](http://snap.stanford.edu/data/ego-Facebook.html).
+
 ## Run make rules
 
 To run some of the make rules you have to grant execution permission to .sh files.

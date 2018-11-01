@@ -26,13 +26,17 @@ pep8_reformat:
 
 .SILENT: tests
 
-requirements:
+compile_requirements:
 	$(SILENT)pipreqs --force --savepath ./requirements.txt ./src
 
+install_requirements:
+	$(SILENT)pip2.7 install --upgrade -r requirements.txt
+
+
 tests: clean
-	$(SILENT)echo ">>> Starting testing..."
+	$(SILENT)echo ">>> Testing..."
 	$(SILENT)./test/run_tests.sh $(filter-out $@, $(MAKECMDGOALS))
-	$(SILENT)echo ">>> Done!\n"
+	$(SILENT)echo ">>> Done: Testing\n"
 
 
 ### ===================== ###
@@ -43,4 +47,4 @@ tests: clean
 clean:
 	$(SILENT)echo ">>> Deleting temporary files..."
 	$(SILENT)./tools/clean.sh
-	$(SILENT)echo ">>> Done!\n"
+	$(SILENT)echo ">>> Done: Deleting temporary files\n"

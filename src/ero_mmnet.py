@@ -25,8 +25,12 @@ class EroMMNet():
         return mmnet
 
     def import_ego_network(self, ego_node_id, data_dir_path='./test/facebook/'):
+        '''Import an ego network
 
-        # Try to import the ego_network
+        ego_node_id(int)    : the # of the file #.edges
+        data_dir_path(str)  : the directory where the file .edges is
+        '''
+
         ego_network_edges_path = data_dir_path + str(ego_node_id) + '.edges'
         try:
             ego_network_edges = snap.LoadEdgeList(

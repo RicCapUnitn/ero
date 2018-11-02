@@ -3,13 +3,16 @@ import glob
 import re
 
 from ero_exceptions import ImportException
+from ego_circle import EgoCircle
 
 
-class EroMMNet():
+class EroMMNet:
     '''The container or the multimodal network'''
 
     def __init__(self):
         self.mmnet = self.generate_multimodal_network()
+        self.ego_nodes = []
+        self.circles = {}
 
     def generate_multimodal_network(self):
         '''Generate the multimodal network
@@ -44,8 +47,12 @@ class EroMMNet():
         ego_node_id(int)    : the # of the file #.edges
         folder_path(str)  : the directory where the file .edges is
         '''
+        self.ego_nodes.append(ego_node_id)
 
-        ego_network_edges_path = folder_path + str(ego_node_id) + '.edges'
+        ego_data_path = folder_path + str(ego_node_id)
+        ego_network_edges_path = ego_data_path + '.edges'
+        ego_network_circles_path = ego_data_path + '.circles'
+
         try:
             ego_network_edges = snap.LoadEdgeList(
                 snap.PUNGraph,
@@ -80,3 +87,19 @@ class EroMMNet():
         for node in ego_network_edges.Nodes():
             crossnet_person_to_person.AddEdge(
                 node.GetId(), ego_node_id)
+
+        self.import_circles(ego_node_id, ego_network_circles_path)
+
+    def import_circles(self, ego_node_id, ego_network_circles_path):
+
+        with open(ego_network_circles_path) as circles_file:
+            content = circles_file.readlines()
+            circles = {}
+            for line in content:
+                stripped_line = line.strip()
+                tokens = stripped_line.split()
+                circle_name = tokens[0]
+                circle_nodes = tokens[1:]
+                circles[circle_name] = EgoCircle(circle_name, circle_nodes)
+
+            self.circles[ego_node_id] = circles

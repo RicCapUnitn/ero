@@ -4,7 +4,7 @@ import warnings
 from ero_exceptions import ImportException
 
 
-class Ero():
+class Ero:
     '''The class that represents the system.'''
 
     def __init__(self):

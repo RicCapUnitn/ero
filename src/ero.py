@@ -10,6 +10,14 @@ class Ero():
     def __init__(self):
         self.mmnet = ero_mmnet.EroMMNet()
 
+    def import_ego_networks_folder(self, folder_path):
+        '''Import all ego networks in a folder into the system
+
+        Args:
+            folder_path: the path of the folder where the files .edges are
+        '''
+        self.mmnet.import_ego_networks_folder(folder_path)
+
     def import_ego_network(self, ego_node_id):
         '''Import the people network in the system
 
@@ -19,4 +27,4 @@ class Ero():
         try:
             self.mmnet.import_ego_network(ego_node_id)
         except ImportException as exc:
-            raise Warning("Failed to import ego network: " + str(exc))
+            raise UserWarning("Failed to import ego network: " + str(exc))

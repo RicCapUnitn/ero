@@ -1,4 +1,6 @@
 import snap
+import glob
+import re
 
 from ero_exceptions import ImportException
 
@@ -24,14 +26,26 @@ class EroMMNet():
 
         return mmnet
 
-    def import_ego_network(self, ego_node_id, data_dir_path='./test/facebook/'):
+    def import_ego_networks_folder(self, folder_path):
+        '''Import all ego networks in a folder
+
+        Args:
+            folder_path(str)  : the directory where the file .edges is
+        '''
+        ego_network_edges_iterator = glob.iglob(folder_path + '*.edges')
+        for ego_edges_file_path in ego_network_edges_iterator:
+            pattern = folder_path + '(.+).edges'  # folder/#.edges
+            ego_node_id = int(re.search(pattern, ego_edges_file_path).group(1))
+            self.import_ego_network(ego_node_id, folder_path)
+
+    def import_ego_network(self, ego_node_id, folder_path='./test/facebook/'):
         '''Import an ego network
 
         ego_node_id(int)    : the # of the file #.edges
-        data_dir_path(str)  : the directory where the file .edges is
+        folder_path(str)  : the directory where the file .edges is
         '''
 
-        ego_network_edges_path = data_dir_path + str(ego_node_id) + '.edges'
+        ego_network_edges_path = folder_path + str(ego_node_id) + '.edges'
         try:
             ego_network_edges = snap.LoadEdgeList(
                 snap.PUNGraph,
@@ -43,7 +57,11 @@ class EroMMNet():
         # Add nodes to the person mode
         person_mode = self.mmnet.GetModeNetByName("Person")
         for node in ego_network_edges.Nodes():
-            person_mode.AddNode(node.GetId())
+            try:
+                person_mode.AddNode(node.GetId())
+            except RuntimeError:
+                # AddNode raises RuntimeError when node is already present: skip
+                pass
 
         # Add the ego_network edges to the crossnet
         crossnet_person_to_person = self.mmnet.GetCrossNetByName(
@@ -54,7 +72,11 @@ class EroMMNet():
 
         # Add the ego node, which is not present in the imported ego_network_edges
         # The ego node is linked to all the other nodes
-        person_mode.AddNode(ego_node_id)
+        try:
+            person_mode.AddNode(ego_node_id)
+        except RuntimeError:
+            # AddNode raises RuntimeError when node is already present: skip
+            pass
         for node in ego_network_edges.Nodes():
             crossnet_person_to_person.AddEdge(
                 node.GetId(), ego_node_id)

@@ -1,6 +1,4 @@
 import ero_mmnet
-import warnings
-
 from ero_exceptions import ImportException
 
 

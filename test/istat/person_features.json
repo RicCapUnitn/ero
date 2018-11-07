@@ -1,0 +1,13 @@
+{
+  "location": {
+    "location_current": "position",
+    "location_work": "position",
+    "location_home": "position"
+  },
+  "age": "integer",
+  "job": {
+    "has_job": "binary"
+  },
+  "allows_smokers": "binary",
+  "interests": "set"
+}

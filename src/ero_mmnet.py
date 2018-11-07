@@ -1,9 +1,9 @@
-import snap
 import glob
 import re
 
+import snap
+from ero_ego_circle import EgoCircle
 from ero_exceptions import ImportException
-from ego_circle import EgoCircle
 
 
 class EroMMNet:
@@ -67,7 +67,7 @@ class EroMMNet:
             try:
                 person_mode.AddNode(node.GetId())
             except RuntimeError:
-                # AddNode raises RuntimeError when node is already present: skip
+                # AddNode raises RuntimeError when node already present: # skip
                 pass
 
         # Add the ego_network edges to the crossnet
@@ -77,13 +77,12 @@ class EroMMNet:
             crossnet_person_to_person.AddEdge(
                 edge.GetSrcNId(), edge.GetDstNId())
 
-        # Add the ego node, which is not present in the imported ego_network_edges
-        # The ego node is linked to all the other nodes
+        # Add the ego node, which is not present in the imported
+        # ego_network_edges. The ego node is linked to all the other nodes
         try:
             person_mode.AddNode(ego_node_id)
         except RuntimeError:
-            # AddNode raises RuntimeError when node is already present: skip
-            pass
+            pass  # AddNode raises RuntimeError when node already present: skip
         for node in ego_network_edges.Nodes():
             crossnet_person_to_person.AddEdge(
                 node.GetId(), ego_node_id)
@@ -91,6 +90,7 @@ class EroMMNet:
         self.import_circles(ego_node_id, ego_network_circles_path)
 
     def import_circles(self, ego_node_id, ego_network_circles_path):
+        '''Import the ego circle for the given node'''
 
         with open(ego_network_circles_path) as circles_file:
             content = circles_file.readlines()

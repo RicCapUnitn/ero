@@ -6,7 +6,7 @@ import os
 library_path = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, library_path + '/../src')
 
-import ego_circle
+import ero_ego_circle as ego_circle
 
 
 class TestEgoCircle(unittest.TestCase):

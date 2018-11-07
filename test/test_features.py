@@ -1,13 +1,26 @@
-import unittest
-
+import os
 # Add path in order to import  the library
 import sys
-import os
+import unittest
+
 library_path = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, library_path + '/../src')
 
 import features
 from features import *
+
+
+class TestEmptyFeature(unittest.TestCase):
+
+    def test_other_similar_empty(self):
+        other = binary_feature.BinaryFeature(1)
+        empty = empty_feature.empty_feature
+        self.assertEqual(other.similar(empty), 0)
+
+    def test_empty_similar_other(self):
+        other = binary_feature.BinaryFeature(1)
+        empty = empty_feature.empty_feature
+        self.assertEqual(empty.similar(other), 0)
 
 
 class TestBinaryFeature(unittest.TestCase):
@@ -26,6 +39,20 @@ class TestBinaryFeature(unittest.TestCase):
         bf2 = binary_feature.BinaryFeature(True)
         self.assertEqual(bf1.similar(bf2), 0.)
 
+    @unittest.skip('See issue #10')
+    def test_similarity_bad_initialized_feature_to_empty_feature_other(self):
+        bf = binary_feature.BinaryFeature(1)
+        wrong_initialized_bf = binary_feature.BinaryFeature(None)
+        with self.assertRaises(NotImplementedError):
+            bf.similar(wrong_initialized_bf)
+
+    @unittest.skip('See issue #10')
+    def test_similarity_bad_initialized_feature_to_empty_feature_self(self):
+        wrong_initialized_bf = binary_feature.BinaryFeature(None)
+        other = binary_feature.BinaryFeature(1)
+        with self.assertRaises(NotImplementedError):
+            wrong_initialized_bf.similar(other)
+
 
 class TestNormalizedFeature(unittest.TestCase):
     def test_init(self):
@@ -39,6 +66,19 @@ class TestNormalizedFeature(unittest.TestCase):
 
 
 class TestComparableFeature(unittest.TestCase):
+
+    def test_invalid_instantiation(self):
+        with self.assertRaises(NotImplementedError):
+            comparable_feature.ComparableFeature().similar()
+
+    def test_invalid_subclass_declaration(self):
+
+        class InvalidFeature(features.comparable_feature.ComparableFeature):
+            def __init__(self):
+                pass
+
+        with self.assertRaises(NotImplementedError):
+            InvalidFeature().similar(InvalidFeature())
 
     def test_different_type_features_similarity(self):
         bf1 = binary_feature.BinaryFeature(0)

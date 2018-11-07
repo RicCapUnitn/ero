@@ -1,5 +1,7 @@
 #Test data
 test/facebook/*
+test/events/*
+tools/_istat*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

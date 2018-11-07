@@ -21,8 +21,9 @@ class TestPeopleImport(unittest.TestCase):
         + circles number
     '''
 
-    def check_ego_network(self, expected_number_of_nodes,
-                          expected_number_of_edges, expected_number_of_circles):
+    def check_ego_network(
+            self, expected_number_of_nodes, expected_number_of_edges,
+            expected_number_of_circles):
 
         ero_mmnet = self.ero.mmnet
         snap_mmnet = ero_mmnet.mmnet

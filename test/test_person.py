@@ -23,3 +23,4 @@ class TestPerson(unittest.TestCase):
         expected_fitness = 1. + 0. + 0.2
         person = ero_person.Person(features1)
         event = ero_event.Event(features2)
+        self.assertEqual(person.fitness(event), expected_fitness)

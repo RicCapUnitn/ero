@@ -1,1 +1,2 @@
-__all__ = ["binary_feature", "normalized_feature"]
+__all__ = ["comparable_feature", "binary_feature",
+           "normalized_feature", "empty_feature"]

@@ -19,15 +19,18 @@ help:
 	$(SILENT)echo "ero makefile\n"
 
 pep8_check:
-	$(SILENT)pep8 --exclude='./ENV' .
+	$(SILENT)pep8 --exclude='./ENV,./src/snap.py' .
 
 pep8_reformat:
-	$(SILENT)autopep8 --in-place --aggressive --experimental -r ./src
+	$(SILENT)autopep8 --in-place --aggressive --experimental -r ./src/ero*.py
+	$(SILENT)autopep8 --in-place --aggressive --experimental -r ./src/features
+	$(SILENT)autopep8 --in-place --aggressive --experimental -r ./test/*.py
+	$(SILENT)autopep8 --in-place --aggressive --experimental -r ./tools/*.py
 
 .SILENT: tests
 
 compile_requirements:
-	$(SILENT)pipreqs --force --savepath ./requirements.txt ./src
+	$(SILENT)pip2.7 freeze > requirements.txt
 
 install_requirements:
 	$(SILENT)pip2.7 install --upgrade -r requirements.txt

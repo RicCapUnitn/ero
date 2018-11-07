@@ -31,23 +31,23 @@ class TestFeaturesGenerator(unittest.TestCase):
     def test_import_features_from_folder(self):
         self.assertEqual(
             set(self.generator.distributions.keys()),
-            set(['allows_smokers']))
+            set(['allows_smokers', "age"]))
         self.assertListEqual(
             self.generator.sorted_comparable_features_names,
-            ["allows_smokers", "interests", "job", "location"])
+            ["age", "allows_smokers", "interests", "job", "location"])
 
     def test_generate_single_set_of_features(self):
         features = self.generator.generate_one()
-        self.assertEqual(len(features), 4)
+        self.assertEqual(len(features), 5)
         self.assertIs(type(features[0]), binary_feature.BinaryFeature)
-        for feature in features[1:]:
+        for feature in features[2:]:
             self.assertIs(feature, empty_feature.empty_feature)
 
     def test_generate_multiple_set_of_features(self):
         features = self.generator.generate_many(3)
         self.assertEqual(len(features), 3)
         self.assertIs(type(features[0]), list)
-        self.assertEqual(len(features[0]), 4)
+        self.assertEqual(len(features[0]), 5)
         self.assertIs(type(features[0][0]), binary_feature.BinaryFeature)
-        for feature in features[0][1:]:
+        for feature in features[0][2:]:
             self.assertIs(feature, empty_feature.empty_feature)

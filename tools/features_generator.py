@@ -42,7 +42,7 @@ class FeaturesGenerator():
                 distribution_values = feature_distribution['values']
                 distribution_probabilities = feature_distribution['distribution']
                 distribution = numpy.random.choice(
-                    distribution_values, distribution_probabilities)
+                    distribution_values, p=distribution_probabilities)
                 value = fclass(distribution)
             except KeyError:
                 warnings.warn('Feature distribution not present: ' + fname)

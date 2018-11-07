@@ -1,5 +1,7 @@
 {
-  "features": ["location",
+  "features": [
+    "age",
+    "location",
     "job",
     "allows_smokers",
     "interests"

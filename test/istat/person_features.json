@@ -4,7 +4,7 @@
     "location_work": "position",
     "location_home": "position"
   },
-  "age": "integer",
+  "age": "binary",
   "job": {
     "has_job": "binary"
   },

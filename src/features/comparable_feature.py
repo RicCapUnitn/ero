@@ -2,13 +2,13 @@ import abc
 
 EMPTY_FEATURE_TYPE = None
 BINARY_FEATURE_TYPE = 'binary'
+DEFAULT_SIMILARITY_MISSING_FEATURES = 0
 
 
 class ComparableFeature(object):
     '''All features should implement this abstract class'''
 
     __metaclass__ = abc.ABCMeta
-    DEFAULT_SIMILARITY_MISSING_FEATURES = 0
 
     def __init__(self, *args, **kwargs):
         raise NotImplementedError('User should define inherited subclass')
@@ -17,7 +17,7 @@ class ComparableFeature(object):
         '''Checks for features types match; then computes similarity'''
         if not isinstance(self, type(other)):
             if self._is_empty_feature() or other._is_empty_feature():
-                return self.DEFAULT_SIMILARITY_MISSING_FEATURES
+                return DEFAULT_SIMILARITY_MISSING_FEATURES
             else:
                 raise TypeError(
                     'Features of different type cannot be compared')
@@ -36,7 +36,3 @@ class ComparableFeature(object):
 
     def _is_empty_feature(self):
         return self.value is EMPTY_FEATURE_TYPE
-
-
-def DEFAULT_NORMALIZED_COMPARISON(value1, value2):
-    return abs(value1 - value2)

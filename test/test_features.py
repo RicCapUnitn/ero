@@ -1,11 +1,11 @@
 import os
-# Add path in order to import  the library
 import sys
 import unittest
 
 library_path = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, library_path + '/../src')
 
+from combiners import *
 import features
 from features import *
 
@@ -21,6 +21,10 @@ class TestEmptyFeature(unittest.TestCase):
         other = binary_feature.BinaryFeature(1)
         empty = empty_feature.empty_feature
         self.assertEqual(empty.similar(other), 0)
+
+    def test_empty_similar_empty(self):
+        empty = empty_feature.empty_feature
+        self.assertEqual(empty.similar(empty), 0)
 
 
 class TestBinaryFeature(unittest.TestCase):
@@ -85,3 +89,23 @@ class TestComparableFeature(unittest.TestCase):
         bf2 = normalized_feature.NormalizedFeature(0.5)
         with self.assertRaises(TypeError):
             bf1.similar(bf2)
+
+
+class TestCompositeFeature(unittest.TestCase):
+
+    def test_location_similarity(self):
+        person_location = {
+            'current_location': (46.064785, 11.127795),
+            'home_location': (46.068268, 11.118582),
+            'work_location': (46.056249, 11.130175)
+        }
+        event_location = (46.052505, 11.130151)
+        expected_similarity = 0.6
+
+        cf1 = composite_feature.CompositeFeature(
+            person_location, combiners.person_location_combiner)
+        cf2 = composite_feature.CompositeFeature(
+            event_location, combiners.event_location_combiner)
+
+        similarity = cf1.similar(cf2)
+        self.assertEqual(similarity, expected_similarity)

@@ -76,5 +76,5 @@ class FeaturesGenerator():
             fclass = binary_feature.BinaryFeature
         else:
             fclass = None  # skip feature
-            #raise NotImplementedError
+            # TODO raise NotImplementedError
         return fclass

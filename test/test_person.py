@@ -1,6 +1,4 @@
 import unittest
-
-# Add path in order to import  the library
 import sys
 import os
 library_path = os.path.dirname(os.path.abspath(__file__))

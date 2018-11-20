@@ -3,6 +3,7 @@ import warnings
 from combiners import *
 from ero_event import Event
 from features import *
+from ero_exceptions import ImportException
 
 
 class EventParser():
@@ -12,8 +13,17 @@ class EventParser():
         self.comparable_features = comparable_features
 
     def parse_event(self, event):
-        '''Parse event to get comparable features'''
+        '''Parse event to get comparable features
+
+        Raises:
+            ImportException: when the event has no id'''
         event_features = []
+
+        try:
+            event_id = event['id']
+        except KeyError:
+            raise ImportException(
+                'Trying to import event with no valid id')
 
         for feature in self.comparable_features:
             try:
@@ -25,7 +35,7 @@ class EventParser():
                     'No parse function implemented for feature: ' + str(feature))
                 event_features.append(empty_feature.empty_feature)
 
-        return Event(event_features)
+        return Event(event_id, event_features)
 
     def _parse_location(self, event):
         '''Get the event location

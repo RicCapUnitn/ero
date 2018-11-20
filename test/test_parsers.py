@@ -9,6 +9,7 @@ from features import *
 from parsers import *
 from ero_event import Event
 from combiners import *
+from ero_exceptions import ImportException
 
 
 class TestEventParser(unittest.TestCase):
@@ -31,7 +32,8 @@ class TestEventParser(unittest.TestCase):
                     "street": "Piazza Fiera, 4",
                     "zip": "38122"
                 }
-            }
+            },
+            "id": 1
         }
         parsed_event = self._parser.parse_event(test_event)
         self.assertIsInstance(parsed_event, Event)
@@ -52,7 +54,8 @@ class TestEventParser(unittest.TestCase):
         test_event = {
             "place": {
                 "name": "CLab Trento",
-            }
+            },
+            "id": 1
         }
         parsed_event = self._parser.parse_event(test_event)
         self.assertIsInstance(parsed_event, Event)
@@ -63,3 +66,21 @@ class TestEventParser(unittest.TestCase):
 
         location_feature = parsed_event.features[1]
         self.assertIs(location_feature, empty_feature.empty_feature)
+
+    def test_parse_event_missing_id(self):
+        test_event = {
+            "place": {
+                "name": "CLab Trento",
+                "location": {
+                    "city": "Trento",
+                    "country": "Italy",
+                    "latitude": 46.06486,
+                    "located_in": "181177785306461",
+                    "longitude": 11.1242,
+                    "street": "Piazza Fiera, 4",
+                    "zip": "38122"
+                }
+            }
+        }
+        with self.assertRaises(ImportException):
+            self._parser.parse_event(test_event)

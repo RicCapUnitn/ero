@@ -3,6 +3,10 @@ test/facebook/*
 test/events/*
 tools/_istat*
 
+# Test networks images
+test/test_networks/*.dot
+test/test_networks/*.png
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

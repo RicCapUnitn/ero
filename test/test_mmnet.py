@@ -97,37 +97,38 @@ class TestPropagation(unittest.TestCase):
         folder_path = 'test/test_networks/'
         self.ero.import_ego_network(ego_node_id, folder_path)
 
-    def test_get_person_direct_reachable_people_erdos1(self):
+    def test_get_person_direct_reachable_people_distance1(self):
         mmnet = self.ero.mmnet
-        propagating_node = 4
 
-        # nodes at distance = 1
-        erdos1 = frozenset(
+        propagating_node = 4
+        expected_d1_people = frozenset([3, 5, 6, 7, 8, 9])
+
+        d1_people = frozenset(
             mmnet._get_person_direct_reachable_people(propagating_node))
-        expected_erdos1 = frozenset([3, 5, 6, 7, 8, 9])
-        self.assertEqual(erdos1, expected_erdos1)
+
+        self.assertEqual(d1_people, expected_d1_people)
 
     def test_get_person_direct_reachable_people_erdos2(self):
         mmnet = self.ero.mmnet
-        propagating_node = 4
 
-        # nodes at distance = 1
-        erdos1 = frozenset(
+        propagating_node = 4
+        expected_d2_people = frozenset([2, 4, 10, 11, 12, 13, 14])
+
+        d1_people = frozenset(
             mmnet._get_person_direct_reachable_people(propagating_node))
 
-        # nodes at distance = 2
-        erdos2 = frozenset()
-        for person_id in erdos1:
-            erdos2 |= frozenset(
+        d2_people = frozenset()
+        for person_id in d1_people:
+            d2_people |= frozenset(
                 mmnet._get_person_direct_reachable_people(person_id))
-        expected_erdos2 = frozenset([2, 4, 10, 11, 12, 13, 14])
-        self.assertEqual(erdos2, expected_erdos2)
 
-    def test_event_direct_reachable_people(self):
+        self.assertEqual(d2_people, expected_d2_people)
+
+    def test_get_event_direct_reachable_people(self):
         mmnet = self.ero.mmnet
         propagating_node = 4
+        expected_reachable_people = frozenset([propagating_node])
 
-        # Add event to mmnet
         event_id = 0
         event_mode = mmnet.mmnet.GetModeNetByName("Event")
         event_mode.AddNode(event_id)
@@ -138,7 +139,8 @@ class TestPropagation(unittest.TestCase):
 
         reachable_people = frozenset(
             mmnet._get_event_direct_reachable_people(event_id))
-        self.assertEqual(reachable_people, frozenset([propagating_node]))
+
+        self.assertEqual(reachable_people, expected_reachable_people)
 
     def test_propagation_single_event_one_iteration(self):
         '''
@@ -150,7 +152,6 @@ class TestPropagation(unittest.TestCase):
         propagating_node = 4
         expected_reached_nodes = 7
 
-        # Add features to network
         person_features = [binary_feature.BinaryFeature(0),
                            normalized_feature.NormalizedFeature(1)]
         event_features = [binary_feature.BinaryFeature(1),
@@ -162,7 +163,7 @@ class TestPropagation(unittest.TestCase):
         event = Event(event_id, event_features)
 
         number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
-        print(number_of_people)
+
         for person_id in range(number_of_people + 1):
             mmnet.people[person_id] = person
 
@@ -174,18 +175,169 @@ class TestPropagation(unittest.TestCase):
         mmnet.event_to_person_edges[edge_id] = (event_id, propagating_node)
         mmnet.events = [event]
 
-        mmnet.propagate()
+        mmnet.propagate(1)
 
         self.assertEqual(event.relevance, expected_reached_nodes)
 
-    @unittest.skip('Not Implemented Yet')
     def test_propagation_single_event_multiple_iterations(self):
-        raise NotImplementedError
+        '''
+        Event is linked to the propagating_node only;
+        People have same features(only people at distance <=2 are reached)
+        Relevance = (propagating_node + all nodes at distance <=1) * #iterations
+        '''
+        mmnet = self.ero.mmnet
 
-    @unittest.skip('Not Implemented Yet')
-    def test_propagation_multiple_events_one_iteration(self):
-        raise NotImplementedError
+        iterations = 10
+        propagating_node = 4
+        expected_reached_nodes_one_iteration = 13
+        expected_relevance = expected_reached_nodes_one_iteration * iterations
 
-    @unittest.skip('Not Implemented Yet')
+        person_features = [binary_feature.BinaryFeature(0),
+                           normalized_feature.NormalizedFeature(1)]
+        event_features = [binary_feature.BinaryFeature(0),
+                          normalized_feature.NormalizedFeature(0.)]
+        expected_fitness = 0.5
+
+        person = Person(person_features)
+        event_id = 0
+        event = Event(event_id, event_features)
+
+        number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
+
+        for person_id in range(number_of_people + 1):
+            mmnet.people[person_id] = person
+
+        event_mode = mmnet.mmnet.GetModeNetByName("Event")
+        event_mode.AddNode(event_id)
+        event_to_person_crossnet = mmnet.mmnet.GetCrossNetByName(
+            "EventToPerson")
+        edge_id = event_to_person_crossnet.AddEdge(event_id, propagating_node)
+        mmnet.event_to_person_edges[edge_id] = (event_id, propagating_node)
+        mmnet.events = [event]
+
+        mmnet.propagate(iterations)
+
+        self.assertEqual(event.relevance, expected_relevance)
+
+    def test_propagation_multiple_events_one_iteration_single_overlap(self):
+        '''
+        Event is linked to the propagating_node only;
+        People have same features(only people at distance <=2 are reached)
+        Relevance = propagating_node + all nodes at distance <=1
+        event_2 prevails on event_1 on node 3
+        '''
+        mmnet = self.ero.mmnet
+
+        propagating_node_1 = 2
+        propagating_node_2 = 4
+
+        expected_reached_nodes_1 = 4
+        expected_reached_nodes_2 = 13
+
+        person_features = [binary_feature.BinaryFeature(0),
+                           normalized_feature.NormalizedFeature(1)]
+        event_features_1 = [binary_feature.BinaryFeature(0),
+                            normalized_feature.NormalizedFeature(0.)]
+        event_features_2 = [binary_feature.BinaryFeature(0),
+                            normalized_feature.NormalizedFeature(0.2)]
+
+        expected_fitness_1 = (1. + 0.) / 2.
+        expected_fitness_2 = (1. + 0.2) / 2.
+
+        person = Person(person_features)
+
+        event_id_1 = 0
+        event_id_2 = 1
+        event_1 = Event(event_id_1, event_features_1)
+        event_2 = Event(event_id_2, event_features_2)
+
+        number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
+        for person_id in range(number_of_people + 1):
+            mmnet.people[person_id] = person
+
+        event_mode = mmnet.mmnet.GetModeNetByName("Event")
+        event_mode.AddNode(event_id_1)
+        event_mode.AddNode(event_id_2)
+
+        event_to_person_crossnet = mmnet.mmnet.GetCrossNetByName(
+            "EventToPerson")
+        edge_id_1 = event_to_person_crossnet.AddEdge(
+            event_id_1, propagating_node_1)
+        edge_id_2 = event_to_person_crossnet.AddEdge(
+            event_id_2, propagating_node_2)
+        mmnet.event_to_person_edges[edge_id_1] = (
+            event_id_1, propagating_node_1)
+        mmnet.event_to_person_edges[edge_id_2] = (
+            event_id_2, propagating_node_2)
+        mmnet.events = [event_1, event_2]
+
+        mmnet.propagate(1)
+
+        self.assertEqual(event_1.relevance, expected_reached_nodes_1)
+        self.assertEqual(event_2.relevance, expected_reached_nodes_2)
+
     def test_propagation_multiple_events_multiple_iteration(self):
-        raise NotImplementedError
+        '''
+        Event is linked to the propagating_node only;
+        People have same features(only people at distance <=2 are reached)
+
+        Since event_2 prevails on event_1 on node 3, relevance is computed as
+        << Relevance = propagating_node + all nodes at distance <=1 >> at the
+        first iteration, then propagating_node_1 is never propagate again
+        (its fitness <= fitness to event_2)
+        '''
+        mmnet = self.ero.mmnet
+
+        iterations = 10
+
+        expected_relevance_1 = 4
+        expected_relevance_2 = 13 * iterations
+
+        propagating_node_1 = 2
+        propagating_node_2 = 4
+
+        expected_reached_nodes_1 = 4
+        expected_reached_nodes_2 = 13
+
+        person_features = [binary_feature.BinaryFeature(0),
+                           normalized_feature.NormalizedFeature(1)]
+        event_features_1 = [binary_feature.BinaryFeature(0),
+                            normalized_feature.NormalizedFeature(0.)]
+        event_features_2 = [binary_feature.BinaryFeature(0),
+                            normalized_feature.NormalizedFeature(0.2)]
+
+        expected_fitness_1 = (1. + 0.) / 2.
+        expected_fitness_2 = (1. + 0.2) / 2.
+
+        person = Person(person_features)
+
+        event_id_1 = 0
+        event_id_2 = 1
+        event_1 = Event(event_id_1, event_features_1)
+        event_2 = Event(event_id_2, event_features_2)
+
+        number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
+        for person_id in range(number_of_people + 1):
+            mmnet.people[person_id] = person
+
+        event_mode = mmnet.mmnet.GetModeNetByName("Event")
+        event_mode.AddNode(event_id_1)
+        event_mode.AddNode(event_id_2)
+
+        event_to_person_crossnet = mmnet.mmnet.GetCrossNetByName(
+            "EventToPerson")
+        edge_id_1 = event_to_person_crossnet.AddEdge(
+            event_id_1, propagating_node_1)
+        edge_id_2 = event_to_person_crossnet.AddEdge(
+            event_id_2, propagating_node_2)
+        mmnet.event_to_person_edges[edge_id_1] = (
+            event_id_1, propagating_node_1)
+        mmnet.event_to_person_edges[edge_id_2] = (
+            event_id_2, propagating_node_2)
+        mmnet.events = [event_1, event_2]
+
+        mmnet.propagate(iterations)
+
+        self.assertEqual(event_1.relevance, expected_relevance_1)
+        self.assertEqual(event_2.relevance, expected_relevance_2)
+        self.assertIs(mmnet.events[0], event_1)

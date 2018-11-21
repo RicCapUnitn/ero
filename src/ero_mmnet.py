@@ -106,10 +106,11 @@ class EroMMNet:
 
             self.circles[ego_node_id] = circles
 
-    def propagate(self):
+    def propagate(self, iterations):
         '''Run the propagation algorithm'''
-        for event in self.events:
-            self._propagate_event_to_people(event)
+        for _ in range(iterations):
+            for event in self.events:
+                self._propagate_event_to_people(event)
         self.events.sort()
 
     def _propagate_event_to_people(self, event):

@@ -22,5 +22,6 @@ class Person():
         return selected
 
     def fitness(self, event):
+        '''Computed as average of fitnesses'''
         return sum(f1.similar(f2)
                    for f1, f2 in zip(self.features, event.features)) / len(self.features)

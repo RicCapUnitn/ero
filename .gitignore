@@ -2,6 +2,7 @@
 test/facebook/*
 test/events/*
 tools/_istat*
+docs/*.rst
 
 # Test networks images
 test/test_networks/*.dot

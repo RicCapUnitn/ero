@@ -13,6 +13,7 @@ Master only (master freezed to releases and all commits made on develop after lo
 ### Workflow
 
 We use ZenHub to describe tasks and TestDrivenDevelopment, so that the workflow is:
+
 1. Open issue
 2. Link issue to epic (if you don't find an epic, than you need to create one). Remember to put estimates(1-5) and labels.
 3. Implement the tests
@@ -51,4 +52,10 @@ Download then the facebook network from [here](http://snap.stanford.edu/data/ego
 
 To run some of the make rules you have to grant execution permission to .sh files.
 
-    $ find ero/ -type f -iname "*.sh" -exec chmod +x {} \;    
+    $ find ero/ -type f -iname "\*.sh" -exec chmod +x {} \;
+
+## Docs
+
+To compile the documentation either you create the missing folders (\_static, \_build, \_templates) in the docs folder, or you simply run the command sphinx-quickstart in the docs folder and accept all defaults; then use the files on git to configure it and run
+
+    $ make doc

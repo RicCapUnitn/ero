@@ -29,7 +29,7 @@ class EroMMNet:
 
         Two modes are created: Event and Person
         Two crossnets are created:
-            EventToPerson, directed links; PersonToPerson, undirected'''
+        EventToPerson, directed links; PersonToPerson, undirected'''
 
         mmnet = snap.TMMNet.New()
         mmnet.AddModeNet("Event")

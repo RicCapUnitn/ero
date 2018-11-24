@@ -26,3 +26,6 @@ class Ero:
             self.mmnet.import_ego_network(ego_node_id)
         except ImportException as exc:
             raise UserWarning("Failed to import ego network: " + str(exc))
+
+    def import_events(self, events_filename):
+        self.mmnet.import_events(events_filename)

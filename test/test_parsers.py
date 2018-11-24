@@ -10,13 +10,11 @@ from parsers import *
 from ero_event import Event
 from combiners import *
 
-
 class TestEventParser(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        comparable_features = ['age', 'location']
-        cls._parser = event_parser.EventParser(comparable_features)
+        cls._parser = event_parser.EventParser()
 
     def test_parse_valid_event(self):
         test_event = {
@@ -31,7 +29,8 @@ class TestEventParser(unittest.TestCase):
                     "street": "Piazza Fiera, 4",
                     "zip": "38122"
                 }
-            }
+            },
+            "id":"2140675796193939"
         }
         parsed_event = self._parser.parse_event(test_event)
         self.assertIsInstance(parsed_event, Event)
@@ -48,11 +47,14 @@ class TestEventParser(unittest.TestCase):
         self.assertIs(location_feature.combiner,
                       combiners.event_location_combiner)
 
+        self.assertEqual(parsed_event.event_id, int("2140675796193939"[:5]))
+
     def test_parse_event_missing_location(self):
         test_event = {
             "place": {
                 "name": "CLab Trento",
-            }
+            },
+            "id": "2140675796193939"
         }
         parsed_event = self._parser.parse_event(test_event)
         self.assertIsInstance(parsed_event, Event)
@@ -63,3 +65,17 @@ class TestEventParser(unittest.TestCase):
 
         location_feature = parsed_event.features[1]
         self.assertIs(location_feature, empty_feature.empty_feature)
+
+        self.assertEqual(parsed_event.event_id, int("2140675796193939"[:5]))
+
+    def test_parse_event_missing_id(self):
+        test_event = {
+            "place": {
+                "name": "CLab Trento",
+            }
+        }
+
+        with self.assertRaises(Exception):
+            parsed_event = self._parser.parse_event(test_event)
+            self.assertIsInstance(parsed_event, Event)
+            self.assertEqual(len(parsed_event.features), 2)

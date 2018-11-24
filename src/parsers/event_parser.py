@@ -7,14 +7,13 @@ from features import *
 
 class EventParser():
 
-    def __init__(self, comparable_features):
-        '''Features found in imported comparable_features.json'''
-        self.comparable_features = comparable_features
+    def __init__(self):
+        self.comparable_features = ["age", "location"]
 
     def parse_event(self, event):
         '''Parse event to get comparable features'''
         event_features = []
-
+        
         for feature in self.comparable_features:
             try:
                 parser_name = '_parse_' + str(feature)
@@ -25,7 +24,13 @@ class EventParser():
                     'No parse function implemented for feature: ' + str(feature))
                 event_features.append(empty_feature.empty_feature)
 
-        return Event(event_features)
+        try:
+            event_id = event['id']
+        except:
+            warnings.warn('Event id cannot be parsed.')
+            raise
+        
+        return Event(event_features, event_id)
 
     def _parse_location(self, event):
         '''Get the event location

@@ -20,7 +20,8 @@ class EventParser():
         event_features = []
 
         try:
-            event_id = event['id']
+            # Shorten id to fit into Snap C++ int
+            event_id = int(event['id'][:5])
         except KeyError:
             raise ImportException(
                 'Trying to import event with no valid id')

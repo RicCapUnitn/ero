@@ -18,6 +18,7 @@ class PeopleFeaturesGenerator():
 
     def generate_many(self, number_of_people):
         '''Generate multiple person features lists'''
+        # TODO should be upgraded to return dictionary id:person instead of list
         return [self.generate_one() for _ in range(number_of_people)]
 
     def generate_one(self):

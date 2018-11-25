@@ -26,7 +26,7 @@ class TestPeopleImport(unittest.TestCase):
 
     def check_ego_network(
             self, expected_number_of_nodes, expected_number_of_edges,
-            expected_number_of_circles):
+            expected_number_of_circles, expected_number_of_events):
 
         ero_mmnet = self.ero.mmnet
         snap_mmnet = ero_mmnet.mmnet
@@ -34,6 +34,10 @@ class TestPeopleImport(unittest.TestCase):
         mmnet_number_of_nodes = snap_mmnet.GetModeNetByName(
             'Person').GetNodes()
         self.assertEqual(mmnet_number_of_nodes, expected_number_of_nodes)
+
+        mmnet_number_of_events = snap_mmnet.GetModeNetByName(
+            'Event').GetNodes()
+        self.assertEqual(mmnet_number_of_events, expected_number_of_events)
 
         mmnet_number_of_edges = snap_mmnet.GetCrossNetByName(
             'PersonToPerson').GetEdges()
@@ -60,12 +64,14 @@ class TestPeopleImport(unittest.TestCase):
         expected_number_of_nodes = 333
         expected_number_of_edges = 2519
         expected_number_of_circles = 1
+        expected_number_of_events = 0
 
         with self.assertNotRaises(UserWarning):
             self.ero.import_ego_network(ego_node_id, folder_path)
             self.check_ego_network(expected_number_of_nodes,
                                    expected_number_of_edges,
-                                   expected_number_of_circles)
+                                   expected_number_of_circles,
+                                   expected_number_of_events)
 
     def test_import_ego_network_from_file_not_present(self):
         ego_node_id = -1
@@ -80,12 +86,14 @@ class TestPeopleImport(unittest.TestCase):
         expected_number_of_nodes = 3959
         expected_number_of_edges = 85087
         expected_number_of_circles = 10
+        expected_number_of_events = 0
 
         with self.assertNotRaises(UserWarning):
             self.ero.import_ego_networks_folder(folder_path)
             self.check_ego_network(expected_number_of_nodes,
                                    expected_number_of_edges,
-                                   expected_number_of_circles)
+                                   expected_number_of_circles,
+                                   expected_number_of_events)
 
 
 class TestPropagation(unittest.TestCase):
@@ -341,3 +349,75 @@ class TestPropagation(unittest.TestCase):
         self.assertEqual(event_1.relevance, expected_relevance_1)
         self.assertEqual(event_2.relevance, expected_relevance_2)
         self.assertIs(mmnet.events[0], event_1)
+
+
+class TestEventsImport(unittest.TestCase):
+
+    def check_ego_network(
+            self, expected_number_of_nodes, expected_number_of_edges,
+            expected_number_of_circles, expected_number_of_events):
+
+        ero_mmnet = self.ero.mmnet
+        snap_mmnet = ero_mmnet.mmnet
+
+        mmnet_number_of_nodes = snap_mmnet.GetModeNetByName(
+            'Person').GetNodes()
+        self.assertEqual(mmnet_number_of_nodes, expected_number_of_nodes)
+
+        mmnet_number_of_events = snap_mmnet.GetModeNetByName(
+            'Event').GetNodes()
+        self.assertEqual(mmnet_number_of_events, expected_number_of_events)
+
+        mmnet_number_of_edges = snap_mmnet.GetCrossNetByName(
+            'PersonToPerson').GetEdges()
+        self.assertEqual(mmnet_number_of_edges, expected_number_of_edges)
+
+        mmnet_number_of_circles = len(ero_mmnet.circles)
+        self.assertEqual(mmnet_number_of_circles,
+                         expected_number_of_circles)
+
+    def setUp(self):
+        self.ero = ero.Ero()
+
+    def test_import_events(self):
+        ego_node_id = 0
+        folder_path = 'test/facebook/'
+        expected_number_of_nodes = 333
+        expected_number_of_edges = 2519
+        expected_number_of_circles = 1
+        expected_number_of_events = 25
+
+        self.ero.import_ego_network(ego_node_id, folder_path)
+
+        # Generate random people to test
+        person_features = [binary_feature.BinaryFeature(0),
+                           normalized_feature.NormalizedFeature(1)]
+        person = Person(person_features)
+        for person_id in range(1000):
+            self.ero.mmnet.people[person_id] = person
+
+        self.ero.import_events('test/events/events.json')
+        self.check_ego_network(expected_number_of_nodes,
+                               expected_number_of_edges,
+                               expected_number_of_circles,
+                               expected_number_of_events)
+
+        crossnet_event_to_person = self.ero.mmnet.mmnet.GetCrossNetByName(
+            "EventToPerson")
+        # Edge count is random, no exact assertion possible
+        self.assertNotEqual(crossnet_event_to_person.GetEdges(), 0)
+
+    def test_get_event(self):
+        ego_node_id = 0
+        folder_path = 'test/facebook/'
+        self.ero.import_ego_network(ego_node_id, folder_path)
+
+        # Generate random people to test
+        person_features = [binary_feature.BinaryFeature(0),
+                           normalized_feature.NormalizedFeature(1)]
+        person = Person(person_features)
+        for person_id in range(1000):
+            self.ero.mmnet.people[person_id] = person
+
+        self.ero.import_events('test/events/events.json')
+        self.assertIsNotNone(self.ero.mmnet.get_event(21406))

@@ -5,24 +5,35 @@ import snap
 from ero_ego_circle import EgoCircle
 from ero_exceptions import ImportException
 
+import numpy
+from parsers import *
+import json
+
 
 class EroMMNet:
     '''The container or the multimodal network'''
+
+    ''' The edge count from the events to the people is normal distributed'''
+    EVENT_PERSON_EDGES_MU = 5
+    EVENT_PERSON_EDGE_SIGMA = 2
 
     def __init__(self):
         self.mmnet = self.generate_multimodal_network()
         self.ego_nodes = []
         self.circles = {}
-
-        # Still to be imported
-        self.people = {}
-        self.events = []
+        self.events = {}    # Dictionary of the evnets, key is the event id
+        self.people = {}   # Array of all person ids in the network, may be converted to dictionary with person object as data
 
         # TODO Temporary workaround to broken GetEdgeI
         # Store edgeId for crossnet PersonToPerson: (srcID,DstId)
         self.edges = {}
         # Store edgeId for crossnet EventToPerson: (srcID,DstId)
         self.event_to_person_edges = {}
+
+        # TODO the path here is hardcoded, should be put as parameter
+        comparable_features = json.load(
+            open('test/istat/comparable_features.json'))
+        self.comparable_features = sorted(comparable_features['features'])
 
     def generate_multimodal_network(self):
         '''Generate the multimodal network
@@ -175,3 +186,32 @@ class EroMMNet:
             reachable_people.append(src_id if src_id != person_id else dst_id)
 
         return reachable_people
+
+    def import_events(self, events_filename):
+        parser = event_parser.EventParser(self.comparable_features)
+        events_json = json.load(open(events_filename))['data']
+        events_mode = self.mmnet.GetModeNetByName("Event")
+        for event in events_json:
+            parsed_event = parser.parse_event(event)
+            self.events[parsed_event.id] = parsed_event
+            events_mode.AddNode(parsed_event.id)
+            self.connect_event_in_network(parsed_event)
+
+    def connect_event_in_network(self, event):
+        neighbors_ids = self.generate_random_neighbors()
+        crossnet_person_to_event = self.mmnet.GetCrossNetByName(
+            "EventToPerson")
+        for neighbor_id in neighbors_ids:
+            crossnet_person_to_event.AddEdge(event.id, neighbor_id)
+
+    def generate_random_neighbors(self):
+        edge_count = int(round(numpy.random.normal(
+            self.EVENT_PERSON_EDGES_MU, self.EVENT_PERSON_EDGE_SIGMA, 1)))
+        neighbors_ids = []
+        for _ in range(edge_count):
+            random_neighbor_id = numpy.random.randint(0, len(self.people))
+            neighbors_ids.append(random_neighbor_id)
+        return neighbors_ids
+
+    def get_event(self, event_id):
+        return self.events[event_id]

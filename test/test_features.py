@@ -66,7 +66,7 @@ class TestNormalizedFeature(unittest.TestCase):
     def test_default_similarity_equal_features(self):
         bf1 = normalized_feature.NormalizedFeature(0.3)
         bf2 = normalized_feature.NormalizedFeature(0.5)
-        self.assertEqual(bf1.similar(bf2), 0.2)
+        self.assertEqual(bf1.similar(bf2), 0.8)
 
 
 class TestComparableFeature(unittest.TestCase):

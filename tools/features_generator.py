@@ -6,21 +6,18 @@ import numpy
 from features import *
 
 
-class FeaturesGenerator():
+class PeopleFeaturesGenerator():
     '''Class to generate test features from probability distributions'''
 
-    def __init__(
-            self, person_features_path, event_features_path,
-            comparable_featurs_path):
+    def __init__(self, person_features_path, comparable_featurs_path):
         comparable_features = json.load(open(comparable_featurs_path))
         self.sorted_comparable_features_names = sorted(
             comparable_features['features'])
         self.person_features = json.load(open(person_features_path))
-        self.event_features = json.load(open(event_features_path))
         self.distributions = {}
 
     def generate_many(self, number_of_people):
-        '''Generate multiple complete person features lists'''
+        '''Generate multiple person features lists'''
         return [self.generate_one() for _ in range(number_of_people)]
 
     def generate_one(self):

@@ -21,9 +21,8 @@ class TestFeaturesGenerator(unittest.TestCase):
 
     def setUp(self):
         self.test_folder = './test/istat/'
-        self.generator = features_generator.FeaturesGenerator(
+        self.generator = features_generator.PeopleFeaturesGenerator(
             './test/istat/person_features.json',
-            './test/istat/event_features.json',
             './test/istat/comparable_features.json')
         self.generator.import_features_distributions_from_folder(
             self.test_folder)

@@ -13,7 +13,7 @@ This file is a one level .json file that contains a list of the common features 
 
 > {'features':[..]}
 
-## Person features
+## Person features -> Used in PersonFeaturesGenerator
 
 This file contains the features that should be used in the computation of the fitness function for a person. This file is a two-level dictionary where the first level features are the same of the ones in the comparable_features.json file. A combiner(missing) should be defined.
 

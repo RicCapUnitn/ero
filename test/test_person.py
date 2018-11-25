@@ -18,7 +18,7 @@ class TestPerson(unittest.TestCase):
         features2 = [binary_feature.BinaryFeature(1),
                      binary_feature.BinaryFeature(1),
                      normalized_feature.NormalizedFeature(0.3)]
-        expected_fitness = 1. + 0. + 0.2
+        expected_fitness = (1. + 0. + 0.8) / 3.
         person = ero_person.Person(features1)
-        event = ero_event.Event(features2, "2140675796193939")
+        event = ero_event.Event("2140675796193939", features2)
         self.assertEqual(person.fitness(event), expected_fitness)

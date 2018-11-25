@@ -2,7 +2,7 @@ from geopy.distance import distance
 
 
 def DEFAULT_NORMALIZED_COMBINER(value1, value2):
-    return abs(value1 - value2)
+    return 1. - abs(value1 - value2)
 
 
 def person_location_combiner(person_location, event_location):

@@ -121,6 +121,7 @@ class TestNetworkImport(unittest.TestCase):
         crossnet_person_to_event = self.ero.mmnet.mmnet.GetCrossNetByName(
             "EventToPerson")
         self.assertNotEqual(crossnet_person_to_event.GetEdges(), 0) # Edge count is random, no exact assertion possible
+        self.assertEqual(crossnet_person_to_event.GetEdges(), len(self.ero.mmnet.event_to_person_edges) - 1)
 
     def test_get_event(self):
         ego_node_id = 0

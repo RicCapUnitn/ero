@@ -128,7 +128,9 @@ class EroMMNet:
         crossnet_person_to_event = self.mmnet.GetCrossNetByName(
             "EventToPerson")
         for neighbor in neighbors:
-            crossnet_person_to_event.AddEdge(event.id, neighbor)
+            edge_id = crossnet_person_to_event.AddEdge(event.id, neighbor)
+            self.event_to_person_edges[edge_id] = (
+                event.id, neighbor)
 
     def generate_random_neighbors(self):
         persons = self.people.values()

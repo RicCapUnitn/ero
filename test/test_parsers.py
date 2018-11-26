@@ -33,7 +33,7 @@ class TestEventParser(unittest.TestCase):
                     "zip": "38122"
                 }
             },
-            "id": 1
+            "id": "2140675796193939"
         }
         parsed_event = self._parser.parse_event(test_event)
         self.assertIsInstance(parsed_event, Event)
@@ -50,12 +50,15 @@ class TestEventParser(unittest.TestCase):
         self.assertIs(location_feature.combiner,
                       combiners.event_location_combiner)
 
+        expected_shortened_id = int("2140675796193939"[:5])
+        self.assertEqual(parsed_event.id, expected_shortened_id)
+
     def test_parse_event_missing_location(self):
         test_event = {
             "place": {
                 "name": "CLab Trento",
             },
-            "id": 1
+            "id": "2140675796193939"
         }
         parsed_event = self._parser.parse_event(test_event)
         self.assertIsInstance(parsed_event, Event)
@@ -67,20 +70,15 @@ class TestEventParser(unittest.TestCase):
         location_feature = parsed_event.features[1]
         self.assertIs(location_feature, empty_feature.empty_feature)
 
+        expected_shortened_id = int("2140675796193939"[:5])
+        self.assertEqual(parsed_event.id, expected_shortened_id)
+
     def test_parse_event_missing_id(self):
         test_event = {
             "place": {
                 "name": "CLab Trento",
-                "location": {
-                    "city": "Trento",
-                    "country": "Italy",
-                    "latitude": 46.06486,
-                    "located_in": "181177785306461",
-                    "longitude": 11.1242,
-                    "street": "Piazza Fiera, 4",
-                    "zip": "38122"
-                }
             }
         }
+
         with self.assertRaises(ImportException):
-            self._parser.parse_event(test_event)
+            parsed_event = self._parser.parse_event(test_event)

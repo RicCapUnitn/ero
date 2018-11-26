@@ -2,8 +2,8 @@ import warnings
 
 from combiners import *
 from ero_event import Event
-from features import *
 from ero_exceptions import ImportException
+from features import *
 
 
 class EventParser():
@@ -20,8 +20,7 @@ class EventParser():
         event_features = []
 
         try:
-            # Shorten id to fit into Snap C++ int
-            event_id = int(event['id'][:5])
+            event_id = self._get_snap_id_from_facebook_event_id(event['id'])
         except KeyError:
             raise ImportException(
                 'Trying to import event with no valid id')
@@ -50,3 +49,17 @@ class EventParser():
             return composite_feature.CompositeFeature(coordinates, combiners.event_location_combiner)
         except KeyError:
             return empty_feature.empty_feature
+
+    def _get_snap_id_from_facebook_event_id(self, fb_event_id):
+        '''Shorten id to fit into Snap C++ int
+
+        Params:
+            fb_event_id: facebook string event_id
+        Return:
+            An id that the snap.py library accepts
+
+        TODO:
+            A better solution would be to generate ids and store the mapping in
+            a dictionary.
+        '''
+        return int(fb_event_id[:5])

@@ -1,13 +1,13 @@
 import glob
+import json
 import re
+
+import numpy
 
 import snap
 from ero_ego_circle import EgoCircle
 from ero_exceptions import ImportException
-
-import numpy
 from parsers import *
-import json
 
 
 class EroMMNet:
@@ -21,12 +21,14 @@ class EroMMNet:
         self.mmnet = self.generate_multimodal_network()
         self.ego_nodes = []
         self.circles = {}
-        self.events = {}    # Dictionary of the evnets, key is the event id
+
+        # TODO make the two dictionaries become classes
+        self.events = {}    # Dictionary of the events, key is the event id
         self.people = {}   # Array of all person ids in the network, may be converted to dictionary with person object as data
 
         # TODO Temporary workaround to broken GetEdgeI
         # Store edgeId for crossnet PersonToPerson: (srcID,DstId)
-        self.edges = {}
+        self.person_to_person_edges = {}
         # Store edgeId for crossnet EventToPerson: (srcID,DstId)
         self.event_to_person_edges = {}
 
@@ -97,7 +99,7 @@ class EroMMNet:
         for edge in ego_network_edges.Edges():
             edge_id = crossnet_person_to_person.AddEdge(
                 edge.GetSrcNId(), edge.GetDstNId())  # TODO workaround
-            self.edges[edge_id] = (
+            self.person_to_person_edges[edge_id] = (
                 edge.GetSrcNId(), edge.GetDstNId())  # TODO workaround
 
         self.import_circles(ego_node_id, ego_network_circles_path)
@@ -181,8 +183,8 @@ class EroMMNet:
             person_id, "PersonToPerson", out_edges)
         reachable_people = []
         for edge in out_edges:
-            src_id = self.edges[edge][0]
-            dst_id = self.edges[edge][1]
+            src_id = self.person_to_person_edges[edge][0]
+            dst_id = self.person_to_person_edges[edge][1]
             reachable_people.append(src_id if src_id != person_id else dst_id)
 
         return reachable_people

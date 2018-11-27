@@ -32,7 +32,11 @@ class PeopleFeaturesGenerator():
                 warnings.warn('Person feature not present: ' + feature)
                 ftype = comparable_features.EMPTY_FEATURE
 
-            fclass = self._get_comparable_feature_class_for_ftype(ftype)
+            try:
+                fclass = self._get_comparable_feature_class_for_ftype(ftype)
+            except NotImplementedError:
+                warnings.warn('Feature type not defined: ' + str(ftype))
+                value = empty_feature.empty_feature
 
             try:
                 feature_distribution = self.distributions[fname]
@@ -72,6 +76,5 @@ class PeopleFeaturesGenerator():
         if ftype == comparable_feature.BINARY_FEATURE_TYPE:
             fclass = binary_feature.BinaryFeature
         else:
-            fclass = None  # skip feature
-            # TODO raise NotImplementedError
+            raise NotImplementedError
         return fclass

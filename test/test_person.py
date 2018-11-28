@@ -64,7 +64,7 @@ class TestPerson(unittest.TestCase):
         person = ero_person.Person(features1, do_mutation=True)
         event = ero_event.Event(0, features2)
 
-        for _ in range(10):
+        for _ in range(50):
             person.mutate_evaluate_and_select(event)
 
         feature_start_weight = 0.5

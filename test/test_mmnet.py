@@ -1,4 +1,5 @@
 import unittest
+from operator import add, truediv
 
 # Add path in order to import  the library
 import sys
@@ -184,7 +185,8 @@ class TestPropagation(unittest.TestCase):
         '''
         Event is linked to the propagating_node only;
         People have same features(only people at distance <=2 are reached)
-        Relevance = (propagating_node + all nodes at distance <=1) * #iterations
+        # iterations
+        Relevance = (propagating_node + all nodes at distance <=1) *
         '''
         mmnet = self.ero.mmnet
 
@@ -346,49 +348,125 @@ class TestPropagation(unittest.TestCase):
         self.assertEqual(event_2.relevance, expected_relevance_2)
         self.assertIs(mmnet.events[0], event_1)
 
+    def test_propagation_with_mutation_multiple_events(self):
+        '''Test whether relevant features emerge when mutating over participants'''
+        mmnet = self.ero.mmnet
+
+        iterations = 100
+
+        propagating_node_1 = 1
+        propagating_node_2 = 10
+
+        person_features = [binary_feature.BinaryFeature(0),
+                           binary_feature.BinaryFeature(0),
+                           normalized_feature.NormalizedFeature(0.5)]
+        event_features_1 = [binary_feature.BinaryFeature(0),
+                            binary_feature.BinaryFeature(1),
+                            normalized_feature.NormalizedFeature(0.6)]
+        event_features_2 = [binary_feature.BinaryFeature(1),
+                            binary_feature.BinaryFeature(0),
+                            normalized_feature.NormalizedFeature(0.5)]
+
+        event_id_1 = 0
+        event_id_2 = 1
+        event_1 = Event(event_id_1, event_features_1)
+        event_2 = Event(event_id_2, event_features_2)
+
+        number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
+        for person_id in range(number_of_people + 1):
+            person = Person(person_features, do_mutation=True)
+            mmnet.people[person_id] = person
+
+        event_mode = mmnet.mmnet.GetModeNetByName("Event")
+        event_mode.AddNode(event_id_1)
+        event_mode.AddNode(event_id_2)
+
+        event_to_person_crossnet = mmnet.mmnet.GetCrossNetByName(
+            "EventToPerson")
+        edge_id_1 = event_to_person_crossnet.AddEdge(
+            event_id_1, propagating_node_1)
+        edge_id_2 = event_to_person_crossnet.AddEdge(
+            event_id_2, propagating_node_2)
+        mmnet.event_to_person_edges[edge_id_1] = (
+            event_id_1, propagating_node_1)
+        mmnet.event_to_person_edges[edge_id_2] = (
+            event_id_2, propagating_node_2)
+        mmnet.events = [event_1, event_2]
+
+        mmnet.propagate(iterations)
+
+        sum_weights_event1_participants = [0.] * len(person_features)
+        sum_weights_event2_participants = [0.] * len(person_features)
+
+        participants1 = 3
+        participants2 = 12
+
+        for person in mmnet.people.values():
+            if person.best_event is event_1:
+                sum_weights_event1_participants = list(
+                    map(add, sum_weights_event1_participants, person.features_weights))
+            else:
+                sum_weights_event2_participants = list(
+                    map(add, sum_weights_event2_participants, person.features_weights))
+
+        avg_weights_event1_participants = map(
+            lambda x: x / participants1, sum_weights_event1_participants)
+        avg_weights_event2_participants = map(
+            lambda x: x / participants2, sum_weights_event2_participants
+
+        default_weight=0.5
+
+        self.assertGreater(avg_weights_event1_participants[0], default_weight)
+        self.assertLess(avg_weights_event1_participants[1], default_weight)
+        self.assertGreater(avg_weights_event1_participants[2], default_weight)
+
+        self.assertLess(avg_weights_event2_participants[0], default_weight)
+        self.assertGreater(avg_weights_event2_participants[1], default_weight)
+        self.assertGreater(avg_weights_event2_participants[2], default_weight)
+
 
 class TestEventsImport(unittest.TestCase):
 
     def setUp(self):
-        self.ero = ero.Ero()
+        self.ero=ero.Ero()
 
     def test_import_events(self):
-        ego_node_id = 0
-        folder_path = 'test/facebook/'
-        expected_number_of_events = 25
+        ego_node_id=0
+        folder_path='test/facebook/'
+        expected_number_of_events=25
 
         self.ero.import_ego_network(ego_node_id, folder_path)
 
         # Generate random people to test
-        person_features = [binary_feature.BinaryFeature(0),
+        person_features=[binary_feature.BinaryFeature(0),
                            normalized_feature.NormalizedFeature(1)]
-        person = Person(person_features)
+        person=Person(person_features)
         for person_id in range(1000):
-            self.ero.mmnet.people[person_id] = person
+            self.ero.mmnet.people[person_id]=person
 
         self.ero.import_events('test/events/events.json')
 
-        ero_mmnet = self.ero.mmnet
-        mmnet_number_of_events = ero_mmnet.mmnet.GetModeNetByName(
+        ero_mmnet=self.ero.mmnet
+        mmnet_number_of_events=ero_mmnet.mmnet.GetModeNetByName(
             'Event').GetNodes()
         self.assertEqual(mmnet_number_of_events, expected_number_of_events)
 
-        crossnet_event_to_person = self.ero.mmnet.mmnet.GetCrossNetByName(
+        crossnet_event_to_person=self.ero.mmnet.mmnet.GetCrossNetByName(
             "EventToPerson")
         # Edge count is random, no exact assertion possible
         self.assertNotEqual(crossnet_event_to_person.GetEdges(), 0)
 
     def test_get_event(self):
-        ego_node_id = 0
-        folder_path = 'test/facebook/'
+        ego_node_id=0
+        folder_path='test/facebook/'
         self.ero.import_ego_network(ego_node_id, folder_path)
 
         # Generate random people to test
-        person_features = [binary_feature.BinaryFeature(0),
+        person_features=[binary_feature.BinaryFeature(0),
                            normalized_feature.NormalizedFeature(1)]
-        person = Person(person_features)
+        person=Person(person_features)
         for person_id in range(1000):
-            self.ero.mmnet.people[person_id] = person
+            self.ero.mmnet.people[person_id]=person
 
         self.ero.import_events('test/events/events.json')
         self.assertIsNotNone(self.ero.mmnet.get_event(21406))

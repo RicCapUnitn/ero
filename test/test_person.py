@@ -22,3 +22,17 @@ class TestPerson(unittest.TestCase):
         person = ero_person.Person(features1)
         event = ero_event.Event(0, features2)
         self.assertEqual(person.fitness(event), expected_fitness)
+
+    def test_weights(self):
+        features1 = [binary_feature.BinaryFeature(1),
+                     normalized_feature.NormalizedFeature(0.5)]
+        features2 = [binary_feature.BinaryFeature(1),
+                     normalized_feature.NormalizedFeature(0.3)]
+        weights = [0.5, 0.5]
+        expected_fitness = (0.5 * 1 + 0.5 * 0.8) / 2.
+
+        person = ero_person.Person(features1)
+        person.features_weights = weights
+        event = ero_event.Event(0, features2)
+
+        self.assertEqual(person.fitness(event), expected_fitness)

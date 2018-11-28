@@ -6,9 +6,10 @@ from features import *
 class Person():
 
     def __init__(self, features):
-        self.features = features
         self.best_fitness = 0.
         self.best_event = None
+        self.features = features
+        self.features_weights = [1] * len(features)
 
     def evaluate_and_select(self, event):
         '''Evaluate the fitness of an event and select it if best option'''
@@ -22,6 +23,9 @@ class Person():
         return selected
 
     def fitness(self, event):
-        '''Computed as average of fitnesses'''
-        return sum(f1.similar(f2)
-                   for f1, f2 in zip(self.features, event.features)) / len(self.features)
+        '''Computed as average of fitnesses weighted'''
+        result = 0.
+        for person_feature, event_feature, weight in zip(self.features, event.features, self.features_weights):
+            result += weight * person_feature.similar(event_feature)
+        result /= len(self.features)
+        return result

@@ -33,7 +33,12 @@ Install virtualenv to use the python virtual environments
 
     $ pip2.7 install --user --upgrade virtualenv
 
-Download the environment ENV and put it in the ero folder ero/ENV
+Next, you can optionally create an isolated environment. This is recommended as it makes it possible to have a different environment for each project (e.g. one for this project), with potentially very different libraries, and different versions:
+
+    $ pip2.7 install --user --upgrade virtualenv
+    $ virtualenv -p `which python2` ENV
+
+This creates a new directory called `ENV` in the current directory, containing an isolated Python environment based on Python 2\. If you installed multiple versions of Python 2 on your system, you can replace `` `which python2` `` with the path to the Python executable you prefer to use.
 
 Now you must activate this environment. You will need to run this command every time you want to use this environment.
 

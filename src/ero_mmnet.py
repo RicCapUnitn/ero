@@ -139,7 +139,7 @@ class EroMMNet:
 
             for person_id in this_iteration_reached_people:
                 person = self.people[person_id]
-                selected = person.evaluate_and_select(event)
+                selected = person.mutate_evaluate_and_select(event)
 
                 if selected:
                     event.relevance += 1

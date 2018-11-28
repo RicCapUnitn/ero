@@ -54,3 +54,20 @@ class TestPerson(unittest.TestCase):
 
         self.assertListEqual(person.features_weights,
                              expected_features_weights)
+
+    def test_mutation(self):
+        features1 = [binary_feature.BinaryFeature(1),
+                     binary_feature.BinaryFeature(0)]
+        features2 = [binary_feature.BinaryFeature(1),
+                     binary_feature.BinaryFeature(1)]
+
+        person = ero_person.Person(features1, do_mutation=True)
+        event = ero_event.Event(0, features2)
+
+        for _ in range(10):
+            person.mutate_evaluate_and_select(event)
+
+        feature_start_weight = 0.5
+
+        self.assertGreater(person.features_weights[0], feature_start_weight)
+        self.assertLessEqual(person.features_weights[1], feature_start_weight)

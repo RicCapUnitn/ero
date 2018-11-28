@@ -9,7 +9,7 @@ class Person():
         self.best_fitness = 0.
         self.best_event = None
         self.features = features
-        self.features_weights = [1] * len(features)
+        self.features_weights = [0.5] * len(features)
 
     def evaluate_and_select(self, event):
         '''Evaluate the fitness of an event and select it if best option'''
@@ -29,3 +29,7 @@ class Person():
             result += weight * person_feature.similar(event_feature)
         result /= len(self.features)
         return result
+
+    def set_features_weights(self, default_weight):
+        '''Set all features weights to default_weight'''
+        self.features_weights = [default_weight] * len(self.features)

@@ -159,6 +159,7 @@ class TestPropagation(unittest.TestCase):
         expected_fitness = 0.5
 
         person = Person(person_features)
+        person.set_features_weights(1.)
         event_id = 0
         event = Event(event_id, event_features)
 
@@ -199,6 +200,7 @@ class TestPropagation(unittest.TestCase):
         expected_fitness = 0.5
 
         person = Person(person_features)
+        person.set_features_weights(1.)
         event_id = 0
         event = Event(event_id, event_features)
 
@@ -245,6 +247,7 @@ class TestPropagation(unittest.TestCase):
         expected_fitness_2 = (1. + 0.2) / 2.
 
         person = Person(person_features)
+        person.set_features_weights(1.)
 
         event_id_1 = 0
         event_id_2 = 1
@@ -310,6 +313,7 @@ class TestPropagation(unittest.TestCase):
         expected_fitness_2 = (1. + 0.2) / 2.
 
         person = Person(person_features)
+        person.set_features_weights(1.)
 
         event_id_1 = 0
         event_id_2 = 1

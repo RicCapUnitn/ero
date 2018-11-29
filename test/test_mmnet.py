@@ -412,9 +412,9 @@ class TestPropagation(unittest.TestCase):
         avg_weights_event1_participants = map(
             lambda x: x / participants1, sum_weights_event1_participants)
         avg_weights_event2_participants = map(
-            lambda x: x / participants2, sum_weights_event2_participants
+            lambda x: x / participants2, sum_weights_event2_participants)
 
-        default_weight=0.5
+        default_weight = 0.5
 
         self.assertGreater(avg_weights_event1_participants[0], default_weight)
         self.assertLess(avg_weights_event1_participants[1], default_weight)
@@ -428,45 +428,45 @@ class TestPropagation(unittest.TestCase):
 class TestEventsImport(unittest.TestCase):
 
     def setUp(self):
-        self.ero=ero.Ero()
+        self.ero = ero.Ero()
 
     def test_import_events(self):
-        ego_node_id=0
-        folder_path='test/facebook/'
-        expected_number_of_events=25
+        ego_node_id = 0
+        folder_path = 'test/facebook/'
+        expected_number_of_events = 25
 
         self.ero.import_ego_network(ego_node_id, folder_path)
 
         # Generate random people to test
-        person_features=[binary_feature.BinaryFeature(0),
+        person_features = [binary_feature.BinaryFeature(0),
                            normalized_feature.NormalizedFeature(1)]
-        person=Person(person_features)
+        person = Person(person_features)
         for person_id in range(1000):
-            self.ero.mmnet.people[person_id]=person
+            self.ero.mmnet.people[person_id] = person
 
         self.ero.import_events('test/events/events.json')
 
-        ero_mmnet=self.ero.mmnet
-        mmnet_number_of_events=ero_mmnet.mmnet.GetModeNetByName(
+        ero_mmnet = self.ero.mmnet
+        mmnet_number_of_events = ero_mmnet.mmnet.GetModeNetByName(
             'Event').GetNodes()
         self.assertEqual(mmnet_number_of_events, expected_number_of_events)
 
-        crossnet_event_to_person=self.ero.mmnet.mmnet.GetCrossNetByName(
+        crossnet_event_to_person = self.ero.mmnet.mmnet.GetCrossNetByName(
             "EventToPerson")
         # Edge count is random, no exact assertion possible
         self.assertNotEqual(crossnet_event_to_person.GetEdges(), 0)
 
     def test_get_event(self):
-        ego_node_id=0
-        folder_path='test/facebook/'
+        ego_node_id = 0
+        folder_path = 'test/facebook/'
         self.ero.import_ego_network(ego_node_id, folder_path)
 
         # Generate random people to test
-        person_features=[binary_feature.BinaryFeature(0),
+        person_features = [binary_feature.BinaryFeature(0),
                            normalized_feature.NormalizedFeature(1)]
-        person=Person(person_features)
+        person = Person(person_features)
         for person_id in range(1000):
-            self.ero.mmnet.people[person_id]=person
+            self.ero.mmnet.people[person_id] = person
 
         self.ero.import_events('test/events/events.json')
         self.assertIsNotNone(self.ero.mmnet.get_event(21406))

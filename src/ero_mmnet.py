@@ -7,6 +7,7 @@ import numpy
 import snap
 from ero_ego_circle import EgoCircle
 from ero_exceptions import ImportException
+import ero_propagation_thresholds as thresholds
 from parsers import *
 
 
@@ -37,6 +38,19 @@ class EroMMNet:
             open('test/istat/comparable_features.json'))
         self.comparable_features = sorted(comparable_features['features'])
 
+        self.propagation_threshold = thresholds.StaticPropagationThreshold()
+
+    def set_propagation_threshold(self, threshold):
+        '''Set the propagation threshold
+
+        Params:
+            threshold: a subclass of ero_propagation_thresholds.BasePropagationThreshold
+        '''
+        if not issubclass(threshold.__class__, thresholds.BasePropagationThreshold):
+            raise TypeError(
+                'Input threshold is not a subclass of BasePropagationThreshold')
+        self.propagation_threshold = threshold
+
     def generate_multimodal_network(self):
         '''Generate the multimodal network
 
@@ -56,7 +70,7 @@ class EroMMNet:
         '''Import all ego networks in a folder
 
         Args:
-            folder_path(str)  : the directory where the file .edges is
+            folder_path(str): the directory where the file .edges is
         '''
         ego_network_edges_iterator = glob.iglob(folder_path + '*.edges')
         for ego_edges_file_path in ego_network_edges_iterator:
@@ -67,8 +81,8 @@ class EroMMNet:
     def import_ego_network(self, ego_node_id, folder_path):
         '''Import an ego network
 
-        ego_node_id(int)    : the # of the file #.edges
-        folder_path(str)  : the directory where the file .edges is
+        ego_node_id(int): the  # of the file #.edges
+        folder_path(str): the directory where the file .edges is
         '''
         self.ego_nodes.append(ego_node_id)
 
@@ -119,17 +133,25 @@ class EroMMNet:
 
             self.circles[ego_node_id] = circles
 
+    def reset_propagation(self):
+        '''Reset all defaults after propagation'''
+        self.propagation_threshold.reset()
+        for person in self.people.values():
+            person.reset()
+        for event in self.events.values():
+            event.reset()
+
     def propagate(self, iterations):
         '''Run the propagation algorithm'''
         for _ in range(iterations):
-            for event in self.events:
+            for event in self.events.values():
                 self._propagate_event_to_people(event)
-        self.events.sort()
 
     def _propagate_event_to_people(self, event):
         '''Propagate the event information through the network'''
 
-        propagation_threshold = 0.2
+        self.propagation_threshold.reset()
+
         this_iteration_reached_people = frozenset(
             self._get_event_direct_reachable_people(event.id))
         next_iteration_reachable_people = frozenset()
@@ -143,7 +165,7 @@ class EroMMNet:
 
                 if selected:
                     event.relevance += 1
-                    if person.best_fitness > propagation_threshold:
+                    if person.best_fitness > self.propagation_threshold.get_threshold():
                         person_reachable_people = frozenset(self._get_person_direct_reachable_people(
                             person_id))
                         next_iteration_reachable_people |= person_reachable_people
@@ -151,7 +173,8 @@ class EroMMNet:
             this_iteration_reached_people = next_iteration_reachable_people - already_reached_people
             already_reached_people |= this_iteration_reached_people
             next_iteration_reachable_people = frozenset()
-            propagation_threshold += 0.2
+
+            self.propagation_threshold.update()
 
     def _get_event_direct_reachable_people(self, event_id):
         '''Get the people directly connected to an event

@@ -15,6 +15,27 @@ from ero_person import Person
 from ero_exceptions import ImportException
 from features import *
 
+from ero_propagation_thresholds import FeaturesCountBasedPropagationThreshold
+
+
+class TestMMnet(unittest.TestCase):
+
+    def test_set_propagation_threshold_bad_subclass(self):
+
+        class BadThreshold:
+            pass
+
+        ero_mmnet = ero.Ero().mmnet
+
+        with self.assertRaises(TypeError):
+            ero_mmnet.set_propagation_threshold(BadThreshold())
+
+    def test_set_propagation_threshold_good_subclass(self):
+        ero_mmnet = ero.Ero().mmnet
+        good_threshold = FeaturesCountBasedPropagationThreshold(0)
+        ero_mmnet.set_propagation_threshold(good_threshold)
+        self.assertIs(ero_mmnet.propagation_threshold, good_threshold)
+
 
 class TestPeopleImport(unittest.TestCase):
     ''' Test the import of ego networks
@@ -175,7 +196,7 @@ class TestPropagation(unittest.TestCase):
             "EventToPerson")
         edge_id = event_to_person_crossnet.AddEdge(event_id, propagating_node)
         mmnet.event_to_person_edges[edge_id] = (event_id, propagating_node)
-        mmnet.events = [event]
+        mmnet.events = {event_id: event}
 
         mmnet.propagate(1)
 
@@ -217,7 +238,7 @@ class TestPropagation(unittest.TestCase):
             "EventToPerson")
         edge_id = event_to_person_crossnet.AddEdge(event_id, propagating_node)
         mmnet.event_to_person_edges[edge_id] = (event_id, propagating_node)
-        mmnet.events = [event]
+        mmnet.events = {event_id: event}
 
         mmnet.propagate(iterations)
 
@@ -274,7 +295,8 @@ class TestPropagation(unittest.TestCase):
             event_id_1, propagating_node_1)
         mmnet.event_to_person_edges[edge_id_2] = (
             event_id_2, propagating_node_2)
-        mmnet.events = [event_1, event_2]
+        mmnet.events = {event_id_1: event_1,
+                        event_id_2: event_2}
 
         mmnet.propagate(1)
 
@@ -340,7 +362,8 @@ class TestPropagation(unittest.TestCase):
             event_id_1, propagating_node_1)
         mmnet.event_to_person_edges[edge_id_2] = (
             event_id_2, propagating_node_2)
-        mmnet.events = [event_1, event_2]
+        mmnet.events = {event_id_1: event_1,
+                        event_id_2: event_2}
 
         mmnet.propagate(iterations)
 
@@ -391,7 +414,8 @@ class TestPropagation(unittest.TestCase):
             event_id_1, propagating_node_1)
         mmnet.event_to_person_edges[edge_id_2] = (
             event_id_2, propagating_node_2)
-        mmnet.events = [event_1, event_2]
+        mmnet.events = {event_id_1: event_1,
+                        event_id_2: event_2}
 
         mmnet.propagate(iterations)
 
@@ -423,6 +447,25 @@ class TestPropagation(unittest.TestCase):
         self.assertLess(avg_weights_event2_participants[0], default_weight)
         self.assertGreater(avg_weights_event2_participants[1], default_weight)
         self.assertGreater(avg_weights_event2_participants[2], default_weight)
+
+    def test_reset_propagation(self):
+        mmnet = self.ero.mmnet
+
+        person = Person([])
+        event = Event(0, [])
+
+        mmnet.people[0] = person
+        mmnet.events[0] = event
+
+        person.best_event = event
+        person.best_fitness = 0.5
+        event.relevance = 4
+
+        mmnet.reset_propagation()
+
+        self.assertEqual(mmnet.people[0].best_event, None)
+        self.assertEqual(mmnet.people[0].best_fitness, 0.)
+        self.assertEqual(mmnet.events[0].relevance, 0)
 
 
 class TestEventsImport(unittest.TestCase):

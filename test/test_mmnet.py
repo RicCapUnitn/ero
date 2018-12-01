@@ -15,27 +15,6 @@ from ero_person import Person
 from ero_exceptions import ImportException
 from features import *
 
-from ero_propagation_thresholds import FeaturesCountBasedPropagationThreshold
-
-
-class TestMMnet(unittest.TestCase):
-
-    def test_set_propagation_threshold_bad_subclass(self):
-
-        class BadThreshold:
-            pass
-
-        ero_mmnet = ero.Ero().mmnet
-
-        with self.assertRaises(TypeError):
-            ero_mmnet.set_propagation_threshold(BadThreshold())
-
-    def test_set_propagation_threshold_good_subclass(self):
-        ero_mmnet = ero.Ero().mmnet
-        good_threshold = FeaturesCountBasedPropagationThreshold(0)
-        ero_mmnet.set_propagation_threshold(good_threshold)
-        self.assertIs(ero_mmnet.propagation_threshold, good_threshold)
-
 
 class TestPeopleImport(unittest.TestCase):
     ''' Test the import of ego networks
@@ -172,22 +151,21 @@ class TestPropagation(unittest.TestCase):
         '''
         mmnet = self.ero.mmnet
         propagating_node = 4
-        expected_reached_nodes = 7
+        expected_reached_nodes = 14
 
         person_features = [binary_feature.BinaryFeature(0),
                            normalized_feature.NormalizedFeature(1)]
         event_features = [binary_feature.BinaryFeature(1),
                           normalized_feature.NormalizedFeature(0.5)]
-        expected_fitness = 0.5
 
-        person = Person(person_features)
-        person.set_features_weights(1.)
         event_id = 0
         event = Event(event_id, event_features)
 
         number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
 
         for person_id in range(number_of_people + 1):
+            person = Person(person_features)
+            person.set_features_weights(1.)
             mmnet.people[person_id] = person
 
         event_mode = mmnet.mmnet.GetModeNetByName("Event")
@@ -213,23 +191,22 @@ class TestPropagation(unittest.TestCase):
 
         iterations = 10
         propagating_node = 4
-        expected_reached_nodes_one_iteration = 13
+        expected_reached_nodes_one_iteration = 14
         expected_relevance = expected_reached_nodes_one_iteration * iterations
 
         person_features = [binary_feature.BinaryFeature(0),
                            normalized_feature.NormalizedFeature(1)]
         event_features = [binary_feature.BinaryFeature(0),
                           normalized_feature.NormalizedFeature(0.)]
-        expected_fitness = 0.5
 
-        person = Person(person_features)
-        person.set_features_weights(1.)
         event_id = 0
         event = Event(event_id, event_features)
 
         number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
 
         for person_id in range(number_of_people + 1):
+            person = Person(person_features)
+            person.set_features_weights(1.)
             mmnet.people[person_id] = person
 
         event_mode = mmnet.mmnet.GetModeNetByName("Event")
@@ -256,8 +233,8 @@ class TestPropagation(unittest.TestCase):
         propagating_node_1 = 2
         propagating_node_2 = 4
 
-        expected_reached_nodes_1 = 4
-        expected_reached_nodes_2 = 13
+        expected_reached_nodes_1 = 14
+        expected_reached_nodes_2 = 12
 
         person_features = [binary_feature.BinaryFeature(0),
                            normalized_feature.NormalizedFeature(1)]
@@ -266,12 +243,6 @@ class TestPropagation(unittest.TestCase):
         event_features_2 = [binary_feature.BinaryFeature(0),
                             normalized_feature.NormalizedFeature(0.2)]
 
-        expected_fitness_1 = (1. + 0.) / 2.
-        expected_fitness_2 = (1. + 0.2) / 2.
-
-        person = Person(person_features)
-        person.set_features_weights(1.)
-
         event_id_1 = 0
         event_id_2 = 1
         event_1 = Event(event_id_1, event_features_1)
@@ -279,6 +250,8 @@ class TestPropagation(unittest.TestCase):
 
         number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
         for person_id in range(number_of_people + 1):
+            person = Person(person_features)
+            person.set_features_weights(1.)
             mmnet.people[person_id] = person
 
         event_mode = mmnet.mmnet.GetModeNetByName("Event")
@@ -317,14 +290,11 @@ class TestPropagation(unittest.TestCase):
 
         iterations = 10
 
-        expected_relevance_1 = 4
-        expected_relevance_2 = 13 * iterations
+        expected_relevance_1 = 14 + 2 * (iterations - 1)
+        expected_relevance_2 = 12 * iterations
 
         propagating_node_1 = 2
         propagating_node_2 = 4
-
-        expected_reached_nodes_1 = 4
-        expected_reached_nodes_2 = 13
 
         person_features = [binary_feature.BinaryFeature(0),
                            normalized_feature.NormalizedFeature(1)]
@@ -333,12 +303,6 @@ class TestPropagation(unittest.TestCase):
         event_features_2 = [binary_feature.BinaryFeature(0),
                             normalized_feature.NormalizedFeature(0.2)]
 
-        expected_fitness_1 = (1. + 0.) / 2.
-        expected_fitness_2 = (1. + 0.2) / 2.
-
-        person = Person(person_features)
-        person.set_features_weights(1.)
-
         event_id_1 = 0
         event_id_2 = 1
         event_1 = Event(event_id_1, event_features_1)
@@ -346,6 +310,8 @@ class TestPropagation(unittest.TestCase):
 
         number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
         for person_id in range(number_of_people + 1):
+            person = Person(person_features)
+            person.set_features_weights(1.)
             mmnet.people[person_id] = person
 
         event_mode = mmnet.mmnet.GetModeNetByName("Event")
@@ -513,3 +479,148 @@ class TestEventsImport(unittest.TestCase):
 
         self.ero.import_events('test/events/events.json')
         self.assertIsNotNone(self.ero.mmnet.get_event(21406))
+
+
+class TestMMnet(unittest.TestCase):
+
+    @unittest.skip('Use this test to check what is the minimum number of iterations the algorithm requires to converge')
+    def test_iterations_number(self):
+
+        self.ero = ero.Ero()
+
+        ego_node_id = 0
+        folder_path = 'test/facebook/'
+        self.ero.import_ego_network(ego_node_id, folder_path)
+
+        mmnet = self.ero.mmnet
+        iterations = 5
+
+        propagating_node_1 = 207
+        propagating_node_2 = 193
+        propagating_node_3 = 195
+
+        test_default_thresholds = [0.05, 0.1]
+        test_update_rates = [0.1, 0.2, 0.3]
+        test_thresholds = []
+
+        number_of_features = 6
+
+        person_features = [binary_feature.BinaryFeature(0),
+                           binary_feature.BinaryFeature(0),
+                           normalized_feature.NormalizedFeature(0.5),
+                           binary_feature.BinaryFeature(0),
+                           binary_feature.BinaryFeature(0),
+                           normalized_feature.NormalizedFeature(0.5)]
+        event_features_1 = [binary_feature.BinaryFeature(0),
+                            binary_feature.BinaryFeature(1),
+                            normalized_feature.NormalizedFeature(0.6),
+                            binary_feature.BinaryFeature(0),
+                            binary_feature.BinaryFeature(1),
+                            normalized_feature.NormalizedFeature(0.6)]
+        event_features_2 = [binary_feature.BinaryFeature(1),
+                            binary_feature.BinaryFeature(0),
+                            normalized_feature.NormalizedFeature(0.5),
+                            binary_feature.BinaryFeature(1),
+                            binary_feature.BinaryFeature(0),
+                            normalized_feature.NormalizedFeature(0.5)]
+        event_features_3 = [binary_feature.BinaryFeature(0),
+                            binary_feature.BinaryFeature(0),
+                            normalized_feature.NormalizedFeature(0.5),
+                            binary_feature.BinaryFeature(0),
+                            binary_feature.BinaryFeature(0),
+                            normalized_feature.NormalizedFeature(0.5)]
+
+        # e3 >> e2 > e1
+        # 6 >> 4 > 3.8
+
+        event_id_1 = 0
+        event_id_2 = 1
+        event_id_3 = 2
+        event_1 = Event(event_id_1, event_features_1)
+        event_2 = Event(event_id_2, event_features_2)
+        event_3 = Event(event_id_3, event_features_3)
+
+        for person_id in range(350):
+            person = Person(person_features, do_mutation=True)
+            mmnet.people[person_id] = person
+
+        event_mode = mmnet.mmnet.GetModeNetByName("Event")
+        event_mode.AddNode(event_id_1)
+        event_mode.AddNode(event_id_2)
+        event_mode.AddNode(event_id_3)
+
+        event_to_person_crossnet = mmnet.mmnet.GetCrossNetByName(
+            "EventToPerson")
+        edge_id_1 = event_to_person_crossnet.AddEdge(
+            event_id_1, propagating_node_1)
+        edge_id_2 = event_to_person_crossnet.AddEdge(
+            event_id_2, propagating_node_2)
+        edge_id_3 = event_to_person_crossnet.AddEdge(
+            event_id_3, propagating_node_3)
+        mmnet.event_to_person_edges[edge_id_1] = (
+            event_id_1, propagating_node_1)
+        mmnet.event_to_person_edges[edge_id_2] = (
+            event_id_2, propagating_node_2)
+        mmnet.event_to_person_edges[edge_id_3] = (
+            event_id_3, propagating_node_3)
+        mmnet.events = {event_id_1: event_1,
+                        event_id_2: event_2,
+                        event_id_3: event_3}
+
+        mmnet.propagate(iterations)
+
+        # Compute and print propagation results
+        sum_weights_event1_participants = [0.] * len(person_features)
+        sum_weights_event2_participants = [0.] * len(person_features)
+        sum_weights_event3_participants = [0.] * len(person_features)
+
+        participants1 = 0
+        participants2 = 0
+        participants3 = 0
+
+        for person in mmnet.people.values():
+            if person.best_event is event_1:
+                sum_weights_event1_participants = list(
+                    map(add, sum_weights_event1_participants, person.features_weights))
+                participants1 += 1
+            elif person.best_event is event_2:
+                sum_weights_event2_participants = list(
+                    map(add, sum_weights_event2_participants, person.features_weights))
+                participants2 += 1
+            else:
+                sum_weights_event3_participants = list(
+                    map(add, sum_weights_event3_participants, person.features_weights))
+                participants3 += 1
+
+        if participants1 > 0:
+            avg_weights_event1_participants = map(
+                lambda x: x / participants1, sum_weights_event1_participants)
+        else:
+            avg_weights_event1_participants = [0.] * len(person_features)
+        if participants2 > 0:
+            avg_weights_event2_participants = map(
+                lambda x: x / participants2, sum_weights_event2_participants)
+        else:
+            avg_weights_event2_participants = [0.] * len(person_features)
+        if participants3 > 0:
+            avg_weights_event3_participants = map(
+                lambda x: x / participants3, sum_weights_event3_participants)
+        else:
+            avg_weights_event3_participants = [0.] * len(person_features)
+
+        print('participants1: ' + str(participants1))
+        print('participants2: ' + str(participants2))
+        print('participants3: ' + str(participants3))
+        print('avg_weights_event1_participants: ')
+        print(avg_weights_event1_participants)
+        print('avg_weights_event2_participants: ')
+        print(avg_weights_event2_participants)
+        print('avg_weights_event3_participants: ')
+        print(avg_weights_event3_participants)
+        print('relevance1: ')
+        print(event_1.relevance)
+        print('relevance2: ')
+        print(event_2.relevance)
+        print('relevance3: ')
+        print(event_3.relevance)
+        print('____________________________________________')

@@ -20,8 +20,12 @@ class Person():
         self.best_event = None
         self.features_weights = [0.5] * len(self.features)
 
-    def mutate_evaluate_and_select(self, event):
+    def mutate_evaluate_and_select(self, event, event_distance=1):
         '''Evaluate the fitness of an event and select it if best option
+
+        Params:
+            event: the Event whose fitness we are computing
+            event_distance: the distance factor used in the fitness computation
 
         Note: this method tries to mutate features weights to better match the
         person features to the event features
@@ -36,6 +40,9 @@ class Person():
             if mutated_fitness > fitness:
                 weights = mutated_weights
                 fitness = mutated_fitness
+
+        # Apply distance factor to fitness
+        fitness /= 2 ** event_distance
 
         if fitness >= self.best_fitness:
             self.best_event = event

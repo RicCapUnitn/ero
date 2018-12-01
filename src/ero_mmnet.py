@@ -7,7 +7,6 @@ import numpy
 import snap
 from ero_ego_circle import EgoCircle
 from ero_exceptions import ImportException
-import ero_propagation_thresholds as thresholds
 from parsers import *
 
 
@@ -24,8 +23,8 @@ class EroMMNet:
         self.circles = {}
 
         # TODO make the two dictionaries become classes
-        self.events = {}    # Dictionary of the events, key is the event id
-        self.people = {}   # Array of all person ids in the network, may be converted to dictionary with person object as data
+        self.events = {}  # event_id : Event
+        self.people = {}  # person_id: Person
 
         # TODO Temporary workaround to broken GetEdgeI
         # Store edgeId for crossnet PersonToPerson: (srcID,DstId)
@@ -37,19 +36,6 @@ class EroMMNet:
         comparable_features = json.load(
             open('test/istat/comparable_features.json'))
         self.comparable_features = sorted(comparable_features['features'])
-
-        self.propagation_threshold = thresholds.StaticPropagationThreshold()
-
-    def set_propagation_threshold(self, threshold):
-        '''Set the propagation threshold
-
-        Params:
-            threshold: a subclass of ero_propagation_thresholds.BasePropagationThreshold
-        '''
-        if not issubclass(threshold.__class__, thresholds.BasePropagationThreshold):
-            raise TypeError(
-                'Input threshold is not a subclass of BasePropagationThreshold')
-        self.propagation_threshold = threshold
 
     def generate_multimodal_network(self):
         '''Generate the multimodal network
@@ -135,7 +121,6 @@ class EroMMNet:
 
     def reset_propagation(self):
         '''Reset all defaults after propagation'''
-        self.propagation_threshold.reset()
         for person in self.people.values():
             person.reset()
         for event in self.events.values():
@@ -148,9 +133,16 @@ class EroMMNet:
                 self._propagate_event_to_people(event)
 
     def _propagate_event_to_people(self, event):
-        '''Propagate the event information through the network'''
+        '''Propagate the event information through the network
 
-        self.propagation_threshold.reset()
+        Note: to avoid using a propagation threshold we added a factor of distance
+        to the event in the computation of the fitness; the greater the distance
+        (where distance is the number of edges between the person and the event
+        node), the lower the resulting fitness (the less chance the event has to
+        be chosen and further propagated).
+        '''
+
+        event_distance = 1
 
         this_iteration_reached_people = frozenset(
             self._get_event_direct_reachable_people(event.id))
@@ -161,20 +153,19 @@ class EroMMNet:
 
             for person_id in this_iteration_reached_people:
                 person = self.people[person_id]
-                selected = person.mutate_evaluate_and_select(event)
+                selected = person.mutate_evaluate_and_select(
+                    event, event_distance)
 
                 if selected:
                     event.relevance += 1
-                    if person.best_fitness > self.propagation_threshold.get_threshold():
-                        person_reachable_people = frozenset(self._get_person_direct_reachable_people(
-                            person_id))
-                        next_iteration_reachable_people |= person_reachable_people
+                    person_reachable_people = frozenset(self._get_person_direct_reachable_people(
+                        person_id))
+                    next_iteration_reachable_people |= person_reachable_people
 
             this_iteration_reached_people = next_iteration_reachable_people - already_reached_people
             already_reached_people |= this_iteration_reached_people
             next_iteration_reachable_people = frozenset()
-
-            self.propagation_threshold.update()
+            event_distance += 1
 
     def _get_event_direct_reachable_people(self, event_id):
         '''Get the people directly connected to an event

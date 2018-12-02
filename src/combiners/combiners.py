@@ -37,3 +37,6 @@ def event_location_combiner(event_location, person_location):
         person_location(dict): current, home and work location as key
     '''
     return person_location_combiner(person_location, event_location)
+
+#def person_cultural_interest_cobiner(person_interest):
+    #pass

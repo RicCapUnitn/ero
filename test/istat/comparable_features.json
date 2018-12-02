@@ -4,6 +4,18 @@
     "location",
     "job",
     "allows_smokers",
-    "interests"
+    "teather",
+    "cinema",
+    "museum",
+    "classical_music_concerts",
+    "other_concerts",
+    "sports_show",
+    "disco",
+    "monuments",
+    "interests",
+    "do_sports",
+    "politics",
+    "religion",
+    "social_activities"
   ]
 }

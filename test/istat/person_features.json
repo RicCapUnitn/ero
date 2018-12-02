@@ -9,5 +9,17 @@
     "has_job": "binary"
   },
   "allows_smokers": "binary",
-  "interests": "set"
+  "teather": "binary",
+  "cinema": "binary",
+  "museum": "binary",
+  "classical_music_concerts": "binary",
+  "other_concerts": "binary",
+  "sports_show": "binary",
+  "disco": "binary",
+  "monuments": "binary",
+  "do_sports": "binary",
+  "interests": "set",
+  "politics": "binary",
+  "religion": "binary",
+  "social_activities": "binary"
 }

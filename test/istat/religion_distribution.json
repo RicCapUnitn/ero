@@ -1,0 +1,82 @@
+{
+  "15": {
+    "values": ["True", "False"],
+    "distribution": [0.476797088, 0.523202912]
+  },
+  "16": {
+    "values": ["True", "False"],
+    "distribution": [0.476797088, 0.523202912]
+  },
+  "17": {
+    "values": ["True", "False"],
+    "distribution": [0.476797088, 0.523202912]
+  },
+  "18": {
+    "values": ["True", "False"],
+    "distribution": [0.305555556, 0.694444444]
+  },
+  "19": {
+    "values": ["True", "False"],
+    "distribution": [0.305555556, 0.694444444]
+  },
+  "20": {
+    "values": ["True", "False"],
+    "distribution": [0.286324786, 0.713675214]
+  },
+  "21": {
+    "values": ["True", "False"],
+    "distribution": [0.286324786, 0.713675214]
+  },
+  "22": {
+    "values": ["True", "False"],
+    "distribution": [0.286324786, 0.713675214]
+  },
+  "23": {
+    "values": ["True", "False"],
+    "distribution": [0.286324786, 0.713675214]
+  },
+  "24": {
+    "values": ["True", "False"],
+    "distribution": [0.286324786, 0.713675214]
+  },
+  "25": {
+    "values": ["True", "False"],
+    "distribution": [0.319006686, 0.680993314]
+  },
+  "26": {
+    "values": ["True", "False"],
+    "distribution": [0.319006686, 0.6809933143]
+  },
+  "27": {
+    "values": ["True", "False"],
+    "distribution": [0.319006686, 0.680993314]
+  },
+  "28": {
+    "values": ["True", "False"],
+    "distribution": [0.319006686, 0.680993314]
+  },
+  "29": {
+    "values": ["True", "False"],
+    "distribution": [0.319006686, 0.680993314]
+  },
+  "30": {
+    "values": ["True", "False"],
+    "distribution": [0.319006686, 0.680993314]
+  },
+  "31": {
+    "values": ["True", "False"],
+    "distribution": [0.319006686, 0.680993314]
+  },
+  "32": {
+    "values": ["True", "False"],
+    "distribution": [0.319006686, 0.6809933143]
+  },
+  "33": {
+    "values": ["True", "False"],
+    "distribution": [0.319006686, 0.680993314]
+  },
+  "34": {
+    "values": ["True", "False"],
+    "distribution": [0.319006686, 0.680993314]
+  }
+}

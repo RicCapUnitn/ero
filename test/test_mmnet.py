@@ -540,7 +540,7 @@ class TestMMnet(unittest.TestCase):
         self.ero.import_ego_network(ego_node_id, folder_path)
 
         mmnet = self.ero.mmnet
-        iterations = 100
+        iterations = 30
 
         propagating_node_1 = 207
         propagating_node_2 = 193
@@ -616,58 +616,42 @@ class TestMMnet(unittest.TestCase):
 
         mmnet.propagate(iterations)
 
-        # Compute and print propagation results
         sum_weights_event1_participants = [0.] * len(person_features)
         sum_weights_event2_participants = [0.] * len(person_features)
         sum_weights_event3_participants = [0.] * len(person_features)
 
-        participants1 = 0
-        participants2 = 0
-        participants3 = 0
+        expected_relevance_1 = 103
+        expected_relevance_2 = 10
+        expected_relevance_3 = 10
 
-        for person in mmnet.people.values():
-            if person.best_event is event_1:
-                sum_weights_event1_participants = list(
-                    map(add, sum_weights_event1_participants, person.features_weights))
-                participants1 += 1
-            elif person.best_event is event_2:
-                sum_weights_event2_participants = list(
-                    map(add, sum_weights_event2_participants, person.features_weights))
-                participants2 += 1
-            else:
-                sum_weights_event3_participants = list(
-                    map(add, sum_weights_event3_participants, person.features_weights))
-                participants3 += 1
+        self.assertEqual(event_1.relevance, expected_relevance_1)
+        self.assertEqual(event_2.relevance, expected_relevance_2)
+        self.assertEqual(event_3.relevance, expected_relevance_3)
 
-        if participants1 > 0:
-            avg_weights_event1_participants = map(
-                lambda x: x / participants1, sum_weights_event1_participants)
-        else:
-            avg_weights_event1_participants = [0.] * len(person_features)
-        if participants2 > 0:
-            avg_weights_event2_participants = map(
-                lambda x: x / participants2, sum_weights_event2_participants)
-        else:
-            avg_weights_event2_participants = [0.] * len(person_features)
-        if participants3 > 0:
-            avg_weights_event3_participants = map(
-                lambda x: x / participants3, sum_weights_event3_participants)
-        else:
-            avg_weights_event3_participants = [0.] * len(person_features)
-
-        print('participants1: ' + str(participants1))
-        print('participants2: ' + str(participants2))
-        print('participants3: ' + str(participants3))
-        print('avg_weights_event1_participants: ')
-        print(avg_weights_event1_participants)
-        print('avg_weights_event2_participants: ')
-        print(avg_weights_event2_participants)
-        print('avg_weights_event3_participants: ')
-        print(avg_weights_event3_participants)
-        print('relevance1: ')
-        print(event_1.relevance)
-        print('relevance2: ')
-        print(event_2.relevance)
-        print('relevance3: ')
-        print(event_3.relevance)
-        print('____________________________________________')
+        # Use the following to check whether mutation makes relevant features
+        # emerge; this is useful to balance the mutation/crossover rate
+        #
+        # for person in mmnet.people.values():
+        #     if person.best_event is event_1:
+        #         sum_weights_event1_participants = list(
+        #             map(add, sum_weights_event1_participants, person.features_weights))
+        #     elif person.best_event is event_2:
+        #         sum_weights_event2_participants = list(
+        #             map(add, sum_weights_event2_participants, person.features_weights))
+        #     elif person.best_event is event_3:
+        #         sum_weights_event3_participants = list(
+        #             map(add, sum_weights_event3_participants, person.features_weights))
+        #
+        # avg_weights_event1_participants = map(
+        #     lambda x: x / event_1.relevance, sum_weights_event1_participants)
+        # avg_weights_event2_participants = map(
+        #     lambda x: x / event_2.relevance, sum_weights_event2_participants)
+        # avg_weights_event3_participants = map(
+        #     lambda x: x / event_3.relevance, sum_weights_event3_participants)
+        #
+        #
+        # print('avg_weights_event1_participants: ')
+        # print(avg_weights_event1_participants)
+        # print('avg_weights_event2_participants: ')
+        # print(avg_weights_event2_participants)
+        # print('avg_weights_event3_participants: ')

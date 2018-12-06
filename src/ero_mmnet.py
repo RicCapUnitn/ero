@@ -124,13 +124,6 @@ class EroMMNet:
 
             self.circles[ego_node_id] = circles
 
-    def reset_propagation(self):
-        '''Reset all defaults after propagation'''
-        for person in self.people.values():
-            person.reset()
-        for event in self.events.values():
-            event.reset()
-
     def propagate(self, iterations, reset_propagation=True):
         '''Run the propagation algorithm'''
         for _ in range(iterations):
@@ -143,6 +136,13 @@ class EroMMNet:
 
             for event in self.events.values():
                 self._propagate_event_to_people(event)
+
+    def reset_propagation(self):
+        '''Reset all defaults after propagation'''
+        for person in self.people.values():
+            person.reset()
+        for event in self.events.values():
+            event.reset()
 
     def _propagate_event_to_people(self, event):
         '''Propagate the event information through the network

@@ -14,12 +14,10 @@ class Person():
         self.features_weights = [0.5] * len(features)
         self.do_mutation = do_mutation
 
-    def reset(self, reset_weights=False):
+    def reset(self):
         '''Reset parameters after propagation'''
         self.best_fitness = 0.
         self.best_event = None
-        if reset_weights:
-            self.features_weights = [0.5] * len(self.features)
 
     def mutate_evaluate_and_select(self, event, event_distance=1):
         '''Evaluate the fitness of an event and select it if best option
@@ -78,20 +76,22 @@ class Person():
         Params:
             mutation_rate: value in [0,1] that defines the mutation range
         '''
-        mutated_weights = self.features_weights[:]
 
-        mutation_index = random.randint(0, len(mutated_weights))
-        mutating_weight = mutated_weights[mutation_index]
+        mutated_weights = []
 
-        action = random.choice(['augment_weight', 'deminish_weight'])
+        for mutation_index in range(len(self.features)):
 
-        if action == 'augment_weight':
-            mutation_range = (1. - mutating_weight)
-        else:
-            mutation_range = - mutating_weight
+            mutating_weight = self.features_weights[mutation_index]
 
-        normalized_mutated_weight = mutating_weight + \
-            mutation_rate * (mutation_range * random.random_sample())
+            action = random.choice(['augment_weight', 'deminish_weight'])
 
-        mutated_weights[mutation_index] = normalized_mutated_weight
+            if action == 'augment_weight':
+                mutation_range = (1. - mutating_weight)
+            else:
+                mutation_range = - mutating_weight
+
+            normalized_mutated_weight = mutating_weight + \
+                mutation_rate * (mutation_range * random.random_sample())
+
+            mutated_weights.append(normalized_mutated_weight)
         return mutated_weights

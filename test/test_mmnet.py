@@ -93,6 +93,7 @@ class TestPropagation(unittest.TestCase):
 
     def setUp(self):
         self.ero = ero.Ero()
+        self.ero.mmnet.PROPAGATION_DISTANCE_THRESHOLD = 10
 
         ego_node_id = 0
         folder_path = 'test/test_networks/'
@@ -487,6 +488,9 @@ class TestMMnet(unittest.TestCase):
     def test_iterations_number(self):
 
         self.ero = ero.Ero()
+
+        # Check whether the max propagation distance influences the outcome
+        #self.ero.mmnet.PROPAGATION_DISTANCE_THRESHOLD = 10
 
         ego_node_id = 0
         folder_path = 'test/facebook/'

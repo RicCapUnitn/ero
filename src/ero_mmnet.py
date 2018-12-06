@@ -17,6 +17,9 @@ class EroMMNet:
     EVENT_PERSON_EDGES_MU = 5
     EVENT_PERSON_EDGE_SIGMA = 2
 
+    '''Maximum distance an event propagation can reach from the propagating event'''
+    PROPAGATION_DISTANCE_THRESHOLD = 4
+
     def __init__(self):
         self.mmnet = self.generate_multimodal_network()
         self.ego_nodes = []
@@ -149,7 +152,8 @@ class EroMMNet:
         next_iteration_reachable_people = frozenset()
         already_reached_people = this_iteration_reached_people.copy()
 
-        while len(this_iteration_reached_people) > 0:
+        while (len(this_iteration_reached_people) > 0) and \
+                (event_distance < self.PROPAGATION_DISTANCE_THRESHOLD):
 
             for person_id in this_iteration_reached_people:
                 person = self.people[person_id]

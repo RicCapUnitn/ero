@@ -1,6 +1,5 @@
 #Test data
 test/facebook/*
-test/events/*
 tools/_istat*
 docs/*.rst
 

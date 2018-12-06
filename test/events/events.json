@@ -1,0 +1,326 @@
+{
+  "data": [{
+    "name": "Classicla Opera",
+    "start_time": "19:30",
+    "end_time": "22:30",
+    "place": {
+      "name": "Philharmonic Society of Trento",
+      "location": {
+        "latitude": 46.066723,
+        "longitude": 11.120487
+      }
+    },
+    "allows_smokers": false,
+    "teather": true,
+    "cinema": false,
+    "museum": false,
+    "classical_music_concerts": true,
+    "other_concerts": false,
+    "sports_show": false,
+    "disco": false,
+    "monuments": false,
+    "do_sports": false,
+    "interests": [],
+    "politics": false,
+    "religion": false,
+    "social_activities": false,
+    "id": "1532214687109127"
+  },
+  {
+    "name": "Pop Concert",
+    "start_time": "19:30",
+    "end_time": "22:30",
+    "place": {
+      "name": "Social Theatre",
+      "location": {
+        "latitude": 46.069402,
+        "longitude": 11.122633
+      }
+    },
+    "allows_smokers": false,
+    "teather": false,
+    "cinema": false,
+    "museum": false,
+    "classical_music_concerts": false,
+    "other_concerts": true,
+    "sports_show": false,
+    "disco": false,
+    "monuments": false,
+    "do_sports": false,
+    "interests": [],
+    "politics": false,
+    "religion": false,
+    "social_activities": true,
+    "id": "1463284787298353"
+  },
+  {
+    "name": "Open games evening",
+    "start_time": "20:00",
+    "end_time": "00:00",
+    "place": {
+      "name": "Bar Picaro",
+      "location": {
+        "latitude": 46.068935,
+        "longitude": 11.119141
+      }
+    },
+    "allows_smokers": true,
+    "teather": false,
+    "cinema": false,
+    "museum": false,
+    "classical_music_concerts": false,
+    "other_concerts": false,
+    "sports_show": false,
+    "disco": true,
+    "monuments": false,
+    "do_sports": false,
+    "interests": [],
+    "politics": false,
+    "religion": false,
+    "social_activities": true,
+    "id": "2361793547916914"
+  },
+  {
+    "name": "Political Speeches",
+    "start_time": "12:00",
+    "end_time": "16:30",
+    "place": {
+      "name": "Piazza Duomo",
+      "location": {
+        "latitude": 46.067336,
+        "longitude": 11.121249
+      }
+    },
+    "allows_smokers": true,
+    "teather": false,
+    "cinema": false,
+    "museum": false,
+    "classical_music_concerts": false,
+    "other_concerts": false,
+    "sports_show": false,
+    "disco": false,
+    "monuments": true,
+    "do_sports": false,
+    "interests": [],
+    "politics": true,
+    "religion": false,
+    "social_activities": true,
+    "id": "2547179011456713"
+  },
+  {
+    "name": "Sports afternoon",
+    "start_time": "14:30",
+    "end_time": "29:30",
+    "place": {
+      "name": "Sport courts at Chiesa Santa Maria Maggiore",
+      "location": {
+        "latitude": 46.068778,
+        "longitude": 11.117441
+      }
+    },
+    "allows_smokers": false,
+    "teather": false,
+    "cinema": false,
+    "museum": false,
+    "classical_music_concerts": false,
+    "other_concerts": false,
+    "sports_show": false,
+    "disco": false,
+    "monuments": false,
+    "do_sports": true,
+    "interests": [],
+    "politics": false,
+    "religion": false,
+    "social_activities": true,
+    "id": "34578426371091172"
+  },
+  {
+    "name": "IT Security for everyone",
+    "start_time": "10:00",
+    "end_time": "14:00",
+    "place": {
+      "name": "Polo Scientifico Tecnologico - Fabio Ferrari",
+      "location": {
+        "latitude": 46.066836,
+        "longitude": 11.150424
+      }
+    },
+    "allows_smokers": false,
+    "teather": false,
+    "cinema": false,
+    "museum": false,
+    "classical_music_concerts": false,
+    "other_concerts": false,
+    "sports_show": false,
+    "disco": false,
+    "monuments": false,
+    "do_sports": false,
+    "interests": [],
+    "politics": false,
+    "religion": false,
+    "social_activities": false,
+    "id": "10572958739813750"
+  },
+  {
+    "name": "Church service",
+    "start_time": "8:30",
+    "end_time": "9:30",
+    "place": {
+      "name": "Chiesa di Santa Maria Maggiorere",
+      "location": {
+        "latitude": 46.068618,
+        "longitude": 11.119250
+      }
+    },
+    "allows_smokers": false,
+    "teather": false,
+    "cinema": false,
+    "museum": false,
+    "classical_music_concerts": false,
+    "other_concerts": false,
+    "sports_show": false,
+    "disco": false,
+    "monuments": false,
+    "do_sports": false,
+    "interests": [],
+    "politics": false,
+    "religion": true,
+    "social_activities": false,
+    "id": "28476104938561834"
+  },
+  {
+    "name": "Raft race",
+    "start_time": "14:30",
+    "end_time": "220:00",
+    "place": {
+      "name": "Adige",
+      "location": {
+        "latitude": 46.070001,
+        "longitude": 11.115571
+      }
+    },
+    "allows_smokers": true,
+    "teather": false,
+    "cinema": false,
+    "museum": false,
+    "classical_music_concerts": false,
+    "other_concerts": false,
+    "sports_show": true,
+    "disco": false,
+    "monuments": false,
+    "do_sports": false,
+    "interests": [],
+    "politics": false,
+    "religion": false,
+    "social_activities": true,
+    "id": "01938164738295536"
+  },
+  {
+    "name": "Open swimming day",
+    "start_time": "19:30",
+    "end_time": "22:30",
+    "place": {
+      "name": "Centro Sportivo G. Manazzon",
+      "location": {
+        "latitude": 46.055996,
+        "longitude": 11.130521
+      }
+    },
+    "allows_smokers": false,
+    "teather": false,
+    "cinema": false,
+    "museum": false,
+    "classical_music_concerts": false,
+    "other_concerts": false,
+    "sports_show": false,
+    "disco": false,
+    "monuments": false,
+    "do_sports": true,
+    "interests": [],
+    "politics": false,
+    "religion": false,
+    "social_activities": true,
+    "id": "9384716895161329"
+  },
+  {
+    "name": "Doss Trento concert",
+    "start_time": "19:30",
+    "end_time": "22:30",
+    "place": {
+      "name": "Doss Trento",
+      "location": {
+        "latitude": 46.073086,
+        "longitude": 11.112894
+      }
+    },
+    "allows_smokers": true,
+    "teather": true,
+    "cinema": false,
+    "museum": false,
+    "classical_music_concerts": true,
+    "other_concerts": true,
+    "sports_show": false,
+    "disco": false,
+    "monuments": false,
+    "do_sports": false,
+    "interests": [],
+    "politics": false,
+    "religion": false,
+    "social_activities": true,
+    "id": "928456165879471324"
+  },
+  {
+    "name": "MuSe",
+    "start_time": "9:00",
+    "end_time": "18:00",
+    "place": {
+      "name": "MuSe",
+      "location": {
+        "latitude": 46.062549,
+        "longitude": 11.114510
+      }
+    },
+    "allows_smokers": false,
+    "teather": false,
+    "cinema": false,
+    "museum": true,
+    "classical_music_concerts": false,
+    "other_concerts": false,
+    "sports_show": false,
+    "disco": false,
+    "monuments": false,
+    "do_sports": false,
+    "interests": [],
+    "politics": false,
+    "religion": false,
+    "social_activities": true,
+    "id": "3847164698152576238"
+  },
+  {
+    "name": "Cinema",
+    "start_time": "20:00",
+    "end_time": "22:15",
+    "place": {
+      "name": "Multiplex G. Modena",
+      "location": {
+        "latitude": 46.066848,
+        "longitude": 11.125591
+      }
+    },
+    "allows_smokers": false,
+    "teather": false,
+    "cinema": true,
+    "museum": false,
+    "classical_music_concerts": false,
+    "other_concerts": false,
+    "sports_show": false,
+    "disco": false,
+    "monuments": false,
+    "do_sports": false,
+    "interests": [],
+    "politics": false,
+    "religion": false,
+    "social_activities": true,
+    "id": "472635182940382761"
+  }]
+}

@@ -5,8 +5,8 @@ from ero_exceptions import ImportException
 class Ero:
     '''The class that represents the system.'''
 
-    def __init__(self):
-        self.mmnet = ero_mmnet.EroMMNet()
+    def __init__(self, do_crossover=False):
+        self.mmnet = ero_mmnet.EroMMNet(do_crossover)
 
     def import_ego_networks_folder(self, folder_path):
         '''Import all ego networks in a folder into the system

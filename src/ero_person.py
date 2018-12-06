@@ -14,11 +14,12 @@ class Person():
         self.features_weights = [0.5] * len(features)
         self.do_mutation = do_mutation
 
-    def reset(self):
+    def reset(self, reset_weights=False):
         '''Reset parameters after propagation'''
         self.best_fitness = 0.
         self.best_event = None
-        self.features_weights = [0.5] * len(self.features)
+        if reset_weights:
+            self.features_weights = [0.5] * len(self.features)
 
     def mutate_evaluate_and_select(self, event, event_distance=1):
         '''Evaluate the fitness of an event and select it if best option

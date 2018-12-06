@@ -14,7 +14,7 @@ import features
 import features_generator
 from features import *
 
-#warnings.simplefilter("ignore")
+warnings.simplefilter("ignore")
 
 
 class TestFeaturesGenerator(unittest.TestCase):

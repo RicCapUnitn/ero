@@ -1,0 +1,584 @@
+{
+  "data": [{
+    "description": "Cos'\u00e8 una DevFest? \ud83d\udcbb\n\nLe DevFest sono eventi organizzati da un Google Developer Group in collaborazione con altre community e sono composte di talk e workshop sulle ultime tecnologie. Ogni DevFest \u00e8 ispirata e adattata alle esigenze della community di sviluppatori che la ospita.\n\n\ud83c\udf0e https:\/\/devfest.withgoogle.com\/ \ud83c\udf0e\n\n\ud83d\udcf1\ud83d\udcf1\ud83d\udcf1\ud83d\udcf1\ud83d\udcf1\ud83d\udcf1\ud83d\udcf1\ud83d\udcf1\ud83d\udcf1\ud83d\udcf1\n\n...\ud835\ude8e \ud835\ude9a\ud835\ude9e\ud835\ude8e\ud835\ude95\ud835\ude95\ud835\ude8a \ud835\ude8a \ud835\ude83\ud835\ude9b\ud835\ude8e\ud835\ude97\ud835\ude9d\ud835\ude98 ? \n\nLa prima DevFest Trento si svolger\u00e0 il 10 novembre 2018 al CLab Trento e sar\u00e0 un grande evento che vi accompagner\u00e0 dalle 9 alle 18 e che \u00e8 GRATUITO per tutti i partecipanti grazie ai nostri sponsor.\n\n\ud83c\udf0e https:\/\/devfest18.gdgtrento.it\/ \ud83c\udf0e\n\nDevFest \u00e8 anche prodotto di grande collaborazione tra molte community tech del trentino come:\n\n- Google Developer Group Trento - GDG Trento\n- Java User Grup - Trentino-Alto Adige S\u00fcdtirol\n- PyTrento\n- Speck&Tech\n- Unity User Group Trento\n- Women Techmakers Italia\n\n\ud835\ude7f\ud835\ude9b\ud835\ude98\ud835\ude90\ud835\ude9b\ud835\ude8a\ud835\ude96\ud835\ude96\ud835\ude8a \ud835\ude8d\ud835\ude8e\ud835\ude95\ud835\ude95\ud835\ude8a \ud835\ude90\ud835\ude92\ud835\ude98\ud835\ude9b\ud835\ude97\ud835\ude8a\ud835\ude9d\ud835\ude8a\n\nPotete osservare fin da subito il programma di massima nella sezione apposita: gli speaker, i biglietti, e tutto ci\u00f2 che servir\u00e0 sapere ve lo comunicheremo tramite post in questo evento.\n\nSaremo insieme dalle 9 alle 18, con tante talk sugli argomenti pi\u00f9 caldi nel mondo tech, due pause caff\u00e8 ed una pausa pranzo.\n\nLa DevFest sar\u00e0 divisa in due sale, A e B, in cui si svolgeranno le talk, i workshop ed i CodeLab.\n\n\ud83d\udcd3 \ud83d\udcd3 \ud83d\udcd3 \ud835\ude9b\ud835\ude8e\ud835\ude90\ud835\ude92\ud835\ude9c\ud835\ude9d\ud835\ude9b\ud835\ude8a\ud835\udea3\ud835\ude92\ud835\ude98\ud835\ude97\ud835\ude92 \ud83d\udcd3 \ud83d\udcd3 \ud83d\udcd3\n\n\n\n\u27a1 bit.ly\/devfest-18 \u2b05",
+    "end_time": "2018-11-10T18:00:00+0100",
+    "name": "DevFest Trento 2018",
+    "place": {
+      "name": "CLab Trento",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.06486,
+        "located_in": "181177785306461",
+        "longitude": 11.1242,
+        "street": "Piazza Fiera, 4",
+        "zip": "38122"
+      },
+      "id": "1532214687109127"
+    },
+    "start_time": "2018-11-10T09:00:00+0100",
+    "id": "1920882171311517",
+    "rsvp_status": "attending"
+  }, {
+    "description": "Il pi\u00f9 celebre scrittore italiano, protagonista per la prima volta sul grande schermo  di un viaggio tra mito e letteratura sulle orme dell\u2019indovino Tiresia alla ricerca dell\u2019eternit\u00e0.",
+    "end_time": "2018-11-07T19:30:00+0100",
+    "name": "Conversazione su Tiresia - di e con Andrea Camilleri",
+    "place": {
+      "name": "Cineworld Trento",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.06691,
+        "longitude": 11.12582,
+        "street": "via S. Francesco d'Assisi 8\/a",
+        "zip": "38122"
+      },
+      "id": "305080806289147"
+    },
+    "start_time": "2018-11-06T19:30:00+0100",
+    "event_times": [{
+      "id": "2140675819527270",
+      "start_time": "2018-11-07T18:00:00+0100",
+      "end_time": "2018-11-07T19:30:00+0100",
+      "ticket_uri": "http:\/\/cineworld.18tickets.it\/film\/3696"
+    }, {
+      "id": "2140675816193937",
+      "start_time": "2018-11-06T19:30:00+0100",
+      "end_time": "2018-11-06T21:00:00+0100",
+      "ticket_uri": "http:\/\/cineworld.18tickets.it\/film\/3696"
+    }],
+    "id": "2140675796193939",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Dopo il grandissimo successo della prima serata torna Neon Night con l'appuntamento di novembre  dedicato all'underground della musica elettronica. \n\nPer l'inaugurazione abbiamo scelto una line up composta da artisti internazionali, Deysa Djane & Fifth Key supportati dai residents Roby M Rage e Nicola Belli. \nQuesto evento vedr\u00e0 protagonisti alla consolle Matteo Roma e i nostri residents dj.\n\n(Preparate le scarpette comode per il ballo perch\u00e8 questa \u00e8 la festa di compleanno di Roby M Rage e ci sar\u00e0 da saltare.. !!!)\n\n\u25a0 neon nights #2 \n| Underground Electronic Music |\n\n\u25a0 Line Up \n\nRoby M Rage\nJOOF Recordings \/\/ DSR Digital \/\/ Eclipse Recordings\n\nNicola Belli\nWham\n\nMatteo Roma\nWham! Collective \/ Distretto 38 \/ Dj Mag IT\n\n------------------\n------------------\nRoby M Rage\nhttps:\/\/www.instagram.com\/robymrage\/\nRoby M Rage born in Italy, passionate by the electronic music since him youngest age, he made it's greatest passion, in the late 80's start mixing in different night club, festivals and radio show.\nRoby M Rage was #1 in the ranking of underground dj's on Trend Discotec in 1999 and he also reviewed artists for the prestigious British magazine \"Dj Mag\" in the second half of the 90's.\nReached the Hard Techno chart on Beatport with several tracks & releases and the new EP on Yin Yang Records \"Naked Sun\" was 2nd in the Beatport Hard Techno Chart in January 2018. \nNew release soon on JOOF Recordings with a brilliant track with the legend of Trance music John 00 Fleming.\n\n------------------\nNicola Bellii\nhttps:\/\/soundcloud.com\/nicola-belli\nAlthough too young to take part Nicola Belli lived his childhood and adolescence in the \"Rave Era\" of the late 90s, the images and sounds remain impressed and infuence the musical path.\nIn 2001, as many djs began to put the records in small clubs in his city to become a resident dj in the university nights where a little at a time a real underground scene is formed, from there the jump in increasingly important clubs including Le Queen -Paris, Tresor - Berlin, Bora Bora - Ibiza.\nHis debut as a producer on Viva Music together with Dragosh (we or us) sees the support of artists such as Villalobos, Steve Lawler, Luciano and others.\nHe currently collaborates with the UK label Dubgestion where he can listen to his latest productions\nHis DJ set is a journey between timeless House and Techno music.\n\n------------------\nMatteo Roma\nhttps:\/\/www.facebook.com\/matteoromadj\/\nMatteo is an ambivalent figure in the world of electronic music. In the last decade as dj he performed in some of the best spots in Europe as Tresor in Berlin, Barrakud Festival in Croatia and Greece, Bora Bora in Ibiza. He is also very active in his home country Italy with appearances at Alterego, Mazoom, Kinki, Jazz:Re:Found, Automat Radio and Distretto 38, experimental festival founded with his contribution. From ten years he is also author of Dj Mag, the most famous electronic music magazine in the world and contribued to many relevant projects for the development of the club culture in Italy as \u201cWhat Is Clubbing\u201d in Florence with Tenax and IED and Signal Hills, radio show on m2o. From 2018 he is also scouting new talents around the world for the international booking agency \u201cHappy Few\u201d.\n\n_____________________________________________________\nInfo:\n\u003C\u003Cno racism no sexism no homophobia>>\n\nOpen 22.00 - no glass\n____________________________________________________\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIng Ris Soci",
+    "end_time": "2018-11-04T04:00:00+0100",
+    "name": "Neon nights #2",
+    "place": {
+      "name": "Centro Sociale Bruno",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.06914,
+        "longitude": 11.11347,
+        "street": "Lungadige San Nicol\u00f2 4",
+        "zip": "38121"
+      },
+      "id": "1517209558547527"
+    },
+    "start_time": "2018-11-03T22:00:00+0100",
+    "id": "517869028625664",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Come ogni anno trasmetteremo i test match dell'Italia nella nostra club house! Vi aspettiamo quindi numerosi per questo primo incontro di novembre sabato 3 alle ore 21:00 per tifare insieme la nostra nazionale!",
+    "name": "Italia Vs Irlanda",
+    "place": {
+      "name": "Campo sportivo Ghiaie ASD Rugby Trento",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.04314090431,
+        "longitude": 11.120479008058,
+        "street": "Via Fersina, 19",
+        "zip": "38123"
+      },
+      "id": "212226635579002"
+    },
+    "start_time": "2018-11-03T21:00:00+0100",
+    "id": "1845324048856200",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Vi aspettiamo numerosi! ;)",
+    "end_time": "2018-11-03T23:30:00+0100",
+    "name": "Maitea & Francesca live \u0040Birrificio Km8 (Cunevo)",
+    "place": {
+      "name": "Birrificio & Brewpub Km8",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.28790321517,
+        "longitude": 11.028921604156,
+        "street": "via Calcara, 8 fraz. Cunevo",
+        "zip": "38093"
+      },
+      "id": "1560701067558907"
+    },
+    "start_time": "2018-11-03T21:00:00+0100",
+    "id": "319874405476981",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "con Filodrammatica \"S. Martino\" di Fornace\ndi Giulio Cesare Croce\n\nAl cospetto del trono del re s'aggira un uomo barbuto, vien dai campi \u00e8 rozzo e deforme il villano, assai scaltro e molto astuto, diventa consigliere personale del real sovrano, sgarbuglia senza indugio ogni suo singolar reclamo. Il suo nome \u00e8 Bertoldo, non gli si darebbe neanche un soldo, tra lauti pasti, risaste e tozzole di vino, scherza col popolo, il clero e il principino, con l'aiuto del piccolo Bertoldino, si fa gioco della regina e delle gentili donzelle, ne vrem delle belle.\n\nPERSONAGGI E INTERPRETI\nBertoldo Camillo Caresia\nBertoldino Giacomo Lorenzi\nMarcolfa Mariangela Caresia\nRe Alboino Remo Caresia\nRegina Valentina Caresia\nPrincipe Alessandro Pisetta\nServi Alfredo Stolf - Valerio Caresia\nFrate Ortiga Sandro Lorenzi\nAncelle Clarissa Caresia, Matilde Caresia, Angelica Caresia, Ylenia Colombini, Chaira Falvo e Martina Pisetta\nAltri personaggi Dino Caresia, Francesco Caresia, Armando Giacomozzi, Tiziano Lorenzi, Anna Stenico, Gabriele Stenico\n\nRegia Camillo Caresia e Valentina Caresia\n\nMusiche Stefano Stenico\n\nLuci Giacomo Girardi",
+    "end_time": "2018-11-03T22:30:00+0100",
+    "name": "Bertoldo",
+    "place": {
+      "name": "Teatro San Marco",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.063834865671,
+        "longitude": 11.128887752612,
+        "street": "via san bernardino, 6",
+        "zip": "38122"
+      },
+      "id": "1588919828022879"
+    },
+    "start_time": "2018-11-03T20:45:00+0100",
+    "id": "279205616134894",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "cena con men\u00f9 di pesce al Ristorante Villaggio",
+    "end_time": "2018-11-03T22:00:00+0100",
+    "name": "Cena di pesce",
+    "place": {
+      "name": "Bar Ristorante Pizzeria Villaggio",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.24749,
+        "longitude": 11.34641,
+        "street": "Valfloriana Fraz. Villaggio 2",
+        "zip": "38040"
+      },
+      "id": "274134489681962"
+    },
+    "start_time": "2018-11-03T19:00:00+0100",
+    "id": "319536695540405",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "SABATO 03 NOVEMBRE... \"NOVEMBERFEST\"\n\nLA GRANDE FESTA IN STILE BAVARE SI SPOSTA AL BAR CONCA VERDE DI AMBLAR... DOPO I GRANDI SUCCESSI DEGLI SCORSI ANNI RITORNA IL \"NOVEMBERFEST\"....\n\nDALLE ORE 18:00 APERITIVO CON WURSTEL MERNER E BIRRA A CADUTA DAI  2 TANK HB TRAUNSTEIN IN ARRIVO DA TRAUNSTEIN ORIGINALE OKTOBERFEST...\nQUEST'ANNO 2 TANK DA 500 LITRI !!!\n500 LITRI DI BIRRA CHIARA (HB HELLES)\n500 LITRI DI BIRRA NON FILTRATA (HB ZWICKEL)\n\nBIRRA DA MEZZOLITRO 5 \u20ac\nBIRRA DA LITRO 9 \u20ac\n\nALLE ORE 21:00 LA SERATA SARA ACCOMPAGANTA DA MUSICA VOLKS, ROCK UND OBERKRAINE INSIEME AGLI\n\"DIE SCHWEINHAXEN\"...\n(https:\/\/www.facebook.com\/pages\/Die-Schweinhaxen\/76637326035?fref=ts)\nA SEGUIRE MUSICA APRES SKI & OKTOBERFEST HIT CON TONY DJ\n\nTUTTO IL BAR SARA ALLESTITO A TEMA E PER CHI SI PRESENTA IN ABITO TIPICO CI SARA UNA BIRRA DA 0,5 L. OFFERTA DA NOI...\n\nNON PERTEDEVI QUESTA SERATA CON WURSTEL E BREZEL-LAUGEN E TANTA BUONA BIRRA...\n\nVI ASPETTIAMO NUMEROSI !!!",
+    "end_time": "2018-11-04T04:00:00+0100",
+    "name": "NovemberFest \/\/ Die Schweinhaxen \/\/ Dj Tony \/\/ Bar Conca Verde",
+    "place": {
+      "name": "Bar Conca Verde",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.3889,
+        "longitude": 11.14184,
+        "street": "Via Roen 14 - Amblar in val di Non",
+        "zip": "38011"
+      },
+      "id": "415277591846175"
+    },
+    "start_time": "2018-11-03T18:00:00+0100",
+    "id": "1936462819726281",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Dal 3 al 19 novembre 2018 sar\u00e0 allestita, presso lo spazio FoyEr di Trento (via G. Galilei 26), la mostra di Mario Colombelli dal titolo \u201cFigurazioni e astrazioni\u201d. L\u2019inaugurazione della mostra sar\u00e0 sabato 3 novembre alle 18.00. La mostra sar\u00e0 aperta dal marted\u00ec al sabato con orario 10.00-12.00 e 16.00-19.00.\n\nIl prof. Mario Colombelli, pittore e scenografo \u00e8 nato a Gorgonzola (MI), vive a Madruzzo dove si \u00e8 trasferito per motivi familiari nel 1977. Ha frequentato il liceo artistico e l\u2019Accademia di Belle Arti di Brera a Milano, (laurea in scenografia con 110 e lode) con Domenico Purificato e Raffaele de Grada, successivamente ha svolto l\u2019attivit\u00e0 di insegnante di Disegno e Storia dell\u2019Arte presso vari licei scientifici della provincia di Trento.\nDopo una assidua attivit\u00e0 artistica negli anni settanta con mostre personali, concorsi e collettive in Lombardia (Collettiva Palazzo Reale a Milano, Convegno Pirandelliano ad Agrigento) negli anni ottanta, pur diminuendo l\u2019attivit\u00e0 pittorica, realizza alcune opere pubbliche in Municipi e Chiese della regione.\nDopo un pausa per impegni scolastici e famigliari considerati primari, \u00e8 andato in pensione e ha potuto dedicarsi a tempo pieno alla pittura.\nHa tenuto numerose mostre personali sia a Trento (galleria Fogolino) e in tutta la regione.\nPubblicazioni su: Italia Artistica, Europa Artistica, L\u2019Adige (vari articoli anche a pi\u00f9 colonne), Alto Adige, Il Gazzettino, L\u2019Eco di Bergamo, Corriere della sera, Vita trentina, Trentino Mese (numerose volte). Servizi televisivi: Rai 3, R.T.T.R., TVA, T.C.A. Annuario Italia artistica ed Europa artistica 1977 consultabile presso biblioteca Mart, pubblicato nel libro degli artisti trentini nel 2015 (bottega d\u2019artista volume 2 a cura di Renzo Francescotti, Riccarda Turrina, Mario Cossali, Elio Marcian\u00f2, Fiorenzo Degasperi, Elio Marciano).\nCritici d\u2019arte che ultimamente hanno presentato le sue mostre e hanno scritto di lui: Renzo Francescotti, Mario Cossali, Riccarda Turrina, Fiorenzo Degasperi.\n\n\u2026\u201cDa sempre Colombelli guarda all\u2019arte del passato; la sua ricerca si \u00e8 arricchita nel tempo di nuove suggestioni visive supportate dallo studio e la ricerca. La statuaria greca, l\u2019equilibro e la perfezione di Raffaello, la suprema purezza formale di Ingres, ma anche le sconcertanti ricerche ottiche quali espressioni dirette del pensiero nella poetica di Ren\u00e8 Magritte, o la raffinata visione estetica, l\u2019acuta sensualit\u00e0, i sottili\nritmi decorativi di Guastav Klimt, ad esempio, sono da sempre per l\u2019artista un importante punto di riferimento. Cos\u00ec nuove eterne verit\u00e0 si ricompongono sulla tela, nel solco di una tradizione che non rinuncia alla figura, alla composizione, al mistero naturale ma nemmeno all\u2019elemento decorativo, a quell\u2019arabesco grafico fatto di impalpabili esattezze\u201d\u2026 Riccarda Turrina",
+    "end_time": "2018-11-03T21:00:00+0100",
+    "name": "Mario Colombelli - Inaugurazione mostra Figurazioni e astrazioni",
+    "place": {
+      "name": "FoyEr",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.06787,
+        "longitude": 11.12558,
+        "street": "via Galileo Galilei, 26",
+        "zip": "38121"
+      },
+      "id": "2231517246877855"
+    },
+    "start_time": "2018-11-03T18:00:00+0100",
+    "id": "441014146427251",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Dopo novant\u2019anni di sfortuna, delusione e scivoloni, un vecchio clown torna a cavallo della sua sedia a rotelle per farsi giustizia. Sar\u00e0 un\u2019impresa impossibile dove renne acrobate, giocolieri miopi e mosche assassine cercheranno di impedirglielo. A colpi di naso rosso far\u00e0 occhi neri e lotter\u00e0 fino all\u2019ultimo respiro per difendere la sua dignit\u00e0. Se ci riuscir\u00e0 sar\u00e0 solo grazie al sostegno degli spettatori. Uno spettacolo di circo e teatro al servizio della leggerezza e del divertimento. Un cabaret alla riscossa in cui il clown trionfa!\n\nAlle ore 16.30: Merenda tutti insieme!",
+    "end_time": "2018-11-03T18:00:00+0100",
+    "name": "La riscossa del clown",
+    "place": {
+      "name": "Teatro di Meano",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.12688,
+        "longitude": 11.11646,
+        "street": "Via delle Sugarine 22",
+        "zip": "38121"
+      },
+      "id": "1493988100906398"
+    },
+    "start_time": "2018-11-03T17:00:00+0100",
+    "id": "293689454804965",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Nell'ambito delle iniziative in ricordo della fine della prima guerra mondiale, la Fondazione Museo storico del Trentino invita alla presentazione del libro \n\nCONTRASTI\nLA GRANDE GUERRA NEL RACCONTO FOTOGRAFICO DI PIERO CALAMANDREI\ndi Silvia Bertolotti\n(Trento, Fondazione Museo storico del Trentino, 2017) \n\nAssieme all'Autrice interverranno:\nAlessandro Andreatta, sindaco del Comune di Trento\nPasquale Antonio Gioffr\u00e8, commissario del Governo per la provincia di Trento\nGiorgio Postal, presidente della Fondazione Museo storico del Trentino\nSilvia Calamandrei, presidente della Biblioteca Archivio \u201cPiero Calamandrei\u201d di Montepulciano\nAdolfo Mignemi, storico, Universit\u00e0 degli studi di Modena e Reggio Emilia\n\nUn fotolibro che rappresenta il \"diario visivo\" della Grande Guerra di Piero Calamandrei. \nIl volume curato da Silvia Bertolotti ha permesso di valorizzare i materiali fotografici conservati presso la Fondazione Museo storico del Trentino, inserendoli in un lavoro di pi\u00f9 ampio respiro. Si \u00e8 infatti riusciti a \"ricomporre\" questo racconto fotografico grazie alla fondamentale collaborazione con la Biblioteca comunale e Archivio storico Piero Calamandrei di Montepulciano e con l'apporto di altre istituzioni archivistiche nazionali.\n\u00abIl lettore trarr\u00e0 diversi spunti interessanti dalla ricerca o dalla semplice visione degli scatti. Tra questi, l'attenzione ai luoghi e al territorio che il giovane ufficiale Calamandrei ha descritto e fotografato nel momento in cui lo attraversava. [...] Questo viaggio ci porter\u00e0 anche nella Trento del 3 novembre 1918, arricchendo le nostre conoscenze e forse mutando il nostro immaginario. Sicuramente avvicinandoci a quello che pensavano e che hanno vissuto i protagonisti di questa storia\u00bb. (dalla Presentazione di Giuseppe Ferrandi)",
+    "end_time": "2018-11-03T19:00:00+0100",
+    "name": "Presentazione del volume \"Contrasti\"",
+    "place": {
+      "name": "Sala Falconetto in Palazzo Geremia",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.06918,
+        "longitude": 11.12108,
+        "street": "Via Rodolfo Belenzani 20",
+        "zip": "38122"
+      },
+      "id": "186700185308495"
+    },
+    "start_time": "2018-11-03T17:00:00+0100",
+    "id": "281783002445757",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Reb\u00f2ro. Territorio & passione\nSabato 3 novembre in Valle dei Laghi e a Trento una giornata interamente dedicata a un vino nuovo e al contempo pieno di storia\n\nA Palazzo Roccabruna alle 17.00 a Trento, si proseguir\u00e0 la giornata dedicata al Reb\u00f2ro con il seminario \u201cIl racconto del vino. Comunicazione, vino e territorio: dalla carta al web\u201d. \nAl centro della scena, due protagonisti assoluti della comunicazione del vino in Italia: il giornalista Luciano Ferraro, capo redattore del Corriere della Sera, e Simone Roveda, che col suo WineryLovers \u00e8 diventato uno dei wine influencers italiani pi\u00f9 seguiti sul web. Modera il giornalista agrario Pietro Bertanza. \n\nIngresso libero e gratuito.\n\nONAV Trento Strada Vino Trentino Corriere della Sera Winery Lovers Accademia d'Impresa Visit Trentino Trento, Monte Bondone, Valle dei Laghi L'Adige - Quotidiano indipendente del Trentino Alto Adige Trentino Il Dolomiti",
+    "end_time": "2018-11-03T19:00:00+0100",
+    "name": "Seminario \u201cIl racconto del vino.Comunicazione, vino e territorio",
+    "place": {
+      "name": "Palazzo Roccabruna - Enoteca provinciale del Trentino",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.06627393143,
+        "longitude": 11.123612521909,
+        "street": "Via SS. Trinit\u00e0 24",
+        "zip": "38122"
+      },
+      "id": "465989370133133"
+    },
+    "start_time": "2018-11-03T17:00:00+0100",
+    "id": "250883515581796",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "La Circoscrizione s. Giuseppe \u2013 s. Chiara propone uno spettacolo per grandi e piccini:\n\nUn Babalao mi ha raccontato che...\n\nLa creazione del mondo nel mito brasiliano degli Orixas. Favola-spettacolo per pupazzi, attori e musici.\n\nUn Babala\u00f4 mi ha raccontato che... nasce dalla coesistenza di linguaggi artistici apparentemente distanti per raccontare una storia semplice e comune a tutte le tradizioni mondiali: il mito della creazione. I pupazzi sono la raffigurazione degli Orix\u00e1s, identit\u00e0 di carattere divino appartenenti alla mitologia Iorub\u00e0. Di derivazione africana, specialmente da Nigeria e Benin, e tramandata da intere generazioni di schiavi trasportati dalle navi negriere del XVIII secolo, questa tradizione \u00e8 presente e praticata ancora oggi in tutto il Brasile. Il testo riassume documenti scritti editi per la maggior parte dal ricercatore francese Pierre Verger (1902-1996) a testimonianza di una pi\u00f9 vasta tradizione orale.\n\nRegia: Luciano Gottardi\nDrammaturgia: Veronica Tupinamb\u00e1 Risatti \nProgettato da Burattini di Luciano Gottardi e Bottega Buffa CircoVacanti\nEvento organizzato dalla Circoscrizione S. Giuseppe S. Chiara.",
+    "end_time": "2018-11-03T18:30:00+0100",
+    "name": "Un Babalao mi ha raccontato che",
+    "place": {
+      "name": "Via Giuseppe Giusti, 35, 38122 Trento TN, Italia"
+    },
+    "start_time": "2018-11-03T16:30:00+0100",
+    "id": "987705418082952",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Un divertente laboratorio che propone ai bambini e ai loro genitori un\u2019esperienza immersiva, dove si intrecciano musica e colore, canto e suono del flauto, manipolazione di materiali sensoriali e disegno, movimento e improvvisazione. \na cura di Laboratorio Musica e Arte\n\nLa partecipazione \u00e8 gratuita, fino a esaurimento dei posti disponibili.\nE' necessaria prenotarsi al numero 0461-993963",
+    "end_time": "2018-11-03T17:30:00+0100",
+    "name": "Suono e colore 16-36 mesi",
+    "place": {
+      "name": "La Libreria Erickson",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.108095925635,
+        "longitude": 11.106634362341,
+        "street": "Via del Pioppeto, 24",
+        "zip": "38121"
+      },
+      "id": "205180512908453"
+    },
+    "start_time": "2018-11-03T16:30:00+0100",
+    "id": "760722157610537",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Contro le retoriche nazionaliste e militariste di ieri e di oggi.\nContro il razzismo e lo sfruttamento.\nPer cancellare i nomi dei generali macellai da vie e piazze.\nPer ricordare le donne trentine che protestarono contro la guerra dal 1914 al 1918.\nPer continuare a praticare l'insubordinazione contro i massacri e i confini di oggi.\n\nNel giorno in cui i nazionalisti celebreranno il \u201ccentenario della vittoria\u201d esaltando i massacri ed i confini di ieri e di oggi, vogliamo presidiare le piazze con i nostri corpi e con le nostre idee. \nPer rifiutare qualunque logica che imponga il sacrificio delle persone comuni, italiane o straniere, in nome degli interessi dei potenti.  Per chiedere come le insubordinate e gli insubordinati di cento anni fa pane, pace e libert\u00e0 per tutti e tutte.\nIl presidio sar\u00e0 accompagnato dai  canti antimilitaristi di:\nMarisa Cobbe (voce)\nSilvano Brun (Chitarra)",
+    "end_time": "2018-11-03T19:00:00+0100",
+    "name": "Cent'anni di insubordinazione - Presidio",
+    "place": {
+      "name": "Piazza Mario Pasi, 38122 Trento TN, Italia"
+    },
+    "start_time": "2018-11-03T16:00:00+0100",
+    "id": "1105831302927257",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Dal 03 al 17 Novembre 2018 l'antica Tridentum romana\nospita INCONTRI D'AUTUNNO di artisti veneti e trentini.\nL'evento organizzato dall'artista rotaliano Gentile Polo \ne curato dalla Prof.ssa Maria Grazia Martina verr\u00e0 \n\nINAUGURATO Sabato 3 NOVEMBRE dalle ore 18.00, \ncon la pungente ironia di Angelo Magro!\nGli artisti coinvolti saranno invitati inoltre a REALIZZARE una cartolina di ARTE POSTALE sul tema \"LA LUNA DENTRO...\"\nA seguire aperitivo in compagnia.",
+    "end_time": "2018-11-17T12:00:00+0100",
+    "name": "Incontri d'Autunno",
+    "place": {
+      "name": "Area Archeologica di Palazzo Lodron - Volksbank",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.06782,
+        "longitude": 11.12269,
+        "street": "Piazza Lodron 31",
+        "zip": "38122"
+      },
+      "id": "1897617967233329"
+    },
+    "start_time": "2018-11-03T16:00:00+0100",
+    "event_times": [{
+      "id": "244033149797895",
+      "start_time": "2018-11-17T10:00:00+0100",
+      "end_time": "2018-11-17T12:00:00+0100"
+    }, {
+      "id": "244033153131228",
+      "start_time": "2018-11-16T16:00:00+0100",
+      "end_time": "2018-11-16T19:00:00+0100"
+    }, {
+      "id": "244033166464560",
+      "start_time": "2018-11-16T10:00:00+0100",
+      "end_time": "2018-11-16T12:00:00+0100"
+    }, {
+      "id": "244033169797893",
+      "start_time": "2018-11-15T16:00:00+0100",
+      "end_time": "2018-11-15T19:00:00+0100"
+    }, {
+      "id": "244033173131226",
+      "start_time": "2018-11-15T10:00:00+0100",
+      "end_time": "2018-11-15T12:00:00+0100"
+    }, {
+      "id": "244033176464559",
+      "start_time": "2018-11-14T16:00:00+0100",
+      "end_time": "2018-11-14T19:00:00+0100"
+    }, {
+      "id": "244033179797892",
+      "start_time": "2018-11-14T10:00:00+0100",
+      "end_time": "2018-11-14T12:00:00+0100"
+    }, {
+      "id": "244033186464558",
+      "start_time": "2018-11-13T16:00:00+0100",
+      "end_time": "2018-11-13T19:00:00+0100"
+    }, {
+      "id": "244033183131225",
+      "start_time": "2018-11-13T10:00:00+0100",
+      "end_time": "2018-11-13T12:00:00+0100"
+    }, {
+      "id": "244033189797891",
+      "start_time": "2018-11-12T16:00:00+0100",
+      "end_time": "2018-11-12T19:00:00+0100"
+    }, {
+      "id": "244033159797894",
+      "start_time": "2018-11-12T10:00:00+0100",
+      "end_time": "2018-11-12T12:00:00+0100"
+    }, {
+      "id": "244033203131223",
+      "start_time": "2018-11-10T16:00:00+0100",
+      "end_time": "2018-11-10T19:00:00+0100"
+    }, {
+      "id": "244033199797890",
+      "start_time": "2018-11-10T10:00:00+0100",
+      "end_time": "2018-11-10T12:00:00+0100"
+    }, {
+      "id": "244033209797889",
+      "start_time": "2018-11-09T16:00:00+0100",
+      "end_time": "2018-11-09T19:00:00+0100"
+    }, {
+      "id": "244033213131222",
+      "start_time": "2018-11-09T10:00:00+0100",
+      "end_time": "2018-11-09T12:00:00+0100"
+    }, {
+      "id": "244033206464556",
+      "start_time": "2018-11-08T16:00:00+0100",
+      "end_time": "2018-11-08T19:00:00+0100"
+    }, {
+      "id": "244033216464555",
+      "start_time": "2018-11-08T10:00:00+0100",
+      "end_time": "2018-11-08T12:00:00+0100"
+    }, {
+      "id": "244033223131221",
+      "start_time": "2018-11-07T16:00:00+0100",
+      "end_time": "2018-11-07T19:00:00+0100"
+    }, {
+      "id": "244033226464554",
+      "start_time": "2018-11-07T10:00:00+0100",
+      "end_time": "2018-11-07T12:00:00+0100"
+    }, {
+      "id": "244033219797888",
+      "start_time": "2018-11-06T16:00:00+0100",
+      "end_time": "2018-11-06T19:00:00+0100"
+    }, {
+      "id": "244033229797887",
+      "start_time": "2018-11-06T10:00:00+0100",
+      "end_time": "2018-11-06T12:00:00+0100"
+    }, {
+      "id": "244033233131220",
+      "start_time": "2018-11-05T16:00:00+0100",
+      "end_time": "2018-11-05T19:00:00+0100"
+    }, {
+      "id": "244033236464553",
+      "start_time": "2018-11-05T10:00:00+0100",
+      "end_time": "2018-11-05T12:00:00+0100"
+    }, {
+      "id": "244033246464552",
+      "start_time": "2018-11-03T16:00:00+0100",
+      "end_time": "2018-11-03T19:00:00+0100"
+    }],
+    "id": "244033143131229",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "I cristalli e la pancia-mama\nViaggio dal ventre al cuore per riappacificarci \n\nAccompagnati dalle anime sapienti degli amici cristalli, ci incammineremo in questo nuovo Viaggio di Scoperta per mezzo del quale avremo la possibilit\u00e0 di conoscere e scoprire sia in teoria, che per mezzo della sperimentazione pratica, tutte la questioni di pancia ossia:\ni genitori, gli attaccamenti,  la relazione tra maschile e femminile, la giusta comunione e comunicazione tra la pancia e il cuore, il lavoro e l'occupazione, il denaro e il senso della ricchezza, le e insegner\u00e0 un facile trattamento per fare pace con la pancia.             \n-Chi sono le Anime di nostra mamma e di nostro padre, le loro virt\u00f9 e gli inciampi che li hanno messi alla prova,  al fine di realizzazione il loro destino\n-Perch\u00e9  i nostri genitori dovevano incontrarsi, innamorarsi, creare la loro coppia , accoppiarsi e generarci. cercheremo, quindi, di dare una risposta umana al perch\u00e9 fosse giusto nascere da quella donna che ha scelto di avere come sposo quell\u2019uomo, nostro padre.\n-Che cosa dovevano insegnarsi  a vicenda per crescere e per dare valore alla loro coppia e al loro frutto del loro destino.\n-Che cosa dovevano trasmetterci per addomesticarci e cosa dovevamo noi, figli, insegnare loro, per ammaestrali\n\nIl Corso prender\u00e0, inoltre, in esame tutte le questioni di pancia, ossia: gli attaccamenti, la relazione tra il maschile e con il femminile, la giusta comunicazione tra la pancia e cuore, la ricchezza e il denaro, il lavoro e l\u2019occupazione  ed insegner\u00e0 un facile trattamento per fare pace con la pancia.\n\nI Cristalli non hanno Cervello, ma solo Cuore, in quanto il loro regno \u00e8 governato e mosso dalle leggi dell\u2019Amore, perci\u00f2 essi ci educano a ritrovare la via del Sentire, quella del Cuore, per mezzo della quale possiamo entrare con loro in comunione e, di riflesso, in comunicazione.\nLa conoscenza di una materia, quindi in questo caso quella relativa ai cristalli, si costruisce nel tempo, attraverso la pratica, per mezzo della quale si diventa la materia, apprendendone le leggi che la governano e la costituiscono, e concretizzandole nella vita di tutti i giorni.\nPer comunicare coi cristalli occorre tornare ad essere cristalli, ritrovando una coscienza cristallina che genera uno stile di Vita cristallino, base fondamentale da cui continuare la scoperta della Vita.\nI Cristalli ci aiutano a cambiare l\u2019aspettativa, in prospettiva,  a non dare tutto per scontato, rischiando cos\u00ec di vivere solo in tempo di saldi, ma ci educano a stare saldi in noi stessi, per vivere per intero, dal Vivo costi quel che costi, a tutti i costi, senza sconti, imparando a scoprirci, ossia togliere ci\u00f2 che ci copre,  per scoprire la Vita  \n\nDATA: sabato 3 novembre ore 15\/19 e domenica 4 ore 10\/18\nLUOGO: Centro Olistico Il Ruscello, via Stella di Man 12, Trento \nCOSA PORTARE: Carta e penna, abbigliamento comodo, calzettoni (in sala si sta senza scarpe) pranzo al sacco.\nCONTRIBUTO: 120\u20ac\nPER PRENOTARE:  via e-mail: info\u0040ilruscello.org  o 389\/3196635\n\n\nFEDERICO BASSETTI\nNato e Cresciuto in Romagna in una famiglia contadina, perito agrario. La Natura mi ha fatto da balia e fu grazie a lei, prima di tutto, che feci amicizia fin da bambino con le pietre e i cristalli.\nL\u2019amore che mi unisce ai cristalli mi ha permesso di sentire la necessit\u00e0 di   ricambiarlo, trasmettendolo agli altri.\nCosicch\u00e9, dopo vent\u2019anni di lavoro dipendente, ho deciso di seguire questo bisogno, riconoscendomi nel ruolo di insegnante dell\u2019Arte di usare i Cristalli.\nNel 2007 sono stato nominato Promotore di una cultura di pace dalla UPF Italia (distaccamento della Universal Peace Federation della California (www.upf.org)\nDal 2008 svolgo a tempo pieno il lavoro di operatore olistico specializzato nella divulgazione, insegnamento e formazione professionale della conoscenza teorica, esperienziale e sensoriale dei cristalli, dei loro utilizzi e della loro importanza in qualsiasi ambito della vita.\nIl principale obiettivo del mio lavoro e impegno sociale \u00e8 di riuscire a far comprendere l\u2019esigenza di sviluppare una coscienza, una cultura e uno Stile di Vita Cristallino e  quanto i cristalli possano abbinarsi, interagire, migliorare e complementare ogni ambito della vita, dallo scientifico al sociale, dall' ingegneristico al salutistico, tant\u2019\u00e8 che collaboro anche con scienziati, ingegneri, ricercatori,  medici, scuole naturopatiche e associazioni olistiche.\nHo inventato il  \u201c Crystal Mysa\u201d il tappetino chiodato con i cristalli per l\u2019omonima azienda svedese, sono autore del libro \u201c L\u2019Oracolo dei Cristalli\u201d pubblicato dalla Casa Editrice \u201cSI\u201d.\n\nQUALIFICHE\n\u2013Docente di Cristallo-pratica dell'Accademia Italiana di Formazione Olistica - OPERA www.accademiaopera.it e collaboratore del Centro di Ricerca Erba Sacra www.erbasacra.com di Roma,  con il quale \u00e8 stato creato il primo \u201cMaster in Cristalloterapia\u201d in Italia.\n\u2013Docente di Cristallo-pratica del Gruppo Marzia Clinic (F.G. Cosmetics) di Milano www.marziaclinic.com\n\u2013Docente di Cristallo-pratica del Centro Studi e Ricerche di Medicina Naturale e Tecniche Naturopatiche di Caltanissetta www.scuolanaturopatia.it\n\u2013Docente di Cristallo-pratica del Centro Mater Dea di Cagliari ( www.assomaterdea.org) con la quale ideato e attuato  il primo  Master in Cristalloterapia certificato  in Italia dallo CSEN ( Centro Sportivo Educativo Nazionale) sezione di Cagliari (www.csencagliari.it) e ufficialmente riconosciuto dal Ministero del Lavoro, delle Politiche Sociali e degli interni.\n\u2013Docente di Cristallo-Pratica del Centro Studi e Formazione Discipline Olistiche Integrate \u201cAnam Cara\u201d di Catania\n\u2013Docente di Cristallo-Pratica del Centro Studi Scienze Umane e Tecniche Naturopatiche \u201c Naturalia\u201d di Quartucciu (Ca)\n\u2013Docente di Cristallo-pratica per il Centro \u201cIl Maniscalco degli Dei\u201d di Monticelli Terme (Pr) www.ilmaniscalcodeglidei.com\n\u2013Docente di Cristallo-pratica dell'Istituto \"Carisma\" Scuola di Estetica (www.scuolaesteticacarisma.it) di Forl\u00ec\n\u2013Docente di Cristallo-pratica dell'Accademia Bodyfly - FormaMentisOlistica (www.formamentisolistica.com)\n\u2013Promotore di una Cultura di Pace dell'Universal Peace Federation (Upf) della California dipartimento della Repubblica di San Marino\n\u2013Collaboratore del Poliambulatorio Medico-Odontoiatrico Heva \u2013 Gruppo Omnia Srl di Gambettola (www.poliambulatorioheva.it)\n\u2013Professionista Disciplinato ai Sensi della Legge n\u00b0 4\/2013, iscritto nel Registro Professionale degli Operatori Olistici di ASPIN , SIAF e CSAIN.\n\u2013Diploma Nazionale nel settore delle Discipline di Bioenergetica rilasciato da CSEN (Centro Sportivo Educativo Nazionale) con qualifica di Istruttore 3\u00b0 Livello di \u201cBioenergetica dei Cristalli\u201d\nPer maggiori informazioni e dettagli sulle esperienze pratiche: www.federicobassetti.net",
+    "end_time": "2018-11-04T18:00:00+0100",
+    "name": "I cristalli e la pancia-mama - seminario esperienziale",
+    "place": {
+      "name": "Centro Olistico Il Ruscello",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.03583,
+        "longitude": 11.12993,
+        "street": "via stella di man 12",
+        "zip": "38123"
+      },
+      "id": "934034933364418"
+    },
+    "start_time": "2018-11-03T15:00:00+0100",
+    "id": "291413104923075",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "English Breakfast? Club Sandwich? Prova qualcosa di diverso, scommettiamo che ti appassionerai?\n\nIl sabato il Circolino cambia pelle: vieni a provare qualcosa di non convenzionale, vieni a provare il nostro BRUNCH !\n\nConcedetevi una pausa per ricaricarvi, lontano dal traffico nella tranquillit\u00e0 del parco di P.zza Venezia a due passi dal centro citt\u00e0.\n\nMENU' H.12\/14.30 - Sabato 3 Novembre 2018\n\n**ENGLISH BREAKFAST 12 euro\nscrumble eggs salsiccia ai ferri french toast beans bacon croccante funghi con caff\u00e8 americano e spremuta\n\n**CLUB SANDWICH 12 euro\ncon pollo ai ferri, frittatina, bacon, lattuga, pomodoro e mayonese servito con chips caff\u00e8 americano e spremuta \n\n**BURGERS 10 euro \n- CLASSICO con manzo scelto trentino, insalata, pomodoro, ketchup e mayonese servito con chips e insalata di cavolo\/mela\n- CHEESE&BACON con manzo scelto trentino, bacon, cheddar, insalata, pomodoro, mayonese, e salsa BBQ servito con chips e insalata di cavolo\/mela\n- SPECIALE con manzo scelto trentino, bacon, insalata, pomodoro, fresco guacamole servito con chips e insalata di cavolo\/mela\nVEG con medaglione di ceci, insalata, pomodoro e salsa tzatziki servito con chips e insalata di cavolo e mela.\n\n**SOUFFLE AL CIOCCOLATO con gelato, frutti di bosco e sciroppo d'acero 3,5 euro\n\nprenotazione gradita allo 0461238932\n\n#ilcircolinotrento\n#saturdaybrunch\n#sabatononcucino\n#autumniscomin",
+    "end_time": "2018-11-03T14:30:00+0100",
+    "name": "SaturdayBrunch",
+    "place": {
+      "name": "Il Circolino bar\/restaurant",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.068801859388,
+        "longitude": 11.12859249115,
+        "street": "P.zza Venezia 41\/1",
+        "zip": "38122"
+      },
+      "id": "998211333558535"
+    },
+    "start_time": "2018-11-03T12:00:00+0100",
+    "id": "260543821310860",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Reboro, un nuovo vino che si fonda su una tradizione secolare; un progetto collettivo che nasce dall\u2019amicizia dei Vignaioli della Valle dei Laghi; un vino rosso di assoluta eccellenza che incarna il meglio di questo territorio. Il 3 novembre potrete conoscerlo e apprezzarlo in un convegno, una degustazione, una cena gourmet: una bellissima festa con un ospite d\u2019onore, lo Sforzato DOCG, perla dell\u2019enologia valtellinese. \n\nore 10.30\naz. agr. Francesco Poli \u2013 Santa Massenza\n\"Di laghi e montagne: il Reboro incontra lo Sfursat\"\nDegustazione di Sforzato DOCG di Valtellina e di Reboro\nCon la collaborazione del Consorzio Vini di Valtellina\nAl termine della degustazione, ci sar\u00e0 un pranzo preparato dallo chef Walter Miori: un antipasto di smacafam, un orzotto col Reb\u00f2ro e per finire una torta di fregoloti da abbinare al Vino Santo Trentino.\nCosto: 30 euro. Prenotazione obbligatoria scrivendo a reboro.trentino\u0040gmail.com\n\nore 17.00\nPalazzo Roccabruna - Trento\n\"Il racconto del vino\"\nComunicazione, vino e territorio: dalla carta al web\nCon Luciano Ferraro (Corriere della Sera) e Simone Roveda (WineryLovers).\nIngresso libero e gratuito.\n\nore 20.00\nAz. Agr. Fratelli Pisoni - Pergolese\n\"Reboro con gusto\"\nCena gourmet con piatti elaborati ad hoc per l\u2019abbinamento con il Reboro\nCosto: 40 euro. Prenotazione obbligatoria scrivendo a reboro.trentino\u0040gmail.com",
+    "end_time": "2018-11-03T22:00:00+0100",
+    "name": "Reboro. Territorio & Passione",
+    "place": {
+      "name": "Trento, Monte Bondone, Valle dei Laghi",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.070431984344,
+        "longitude": 11.121275424957,
+        "street": "Piazza Dante, 24",
+        "zip": "38122"
+      },
+      "id": "105100046238737"
+    },
+    "start_time": "2018-11-03T10:30:00+0100",
+    "id": "311214169664775",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "\u2739 Books, Coffee, Democracy (cit.) \u2739\n\n\u2739 NON SARA' PRESENTE L'AUTORE \u2739 Uno sberleffo a ci\u00f2 che comunemente viene comunicato per promuove una presentazione editoriale. L'occasione di entrare dentro un libro accompagnati non da chi lo ha scritto ma da chi lo ha amato e intende condividere il contenuto. Una volta al mese - per un'oretta circa - a due punti\n\n\u2739 L'Euro, di Joseph Stiglitz (Einaudi editore) \u2739\nintrodotto e commentato da Mirco Tomasi \n\nNel 2010 la crisi finanziaria globale del 2008 si \u00e8 trasformata in una \u00abeurocrisi\u00bb che pare lontana dal placarsi, soprattutto per i paesi che condividono la moneta comune euro - l'eurozona. Qui il premio Nobel Joseph E. Stiglitz demolisce il consenso prevalente sulle ragioni che hanno messo all'angolo l'Europa, criticando i campioni dell'austerit\u00e0 e proponendo soluzioni concrete ai problemi legati all'euro. La crisi ne ha infatti messo in luce i limiti. La stagnazione nell'eurozona e le sue fosche prospettive di ripresa sono un diretto risultato della sua sfida fondamentale: la pretesa di far condividere a un gruppo di paesi molto diversi un'unica valuta comune. L'euro \u00e8 nato imperfetto, con un'integrazione economica che andava pi\u00fa veloce di quella politica. \n\nL'attuale assetto monetario promuove la divergenza piuttosto che la convergenza. L'euro pu\u00f2 essere salvato? Dopo aver messo a nudo il mal concepito mandato della Banca centrale europea volto al controllo dell'inflazione, spiegando come le politiche dell'eurozona, specie nei confronti dei paesi in crisi, abbiano ulteriormente esacerbato i difetti della sua progettazione, Stiglitz delinea queste tre possibili vie di uscita: riforme fondamentali della struttura dell'eurozona e politiche economiche da imporre ai paesi membri; un abbandono controllato dell'esperimento dell'euro come unica valuta; oppure un coraggioso nuovo sistema che ha chiamato \u00abl'euro flessibile\u00bb.",
+    "end_time": "2018-11-03T12:00:00+0100",
+    "name": "Non sar\u00e0 presente l'autore (caff\u00e8) \u2739 L'Euro di Joseph Stiglitz",
+    "place": {
+      "name": "due punti",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.072525396122,
+        "longitude": 11.125121712685,
+        "street": "Via San Martino 78",
+        "zip": "38122"
+      },
+      "id": "932870830223050"
+    },
+    "start_time": "2018-11-03T10:30:00+0100",
+    "id": "243155339695011",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Anche quest'anno il MUSE partecipa a M'ammalia - La settimana dei Mammiferi, la rassegna italiana di eventi dedicati alla divulgazione scientifica sui mammiferi con attivit\u00e0 e giochi nelle sale del museo.\n\nAttivit\u00e0 gratuite, ingresso a pagamento.\n\n____________________________________________\n\nPROGRAMMA\n\n\ud83e\udd94 Spot the mammal! Trova il mammifero\nRaccogli gli indizi, trova i mammiferi giusti nelle sale espositive del Muse e manda la loro foto alla tua guida virtuale. Una divertente sfida a tempo utilizzando WhatsApp.\n\ud83d\udd5d Orari: 11 - 12\n                12.30 - 13.30\n                14.30 - 15.30\n                16 - 17\n                17.30 - 18.30\n\ud83d\udccd Info point, Piano 0\n\n\ud83e\udd94 Mammaliquiz!\nQuesiti a risposta multipla a tema mammiferi con la tecnologia kahoot, usando il proprio smartphone.\n\ud83d\udd5d Orari: dalle 11 ogni ora\n\ud83d\udccd Sfera SOS, Piano +1\n\n\ud83e\udd94 Crani, ossa, denti\nReperti originali pronti per essere raccontati, spiegati e toccati, per scoprire interessanti storie e curiosit\u00e0 su diversi mammiferi.\n\ud83d\udd5d A ciclo continuo\n\ud83d\udccd Big Void, Piano -1\n\n\ud83e\udd94 Nei panni di\u2026(5 \u2013 10 anni)\nTravestimenti realistici per trasformarsi in piccoli mammiferi di bosco e apprendere comportamenti e abitudini.\n\ud83d\udd5d A ciclo continuo\n\ud83d\udccd Discovery room, Piano +3\n\n\ud83e\udd94 Con le orecchie di lupo\nPer i pi\u00f9 piccoli, nell'area Maxi Ooh!, la lettura animata e multisensoriale del libro \u201cCon le orecchie di lupo\u201d offre la possibilit\u00e0 di esplorare il mondo dei suoni e dei rumori.\n\ud83d\udd5d Orari: ore 10.15\n                      18.15\n\ud83d\udccd Maxi Ooh!",
+    "end_time": "2018-11-04T19:00:00+0100",
+    "name": "Oltre M\u2019ammalia \u2013 Mammiferi in pillole",
+    "place": {
+      "name": "MUSE - Museo delle Scienze",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.0624848,
+        "longitude": 11.1145204,
+        "street": "Corso del Lavoro e della Scienza 3",
+        "zip": "38122"
+      },
+      "id": "209565943573"
+    },
+    "start_time": "2018-11-03T10:00:00+0100",
+    "event_times": [{
+      "id": "469290516897029",
+      "start_time": "2018-11-04T10:00:00+0100",
+      "end_time": "2018-11-04T19:00:00+0100"
+    }, {
+      "id": "469290520230362",
+      "start_time": "2018-11-03T10:00:00+0100",
+      "end_time": "2018-11-03T19:00:00+0100"
+    }],
+    "id": "469290506897030",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Giornata promozionale Royal con sconti sui prodotti",
+    "end_time": "2018-11-03T19:15:00+0100",
+    "name": "Gioranta Royal Canin",
+    "place": {
+      "name": "Arcamatta",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.10799,
+        "longitude": 11.11061,
+        "street": "via Aeroporto 21\/1",
+        "zip": "38121"
+      },
+      "id": "147464465462687"
+    },
+    "start_time": "2018-11-03T08:30:00+0100",
+    "id": "981532272045432",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Iniziamo il weekend con la musica a 360\u00b0. Siete pronti? Non perdete questo nuovo appuntamento. \ud83d\ude0e\ud83c\udfb6\ud83c\udf89\n\nDEEJAY \ud83c\udfa7 Luca Alessandro \ud83c\udf78\n\nPrenota subito il tuo tavolo per cena o riserva il tavolo dotato di spina della birra per una serata in compagnia: 0461993261. \u260e\ufe0f\n\n\ud83c\udf55 OffiCena, Birreria e Lounge bar \ud83c\udf57\nDalle 18:30 alle 24:00 approfitta del nostro ristorante per una cena Gambrinus e fino a chiusura trovi a tua disposizione PIZZERIA, BIRRERIA e LOUNGE BAR. \ud83c\udf7b\n\n\ud83c\udf89 YOUR PERFECT PARTY \ud83c\udf81\nStai cercando un posto dove festeggiare il tuo compleanno? Non aspettare. Chiamaci subito per avere la miglior proposta per una serata da non dimenticare.\n\n\ud83c\udfce Disponibilit\u00e0 di ampio parcheggio. \ud83c\udfcd",
+    "end_time": "2018-11-03T02:00:00+0100",
+    "name": "Musica a 360\u00b0",
+    "place": {
+      "name": "Officina Gambrinus",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.127823019611,
+        "longitude": 11.109334735503,
+        "street": "Via Alto Adige 164\/B",
+        "zip": "38121"
+      },
+      "id": "104262469606265"
+    },
+    "start_time": "2018-11-02T23:00:00+0100",
+    "id": "314491129365826",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Gli Electric Circus presentano Canicola.\nVenerd\u00ec 2 novembre \/\/ Bookique Trento \/\/ inizio ore 21.30 \/\/ \n\n\u25ba Electric Circus \u00e8 musica strumentale. Il progetto nasce alla fine del 2013 come trio. Nel corso degli ultimi 5 anni si espande a quintetto, pubblica un EP e un album, calca numerosi palchi in giro per l'Italia, suona e registra negli USA, collabora con diversi artisti musicali e non (come Coraggioiltopo).\n\n\u25ba Canicola \u00e8 il nuovo album in uscita per New Model Label. E' un mix di jazz, funk, psichedelia e world music. \nGuarda il video -> https:\/\/youtu.be\/1THDe1CmSxA\n\n\u25ba Alla Bookique Trento la presentazione con la formazione al gran completo. Il concerto si svolger\u00e0 nella saletta al primo piano. Saranno disponibili le copie fisiche del disco.",
+    "end_time": "2018-11-03T00:00:00+0100",
+    "name": "Electric Circus - Canicola \u0040Bookique",
+    "place": {
+      "name": "Bookique Trento",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.073096651145,
+        "longitude": 11.126446723938,
+        "street": "via Torre d'Augusto 29",
+        "zip": "38122"
+      },
+      "id": "361091394000390"
+    },
+    "start_time": "2018-11-02T21:30:00+0100",
+    "id": "558155457973905",
+    "rsvp_status": "unsure"
+  }, {
+    "description": "Trento - Bleggio\n7\u00b0 Giornata di Campionato Calcio a 5 Serie C1\nPala Trento Nord Via 4 Novembre , Gardolo (Tn)\nore 21.00\nIngresso Gratuito\n#DASEMPREPERSEMPRE \ud83d\udc9b\ud83d\udc99\n#WeAreTrento\n#futsal\n#OnlyPassion",
+    "end_time": "2018-11-02T23:00:00+0100",
+    "name": "Trento - Bleggio",
+    "place": {
+      "name": "Centro Sportivo Trento Nord",
+      "location": {
+        "city": "Trento",
+        "country": "Italy",
+        "latitude": 46.1052,
+        "longitude": 11.11422,
+        "street": "via 4 Novembre , 23\/4",
+        "zip": "38121"
+      },
+      "id": "154778644556472"
+    },
+    "start_time": "2018-11-02T21:00:00+0100",
+    "id": "274895043137008",
+    "rsvp_status": "unsure"
+  }],
+  "paging": {
+    "cursors": {
+      "before": "QVFIUkIwZAy1tc0Vfai1wd1dSQ3pmUTFnZA1d6eFEzZA1o0UjdIdUhKeUt1RzhZAV2sweWVESFpxS2dfRXlRRmJQYTRwMzd1dDBqMnY3QlI3bkNJNi1tUWZAfODlB",
+      "after": "QVFIUnhMWXRxMzZA3UnBHTlBTZA2VmeXVESkhxZAWlEVGl5MU5zQnAwbnFFUXpoUDJ2dHpuNU5hRkh6WXBOaklUUXRvczVJbUI5NE9fbUV4WGlkc01yOEZALeVVB"
+    },
+    "next": "https:\/\/graph.facebook.com\/v3.2\/1068750876660890\/events?access_token=EAAgHjFAYRZBYBACfiHfR9fa0tVQzfvDTZCOvyJf8vTQLrzVmT6zSbBVpT5TuBlZAZApvC4X2b78AU3ccjZA75b15c1QIQfuXeqfAaz5ONfsuM8L3i3MzKsu1FvPI3RfMsZBIvtKvNCnTjt3DzhyfMYpwqMljYmNlzhi1EvJ5iLjORdGgNDyk2VOXo967b3ZAEYZD&limit=25&after=QVFIUnhMWXRxMzZA3UnBHTlBTZA2VmeXVESkhxZAWlEVGl5MU5zQnAwbnFFUXpoUDJ2dHpuNU5hRkh6WXBOaklUUXRvczVJbUI5NE9fbUV4WGlkc01yOEZALeVVB"
+  }
+}

@@ -20,7 +20,7 @@ class EroMMNet:
     '''Maximum distance an event propagation can reach from the propagating event'''
     PROPAGATION_DISTANCE_THRESHOLD = 4
 
-    def __init__(self):
+    def __init__(self, do_crossover):
         self.mmnet = self.generate_multimodal_network()
         self.ego_nodes = []
         self.circles = {}
@@ -39,6 +39,8 @@ class EroMMNet:
         comparable_features = json.load(
             open('test/istat/comparable_features.json'))
         self.comparable_features = sorted(comparable_features['features'])
+
+        self.do_crossover = do_crossover
 
     def generate_multimodal_network(self):
         '''Generate the multimodal network
@@ -117,7 +119,7 @@ class EroMMNet:
                 stripped_line = line.strip()
                 tokens = stripped_line.split()
                 circle_name = tokens[0]
-                circle_nodes = tokens[1:]
+                circle_nodes = [int(token) for token in tokens[1:]]
                 circles[circle_name] = EgoCircle(circle_name, circle_nodes)
 
             self.circles[ego_node_id] = circles
@@ -129,9 +131,16 @@ class EroMMNet:
         for event in self.events.values():
             event.reset()
 
-    def propagate(self, iterations):
+    def propagate(self, iterations, reset_propagation=True):
         '''Run the propagation algorithm'''
         for _ in range(iterations):
+
+            if reset_propagation:
+                self.reset_propagation()
+
+            if self.do_crossover:
+                self._do_crossover()
+
             for event in self.events.values():
                 self._propagate_event_to_people(event)
 
@@ -237,3 +246,29 @@ class EroMMNet:
 
     def get_event(self, event_id):
         return self.events[event_id]
+
+    def _do_crossover(self):
+        '''Croossover weights of people that belong to the same circle
+
+        For each circle we compute mean of each feature and we decrease the feature
+        variance (moving each value towards the mean given a set crossover_rate)'''
+
+        CROSSOVER_RATE = 0.1
+
+        for ego_circles in self.circles.values():
+            for ego_circle in ego_circles.values():
+                circle_people = [self.people[person_id]
+                                 for person_id in ego_circle]
+                number_of_features = len(circle_people[0].features)
+                for index in range(number_of_features):
+                    circle_feature_weights = [person.features_weights[index]
+                                              for person in circle_people]
+                    feat_mean = numpy.mean(circle_feature_weights)
+                    # Move each value towards the mean
+                    self._normalize_features(
+                        circle_people, index, feat_mean, CROSSOVER_RATE)
+
+    def _normalize_features(self, people, feature_index, feature_mean, crossover_rate):
+        for person in people:
+            person.features_weights[feature_index] += (feature_mean -
+                                                       person.features_weights[feature_index]) * crossover_rate

@@ -1,5 +1,6 @@
 import unittest
 from operator import add, truediv
+import numpy
 
 # Add path in order to import  the library
 import sys
@@ -192,8 +193,7 @@ class TestPropagation(unittest.TestCase):
 
         iterations = 10
         propagating_node = 4
-        expected_reached_nodes_one_iteration = 14
-        expected_relevance = expected_reached_nodes_one_iteration * iterations
+        expected_relevance = 14
 
         person_features = [binary_feature.BinaryFeature(0),
                            normalized_feature.NormalizedFeature(1)]
@@ -291,8 +291,8 @@ class TestPropagation(unittest.TestCase):
 
         iterations = 10
 
-        expected_relevance_1 = 14 + 2 * (iterations - 1)
-        expected_relevance_2 = 12 * iterations
+        expected_relevance_1 = 14
+        expected_relevance_2 = 12
 
         propagating_node_1 = 2
         propagating_node_2 = 4
@@ -342,7 +342,7 @@ class TestPropagation(unittest.TestCase):
         '''Test whether relevant features emerge when mutating over participants'''
         mmnet = self.ero.mmnet
 
-        iterations = 100
+        iterations = 30
 
         propagating_node_1 = 1
         propagating_node_2 = 10
@@ -384,7 +384,7 @@ class TestPropagation(unittest.TestCase):
         mmnet.events = {event_id_1: event_1,
                         event_id_2: event_2}
 
-        mmnet.propagate(iterations)
+        mmnet.propagate(iterations, reset_propagation=False)
 
         sum_weights_event1_participants = [0.] * len(person_features)
         sum_weights_event2_participants = [0.] * len(person_features)
@@ -484,10 +484,53 @@ class TestEventsImport(unittest.TestCase):
 
 class TestMMnet(unittest.TestCase):
 
+    def setUp(self):
+        self.ero = ero.Ero(do_crossover=True)
+
+    def test_crossover(self):
+        '''
+        Different people have same features. After the propagation people that
+        belong to the same circle should have weights that are very close one to
+        the other (with variance << start_variance)'''
+
+        ego_node_id = 0
+        folder_path = 'test/facebook/'
+        self.ero.import_ego_network(ego_node_id, folder_path)
+        mmnet = self.ero.mmnet
+
+        person_features = [binary_feature.BinaryFeature(0),
+                           binary_feature.BinaryFeature(1)]
+
+        mmnet_number_of_people = mmnet.mmnet.GetModeNetByName(
+            'Person').GetNodes()
+
+        for person_id in range(mmnet_number_of_people + 100):
+            person = Person(person_features)
+            # Generate random features weights
+            default_weight = numpy.random.choice([0., 0.25, 0.5, 0.75, 1.])
+            # Set default weight to all person's features
+            person.set_features_weights(default_weight)
+            mmnet.people[person_id] = person
+
+        # Compute people weights standard deviation
+        start_variance = numpy.std([person.features_weights[0] for person
+                                    in mmnet.people.values()])
+
+        # Run the propagation
+        iterations = 5
+        mmnet.propagate(iterations)
+
+        for ego_circles in mmnet.circles.values():
+            for ego_circle in ego_circles.values():
+                people = [mmnet.people[person_id] for person_id in ego_circle]
+                final_variance = numpy.std([person.features_weights[0] for person
+                                            in people])
+                self.assertLess(final_variance, start_variance)
+
     @unittest.skip('Use this test to check what is the minimum number of iterations the algorithm requires to converge')
     def test_iterations_number(self):
 
-        self.ero = ero.Ero()
+        self.ero = ero.Ero(do_crossover=True)
 
         # Check whether the max propagation distance influences the outcome
         #self.ero.mmnet.PROPAGATION_DISTANCE_THRESHOLD = 10
@@ -497,7 +540,7 @@ class TestMMnet(unittest.TestCase):
         self.ero.import_ego_network(ego_node_id, folder_path)
 
         mmnet = self.ero.mmnet
-        iterations = 5
+        iterations = 100
 
         propagating_node_1 = 207
         propagating_node_2 = 193

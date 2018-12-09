@@ -10,6 +10,7 @@ import ero
 from ero_person import Person
 from ero_event import Event
 
+
 class TestEventOptimizationAlgorithm(unittest.TestCase):
 
     def setUp(self):
@@ -25,7 +26,6 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
         folder_path = 'test/test_networks/'
         self.ero.import_ego_network(ego_node_id, folder_path)
 
-    @unittest.skip('Test is not passing because of a problem with the propagation')
     def test_optimization(self):
         mmnet = self.ero.mmnet
 

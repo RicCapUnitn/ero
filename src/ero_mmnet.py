@@ -233,7 +233,7 @@ class EroMMNet:
         for neighbor_id in neighbors_ids:
             edge_id = crossnet_person_to_event.AddEdge(event.id, neighbor_id)
             self.event_to_person_edges[edge_id] = (
-                event.id, neighbors_ids)
+                event.id, neighbor_id)
 
     def generate_random_neighbors(self):
         edge_count = int(round(numpy.random.normal(

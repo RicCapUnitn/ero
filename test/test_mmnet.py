@@ -234,7 +234,7 @@ class TestPropagation(unittest.TestCase):
         propagating_node_1 = 2
         propagating_node_2 = 4
 
-        expected_reached_nodes_1 = 14
+        expected_reached_nodes_1 = 2
         expected_reached_nodes_2 = 12
 
         person_features = [binary_feature.BinaryFeature(0),
@@ -291,7 +291,7 @@ class TestPropagation(unittest.TestCase):
 
         iterations = 10
 
-        expected_relevance_1 = 14
+        expected_relevance_1 = 2
         expected_relevance_2 = 12
 
         propagating_node_1 = 2
@@ -527,7 +527,7 @@ class TestMMnet(unittest.TestCase):
                                             in people])
                 self.assertLess(final_variance, start_variance)
 
-    @unittest.skip('Use this test to check what is the minimum number of iterations the algorithm requires to converge')
+    #@unittest.skip('Use this test to check what is the minimum number of iterations the algorithm requires to converge')
     def test_iterations_number(self):
 
         self.ero = ero.Ero(do_crossover=True)

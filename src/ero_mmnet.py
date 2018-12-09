@@ -20,6 +20,8 @@ class EroMMNet:
     '''Maximum distance an event propagation can reach from the propagating event'''
     PROPAGATION_DISTANCE_THRESHOLD = 4
 
+    CROSSOVER_RATE = 0.1
+
     def __init__(self, do_crossover):
         self.mmnet = self.generate_multimodal_network()
         self.ego_nodes = []
@@ -126,16 +128,17 @@ class EroMMNet:
 
     def propagate(self, iterations, reset_propagation=True):
         '''Run the propagation algorithm'''
+
+        if reset_propagation:
+            self.reset_propagation()
+
         for _ in range(iterations):
-
-            if reset_propagation:
-                self.reset_propagation()
-
             if self.do_crossover:
                 self._do_crossover()
-
             for event in self.events.values():
                 self._propagate_event_to_people(event)
+
+        self._compute_relevances()
 
     def reset_propagation(self):
         '''Reset all defaults after propagation'''
@@ -170,7 +173,6 @@ class EroMMNet:
                     event, event_distance)
 
                 if selected:
-                    event.relevance += 1
                     person_reachable_people = frozenset(self._get_person_direct_reachable_people(
                         person_id))
                     next_iteration_reachable_people |= person_reachable_people
@@ -253,8 +255,6 @@ class EroMMNet:
         For each circle we compute mean of each feature and we decrease the feature
         variance (moving each value towards the mean given a set crossover_rate)'''
 
-        CROSSOVER_RATE = 0.1
-
         for ego_circles in self.circles.values():
             for ego_circle in ego_circles.values():
                 circle_people = [self.people[person_id]
@@ -266,9 +266,15 @@ class EroMMNet:
                     feat_mean = numpy.mean(circle_feature_weights)
                     # Move each value towards the mean
                     self._normalize_features(
-                        circle_people, index, feat_mean, CROSSOVER_RATE)
+                        circle_people, index, feat_mean, self.CROSSOVER_RATE)
 
     def _normalize_features(self, people, feature_index, feature_mean, crossover_rate):
         for person in people:
             person.features_weights[feature_index] += (feature_mean -
                                                        person.features_weights[feature_index]) * crossover_rate
+
+    def _compute_relevances(self):
+        '''Compute the relevance of the events based on the choices of people'''
+        for person in self.people.values():
+            if person.best_event is not None:
+                person.best_event.relevance += 1

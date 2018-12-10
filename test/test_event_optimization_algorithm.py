@@ -21,7 +21,7 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
         self.generator.import_features_distributions_from_folder(
             self.test_folder)
 
-        self.ero = ero.Ero()
+        self.ero = ero.Ero(do_crossover=True)
         ego_node_id = 0
         folder_path = 'test/test_networks/'
         self.ero.import_ego_network(ego_node_id, folder_path)
@@ -38,11 +38,12 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
 
         for person_id in range(number_of_people + 1):
             person_features = features[person_id % len(features)]
-            person = Person(person_features)
-            person.set_features_weights(1.)
+            person = Person(person_features, do_mutation=True)
+            person.set_features_weights(1.0)
             mmnet.people[person_id] = person
 
         # Import events after the persons are added to the network
+        mmnet.EVENT_PERSON_EDGES_MU = 70
         self.ero.import_events('test/events/events.json')
 
         events = mmnet.events.values()
@@ -51,7 +52,7 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
         event_relevances = {}
 
         # Estimate which event is the best one for each person
-        for person_id in range(number_of_people + 1):
+        for person in mmnet.people.values():
             max_fitness = 0
             event_id = None
             for event in events:
@@ -64,15 +65,23 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
             else:
                 event_relevances[event_id] += 1
 
+
         # TODO: Figure out a good iteration count
-        mmnet.propagate(10)
+        mmnet.propagate(20)
 
         # TODO: Decide on assertions
         # Maybe just check some general ordering like a-priori event order is equal to a-posteriori order
+        final_relevances = sorted([event.relevance for event in mmnet.events.values() if event.relevance != 0])
 
-        #final_relevances = [event.relevance for event in mmnet.events.values()]
-        #self.assertEqual(final_relevances, event_relevances)
+        self.assertEqual(len(mmnet.people.values()), sum(event_relevances.values()))
+        #self.assertEqual(sum(final_relevances), len(mmnet.people.values()))
 
-        #a_priori_oder = [event.id for event in sorted(event_relevances, key=lambda event: event.relevance)]
-        #a_posteori_oder = [event.id for event in sorted(mmnet.events.values(), key=lambda event: event.relevance)]
-        #self.assertEqual(a_priori_oder, a_priori_oder)
+        # Compare the sorted relevances
+        self.assertEqual(final_relevances, sorted(event_relevances.values()))
+
+        # Compare the relevances event by event
+        for event in mmnet.events.values():
+            if event.id in event_relevances:
+                self.assertEqual(event.relevance, event_relevances[event.id])
+            else:
+                self.assertEqual(event.relevance, 0)

@@ -257,6 +257,9 @@ class EroMMNet:
 
         for ego_circles in self.circles.values():
             for ego_circle in ego_circles.values():
+                ego_circle = [person_id for person_id in ego_circle if person_id in self.people]
+                if len(ego_circle) == 0:
+                    continue
                 circle_people = [self.people[person_id]
                                  for person_id in ego_circle]
                 number_of_features = len(circle_people[0].features)

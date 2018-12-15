@@ -3,7 +3,7 @@
 from setuptools import setup, find_packages
 
 setup(name='eroproject',
-      version='0.0.1',
+      version='0.0.2',
       description='Ero: events relevance optimization',
       packages=['eroproject'],
       package_dir={'': 'src'}

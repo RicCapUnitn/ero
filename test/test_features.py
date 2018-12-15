@@ -27,6 +27,14 @@ class TestBinaryFeature(unittest.TestCase):
         feature = binary_feature.BinaryFeature(1)
         self.assertTrue(feature.value)
 
+    def test_init_string_true(self):
+        feature = binary_feature.BinaryFeature("True")
+        self.assertTrue(feature.value)
+
+    def test_init_string_false(self):
+        feature = binary_feature.BinaryFeature("False")
+        self.assertFalse(feature.value)
+
     def test_similarity_equal_features(self):
         bf1 = binary_feature.BinaryFeature(0)
         bf2 = binary_feature.BinaryFeature(False)

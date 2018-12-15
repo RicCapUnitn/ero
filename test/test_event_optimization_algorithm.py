@@ -21,13 +21,13 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
         self.generator.import_features_distributions_from_folder(
             self.test_folder)
 
-        self.ero = ero.Ero(do_crossover=True)
+        self.ero = ero.Ero(do_crossover=False)
         ego_node_id = 0
         folder_path = 'test/facebook/'
         #self.ero.import_ego_network(ego_node_id, folder_path)
         self.ero.import_ego_networks_folder(folder_path)
 
-        # numpy.random.seed(0)
+        numpy.random.seed(0)
 
     @unittest.skip("Large network does not work")
     def test_optimization(self):
@@ -36,41 +36,34 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
 
         number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
 
-        features = self.generator.generate_many(1)
+        features = self.generator.generate_many(10)
+        for f in features:
+            print([feature.value for feature in f])
 
         print("people features")
         print("--- %s seconds ---" % (time.time() - start_time))
 
         for person_id in range(number_of_people + 100):
             person_features = features[person_id % len(features)]
-            person = Person(person_features, do_mutation=True)
+            person = Person(person_features, do_mutation=False)
             mmnet.people[person_id] = person
 
         print("--- %s seconds ---" % (time.time() - start_time))
 
         # Import events after the persons are added to the network
-        mmnet.EVENT_PERSON_EDGES_MU = 50
+        mmnet.EVENT_PERSON_EDGES_MU = 80
         self.ero.import_events('test/events/events.json')
 
         print("events import")
         print("--- %s seconds ---" % (time.time() - start_time))
 
         # Save the a-propri event relevances
-        event_relevances = {event_id: 0 for event_id in mmnet.events.keys()}
+        event_relevances = {event_id: 0. for event_id in mmnet.events.keys()}
 
-        # Estimate which event is the best one for each person
         for person in mmnet.people.values():
-            max_fitness = 0
-            event_id = None
             for event in mmnet.events.values():
-                if event.id not in event_relevances:
-                    event_relevances[event.id] = 0
-
                 fitness = person.fitness(event)
-                if fitness > max_fitness:
-                    event_id = event.id
-                    max_fitness = fitness
-            event_relevances[event_id] += 1
+                event_relevances[event.id] += fitness
 
         event_ids_apriori_order = [relevance_tuple[0] for relevance_tuple in sorted(
             event_relevances.items(), key=lambda x: x[1])]
@@ -79,7 +72,7 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
         print("--- %s seconds ---" % (time.time() - start_time))
 
         prev_iteration = time.time()
-        for iteration in range(3):
+        for iteration in range(1):
             mmnet.propagate(1, reset_propagation=False)
             print("iteration: " + str(iteration))
             print("--- %s seconds ---" % (time.time() - prev_iteration))

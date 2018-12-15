@@ -6,7 +6,6 @@ certifi==2018.10.15
 chardet==3.0.4
 coverage==4.5.1
 docutils==0.14
--e git+https://github.com/RicCapUnitn/ero.git@29ff8862a0ce5c6cd4fbc5b8c2b120f70dd321cf#egg=eroproject
 funcsigs==1.0.2
 geographiclib==1.49
 geopy==1.17.0
@@ -18,7 +17,6 @@ more-itertools==4.3.0
 numpy==1.15.3
 packaging==18.0
 pathlib2==2.3.2
-pkg-resources==0.0.0
 pluggy==0.8.0
 py==1.7.0
 Pygments==2.2.0

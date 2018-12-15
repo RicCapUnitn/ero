@@ -24,7 +24,7 @@ class PeopleFeaturesGenerator():
         '''Generate one list of features'''
 
         features = []
-        age = ""
+        age = "15"
         for fname in self.sorted_comparable_features_names:
 
             try:
@@ -35,22 +35,25 @@ class PeopleFeaturesGenerator():
 
             try:
                 fclass = self._get_comparable_feature_class_for_ftype(ftype)
+
+                feature_distribution = self.distributions[fname]
+                if fname == "age":
+                    distribution_values = feature_distribution['values']
+                    distribution_probabilities = feature_distribution['distribution']
+                    distribution = numpy.random.choice(
+                        distribution_values, p=distribution_probabilities)
+                    age = str(distribution)
+                else:
+                    distribution_values = feature_distribution[age]['values']
+                    distribution_probabilities = feature_distribution[age]['distribution']
+                    distribution = numpy.random.choice(
+                        distribution_values, p=distribution_probabilities)
+
+                value = fclass(distribution)
+
             except NotImplementedError:
                 warnings.warn('Feature type not defined: ' + str(ftype))
                 value = empty_feature.empty_feature
-
-            try:
-                feature_distribution = self.distributions[fname]
-                if fname != "age":
-                    feature_distribution = feature_distribution[age]
-                distribution_values = feature_distribution['values']
-                distribution_probabilities = feature_distribution['distribution']
-                distribution = numpy.random.choice(
-                    distribution_values, p=distribution_probabilities)
-                if fname == "age":
-                    age = str(distribution)
-                value = fclass(distribution)
-                #print(str(fname)+": "+str(distribution))
             except KeyError:
                 warnings.warn('Feature distribution not present: ' + fname)
                 value = empty_feature.empty_feature

@@ -6,7 +6,7 @@ import unittest
 import numpy
 
 from eroproject import ero, snap
-from eroproject import features_generator
+from tools import features_generator
 from eroproject.ero_event import Event
 from eroproject.ero_person import Person
 

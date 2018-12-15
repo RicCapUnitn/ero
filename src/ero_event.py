@@ -11,7 +11,12 @@ class Event():
         self.relevance = 0
 
     def __lt__(self, other):
-        return self.relevance < other.relevance
+        if self.relevance < other.relevance:
+            return self.relevance < other.relevance
+        elif self.relevance == other.relevance:
+            return self.id < other.id
+        else:
+            return False
 
     def reset(self):
         '''Reset parameters after propagation'''

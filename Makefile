@@ -36,7 +36,7 @@ install_requirements:
 	$(SILENT)pip2.7 install --upgrade -r requirements.txt
 
 doc:
-	$(SILENT)sphinx-apidoc -f -o docs/ src/ src/snap.py
+	$(SILENT)sphinx-apidoc -f -o docs/ src/eroproject/ src/eroproject/snap.py
 	$(SILENT)cd docs/ && $(MAKE) html
 
 tests: clean

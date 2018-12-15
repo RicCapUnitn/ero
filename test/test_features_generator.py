@@ -1,18 +1,10 @@
-import os
-# Add path in order to import  the library
-import sys
 import unittest
 import warnings
 
 import numpy
 
-library_path = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, library_path + '/../src')
-sys.path.insert(0, library_path + '/../tools')
-
-import features
-import features_generator
-from features import *
+from tools import features_generator
+from eroproject.features import *
 
 warnings.simplefilter("ignore")
 
@@ -40,8 +32,8 @@ class TestFeaturesGenerator(unittest.TestCase):
         self.assertEqual(len(features), 17)
         self.assertIs(type(features[0]), binary_feature.BinaryFeature)
         self.assertIs(features[6], empty_feature.empty_feature)
-        #for feature in features[5:]:
-            #self.assertIs(feature, empty_feature.empty_feature)
+        # for feature in features[5:]:
+        #self.assertIs(feature, empty_feature.empty_feature)
 
     def test_generate_multiple_set_of_features(self):
         features = self.generator.generate_many(3)
@@ -50,5 +42,5 @@ class TestFeaturesGenerator(unittest.TestCase):
         self.assertEqual(len(features[0]), 17)
         self.assertIs(type(features[0][0]), binary_feature.BinaryFeature)
         self.assertIs(features[0][6], empty_feature.empty_feature)
-        #for feature in features[0][5:]:
-            #self.assertIs(feature, empty_feature.empty_feature)
+        # for feature in features[0][5:]:
+        #self.assertIs(feature, empty_feature.empty_feature)

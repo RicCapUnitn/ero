@@ -1,12 +1,7 @@
 import unittest
 
-# Add path in order to import  the library
-import sys
-import os
-library_path = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, library_path + '/../src')
-
-import ero_ego_circle as ego_circle
+from eroproject.features import *
+from eroproject import ero_ego_circle as ego_circle
 
 
 class TestEgoCircle(unittest.TestCase):

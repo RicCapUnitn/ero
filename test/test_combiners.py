@@ -1,14 +1,9 @@
 import unittest
-import sys
-import os
 
-library_path = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, library_path + '/../src')
-
-import ero_person
-import ero_event
-from combiners import *
-from features import *
+from eroproject import ero_person
+from eroproject import ero_event
+from eroproject.combiners import *
+from eroproject.features import *
 
 
 class TestLocationCombiner(unittest.TestCase):

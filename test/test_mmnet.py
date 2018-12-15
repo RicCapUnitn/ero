@@ -1,20 +1,14 @@
 import unittest
+from contextlib import contextmanager
 from operator import add, truediv
+
 import numpy
 
-# Add path in order to import  the library
-import sys
-import os
-library_path = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, library_path + '/../src')
-
-from contextlib import contextmanager
-
-import ero
-from ero_event import Event
-from ero_person import Person
-from ero_exceptions import ImportException
-from features import *
+from eroproject import ero
+from eroproject.ero_event import Event
+from eroproject.ero_exceptions import ImportException
+from eroproject.ero_person import Person
+from eroproject.features import *
 
 
 class TestPeopleImport(unittest.TestCase):

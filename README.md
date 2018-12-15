@@ -55,6 +55,10 @@ Download then the facebook network from [here](http://snap.stanford.edu/data/ego
 
 ## Run make rules
 
+To run the tests install the package using the setup.py
+
+    $ python setup.py develop
+
 To run some of the make rules you have to grant execution permission to .sh files.
 
     $ find ero/ -type f -iname "\*.sh" -exec chmod +x {} \;

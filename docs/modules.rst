@@ -1,7 +1,7 @@
-src
-===
+eroproject
+==========
 
 .. toctree::
    :maxdepth: 4
 
-   src
+   eroproject

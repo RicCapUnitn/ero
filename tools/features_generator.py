@@ -3,7 +3,7 @@ import warnings
 
 import numpy
 
-from features import *
+from eroproject.features import *
 
 
 class PeopleFeaturesGenerator():

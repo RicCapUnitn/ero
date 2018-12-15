@@ -1,13 +1,7 @@
-import os
-import sys
 import unittest
 
-library_path = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, library_path + '/../src')
-
-from combiners import *
-import features
-from features import *
+from eroproject.combiners import *
+from eroproject.features import *
 
 
 class TestEmptyFeature(unittest.TestCase):
@@ -77,7 +71,7 @@ class TestComparableFeature(unittest.TestCase):
 
     def test_invalid_subclass_declaration(self):
 
-        class InvalidFeature(features.comparable_feature.ComparableFeature):
+        class InvalidFeature(comparable_feature.ComparableFeature):
             def __init__(self):
                 pass
 

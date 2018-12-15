@@ -1,5 +1,5 @@
 import comparable_feature
-from combiners import *
+from eroproject.combiners import *
 
 
 class NormalizedFeature(comparable_feature.ComparableFeature):

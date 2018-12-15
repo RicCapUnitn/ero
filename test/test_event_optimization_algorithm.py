@@ -1,19 +1,14 @@
 from __future__ import print_function
+
 import time
+import unittest
+
 import numpy
 
-import unittest
-import sys
-import os
-library_path = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, library_path + '/../src')
-sys.path.insert(0, library_path + '/../tools')
-
-import features_generator
-import ero
-from ero_person import Person
-from ero_event import Event
-import snap
+from eroproject import ero, snap
+from tools import features_generator
+from eroproject.ero_event import Event
+from eroproject.ero_person import Person
 
 
 class TestEventOptimizationAlgorithm(unittest.TestCase):
@@ -34,7 +29,7 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
 
         # numpy.random.seed(0)
 
-    #@unittest.skip("Large network does not work")
+    @unittest.skip("Large network does not work")
     def test_optimization(self):
         start_time = time.time()
         mmnet = self.ero.mmnet

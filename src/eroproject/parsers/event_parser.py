@@ -1,9 +1,9 @@
 import warnings
 
-from combiners import *
-from ero_event import Event
-from ero_exceptions import ImportException
-from features import *
+from eroproject.combiners import *
+from eroproject.ero_event import Event
+from eroproject.ero_exceptions import ImportException
+from eroproject.features import *
 
 
 class EventParser():
@@ -55,13 +55,13 @@ class EventParser():
         Parse a binary feature
 
         Returns:
-            The binary feature as True or False            
+            The binary feature as True or False
         '''
         try:
             binary_value = event[feature_key]
             return binary_feature.BinaryFeature(1 if binary_value else 0)
         except KeyError:
-            return empty_feature.empty_feature        
+            return empty_feature.empty_feature
 
     def _get_snap_id_from_facebook_event_id(self, fb_event_id):
         '''Shorten id to fit into Snap C++ int

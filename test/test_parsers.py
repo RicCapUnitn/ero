@@ -1,15 +1,10 @@
-import os
-import sys
 import unittest
 
-library_path = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, library_path + '/../src')
-
-from features import *
-from parsers import *
-from ero_event import Event
-from combiners import *
-from ero_exceptions import ImportException
+from eroproject.combiners import *
+from eroproject.ero_event import Event
+from eroproject.ero_exceptions import ImportException
+from eroproject.features import *
+from eroproject.parsers import *
 
 
 class TestEventParser(unittest.TestCase):
@@ -27,8 +22,8 @@ class TestEventParser(unittest.TestCase):
             "place": {
                 "name": "Philharmonic Society of Trento",
                 "location": {
-                "latitude": 46.066723,
-                "longitude": 11.120487,
+                    "latitude": 46.066723,
+                    "longitude": 11.120487,
                 },
             },
             "allows_smokers": False,
@@ -110,8 +105,8 @@ class TestEventParser(unittest.TestCase):
             "place": {
                 "name": "Philharmonic Society of Trento",
                 "location": {
-                "latitude": 46.066723,
-                "longitude": 11.120487,
+                    "latitude": 46.066723,
+                    "longitude": 11.120487,
                 },
             },
             "allows_smokers": False,
@@ -141,8 +136,8 @@ class TestEventParser(unittest.TestCase):
             "place": {
                 "name": "Philharmonic Society of Trento",
                 "location": {
-                "latitude": 46.066723,
-                "longitude": 11.120487,
+                    "latitude": 46.066723,
+                    "longitude": 11.120487,
                 },
             },
             "allows_smokers": False,

@@ -1,15 +1,7 @@
 import unittest
-import os
-import sys
 
-
-library_path = os.path.dirname(os.path.abspath(__file__))
-sys.path.insert(0, library_path + '/../src')
-
-import features
-from features import *
-
-from ero_event import Event
+from eroproject.features import *
+from eroproject.ero_event import Event
 
 
 class TestEvent(unittest.TestCase):

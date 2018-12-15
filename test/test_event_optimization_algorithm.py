@@ -21,7 +21,7 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
         self.generator.import_features_distributions_from_folder(
             self.test_folder)
 
-        self.ero = ero.Ero(do_crossover=False)
+        self.ero = ero.Ero(do_crossover=True)
         ego_node_id = 0
         folder_path = 'test/facebook/'
         #self.ero.import_ego_network(ego_node_id, folder_path)
@@ -29,14 +29,15 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
 
         numpy.random.seed(0)
 
-    @unittest.skip("Large network does not work")
+    @unittest.skip("Takes 1 minute with large network; uncomment to try")
     def test_optimization(self):
         start_time = time.time()
         mmnet = self.ero.mmnet
 
         number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
 
-        features = self.generator.generate_many(10)
+        features = self.generator.generate_many(1)
+        print(self.generator.sorted_comparable_features_names)
         for f in features:
             print([feature.value for feature in f])
 
@@ -45,7 +46,7 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
 
         for person_id in range(number_of_people + 100):
             person_features = features[person_id % len(features)]
-            person = Person(person_features, do_mutation=False)
+            person = Person(person_features, do_mutation=True)
             mmnet.people[person_id] = person
 
         print("--- %s seconds ---" % (time.time() - start_time))
@@ -72,7 +73,7 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
         print("--- %s seconds ---" % (time.time() - start_time))
 
         prev_iteration = time.time()
-        for iteration in range(1):
+        for iteration in range(30):
             mmnet.propagate(1, reset_propagation=False)
             print("iteration: " + str(iteration))
             print("--- %s seconds ---" % (time.time() - prev_iteration))

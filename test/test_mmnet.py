@@ -437,7 +437,7 @@ class TestEventsImport(unittest.TestCase):
     def test_import_events(self):
         ego_node_id = 0
         folder_path = 'test/facebook/'
-        expected_number_of_events = 12
+        expected_number_of_events = 10
 
         self.ero.import_ego_network(ego_node_id, folder_path)
 
@@ -473,7 +473,7 @@ class TestEventsImport(unittest.TestCase):
             self.ero.mmnet.people[person_id] = person
 
         self.ero.import_events('test/events/events.json')
-        self.assertIsNotNone(self.ero.mmnet.get_event(15322))
+        self.assertIsNotNone(self.ero.mmnet.get_event(34578))
 
 
 class TestMMnet(unittest.TestCase):

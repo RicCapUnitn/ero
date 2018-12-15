@@ -1,32 +1,5 @@
 {
   "data": [{
-      "name": "Classicla Opera",
-      "start_time": "19:30",
-      "end_time": "22:30",
-      "place": {
-        "name": "Philharmonic Society of Trento",
-        "location": {
-          "latitude": 46.066723,
-          "longitude": 11.120487
-        }
-      },
-      "allows_smokers": false,
-      "teather": true,
-      "cinema": false,
-      "museum": false,
-      "classical_music_concerts": false,
-      "other_concerts": false,
-      "sports_show": false,
-      "disco": false,
-      "monuments": false,
-      "do_sports": false,
-      "interests": [],
-      "politics": false,
-      "religion": false,
-      "social_activities": false,
-      "id": "1532214687109127"
-    },
-    {
       "name": "Pop Concert",
       "start_time": "19:30",
       "end_time": "22:30",
@@ -64,18 +37,18 @@
           "longitude": 11.119141
         }
       },
-      "allows_smokers": true,
-      "teather": false,
+      "allows_smokers": false,
+      "teather": true,
       "cinema": false,
       "museum": false,
       "classical_music_concerts": false,
-      "other_concerts": false,
-      "sports_show": false,
+      "other_concerts": true,
+      "sports_show": true,
       "disco": true,
       "monuments": false,
       "do_sports": false,
       "interests": [],
-      "politics": false,
+      "politics": true,
       "religion": false,
       "social_activities": true,
       "id": "2361793547916914"
@@ -162,33 +135,6 @@
       "id": "10572958739813750"
     },
     {
-      "name": "Church service",
-      "start_time": "8:30",
-      "end_time": "9:30",
-      "place": {
-        "name": "Chiesa di Santa Maria Maggiorere",
-        "location": {
-          "latitude": 46.068618,
-          "longitude": 11.119250
-        }
-      },
-      "allows_smokers": false,
-      "teather": false,
-      "cinema": false,
-      "museum": true,
-      "classical_music_concerts": true,
-      "other_concerts": true,
-      "sports_show": true,
-      "disco": false,
-      "monuments": false,
-      "do_sports": false,
-      "interests": [],
-      "politics": false,
-      "religion": true,
-      "social_activities": false,
-      "id": "28476104938561834"
-    },
-    {
       "name": "Raft race",
       "start_time": "14:30",
       "end_time": "220:00",
@@ -260,8 +206,8 @@
       "classical_music_concerts": true,
       "other_concerts": true,
       "sports_show": false,
-      "disco": false,
-      "monuments": false,
+      "disco": true,
+      "monuments": true,
       "do_sports": false,
       "interests": [],
       "politics": false,
@@ -307,19 +253,19 @@
           "longitude": 11.125591
         }
       },
-      "allows_smokers": false,
-      "teather": false,
+      "allows_smokers": true,
+      "teather": true,
       "cinema": true,
-      "museum": false,
-      "classical_music_concerts": false,
-      "other_concerts": false,
-      "sports_show": false,
-      "disco": false,
-      "monuments": false,
-      "do_sports": false,
+      "museum": true,
+      "classical_music_concerts": true,
+      "other_concerts": true,
+      "sports_show": true,
+      "disco": true,
+      "monuments": true,
+      "do_sports": true,
       "interests": [],
-      "politics": false,
-      "religion": false,
+      "politics": true,
+      "religion": true,
       "social_activities": true,
       "id": "472635182940382761"
     }

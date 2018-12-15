@@ -7,5 +7,5 @@ setup(name='eroproject',
       description='Ero: events relevance optimization',
       packages=['eroproject', 'tools'],
       package_dir={'': 'src',
-                   'tools': './'}
+                   'tools': '../'}
       )

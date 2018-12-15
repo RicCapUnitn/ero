@@ -3,7 +3,7 @@ import warnings
 
 import numpy
 
-from tools import features_generator
+from eroproject import features_generator
 from eroproject.features import *
 
 warnings.simplefilter("ignore")

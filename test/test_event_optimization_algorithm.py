@@ -20,43 +20,33 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
             './test/istat/comparable_features.json')
         self.generator.import_features_distributions_from_folder(
             self.test_folder)
-
         self.ero = ero.Ero(do_crossover=True)
+
+    @unittest.skip("Not tested")
+    def test_one_person_apriori_order_maintanance(self):
+        '''Test with 0.edges network that '''
         ego_node_id = 0
         folder_path = 'test/facebook/'
-        #self.ero.import_ego_network(ego_node_id, folder_path)
-        self.ero.import_ego_networks_folder(folder_path)
-
-        numpy.random.seed(0)
-
-    @unittest.skip("Takes 1 minute with large network; uncomment to try")
-    def test_optimization(self):
-        start_time = time.time()
+        self.ero.import_ego_network(ego_node_id, folder_path)
         mmnet = self.ero.mmnet
 
+        # generate person with seed 0
+        numpy.random.seed(0)
+
         number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
-
-        features = self.generator.generate_many(1)
-        print(self.generator.sorted_comparable_features_names)
-        for f in features:
-            print([feature.value for feature in f])
-
-        print("people features")
-        print("--- %s seconds ---" % (time.time() - start_time))
+        features = self.generator.generate_one()
 
         for person_id in range(number_of_people + 100):
-            person_features = features[person_id % len(features)]
+            person_features = features
             person = Person(person_features, do_mutation=True)
             mmnet.people[person_id] = person
 
-        print("--- %s seconds ---" % (time.time() - start_time))
+        # generate events with random seed
+        numpy.random.seed(None)
 
         # Import events after the persons are added to the network
-        mmnet.EVENT_PERSON_EDGES_MU = 80
+        mmnet.EVENT_PERSON_EDGES_MU = 30
         self.ero.import_events('test/events/events.json')
-
-        print("events import")
-        print("--- %s seconds ---" % (time.time() - start_time))
 
         # Save the a-propri event relevances
         event_relevances = {event_id: 0. for event_id in mmnet.events.keys()}
@@ -69,32 +59,88 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
         event_ids_apriori_order = [relevance_tuple[0] for relevance_tuple in sorted(
             event_relevances.items(), key=lambda x: x[1])]
 
-        print("fitness")
-        print("--- %s seconds ---" % (time.time() - start_time))
+        test_iterations = 5
+        for _ in range(test_iterations):
 
-        prev_iteration = time.time()
-        for iteration in range(30):
+            mmnet.propagate(1, reset_propagation=True)
+
+            for iteration in range(50):
+                mmnet.propagate(1, reset_propagation=False)
+
+            event_ids_aposteriori_order = [
+                event.id for event in sorted(mmnet.events.values())]
+
+            self.assertEqual(event_ids_apriori_order,
+                             event_ids_aposteriori_order)
+
+    def test_convergence_large_network(self):
+        '''Test that the algorthm converges on large networks
+
+        Run 10 iterations of the propagation. Than run some iterations till the
+        algorithm converges (i.e. execution time starts fluctuating over iterations).
+        Run other 10 iterations and check whether the order of the events is
+        stable over iterations.
+        '''
+
+        folder_path = 'test/facebook/'
+        self.ero.import_ego_networks_folder(folder_path)
+
+        mmnet = self.ero.mmnet
+
+        # Make the test reproducible
+        numpy.random.seed(0)
+
+        number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
+
+        features = self.generator.generate_many(10)
+
+        for person_id in range(number_of_people + 100):
+            person_features = features[person_id % len(features)]
+            person = Person(person_features, do_mutation=True)
+            mmnet.people[person_id] = person
+
+        # generate events with random seed
+        numpy.random.seed(None)
+
+        # Import events after the persons are added to the network
+        mmnet.EVENT_PERSON_EDGES_MU = 150
+
+        # Save the a-propri event relevances
+        event_relevances = {event_id: 0. for event_id in mmnet.events.keys()}
+
+        for person in mmnet.people.values():
+            for event in mmnet.events.values():
+                fitness = person.fitness(event)
+                event_relevances[event.id] += fitness
+
+        event_ids_apriori_order = [relevance_tuple[0] for relevance_tuple in sorted(
+            event_relevances.items(), key=lambda x: x[1])]
+
+        # Do the first 10 iterations
+        for _ in range(10):
             mmnet.propagate(1, reset_propagation=False)
-            print("iteration: " + str(iteration))
-            print("--- %s seconds ---" % (time.time() - prev_iteration))
-            prev_iteration = time.time()
 
-        print("propagation")
-        print("--- %s seconds ---" % (time.time() - start_time))
+        previous_iteration_timestamp = time.time()
+        previous_iteration_time = 100000
+        # Compute convergence starting point
+        for iteration in range(40):
+            mmnet.propagate(1, reset_propagation=False)
+            current_iteration_time = time.time() - previous_iteration_timestamp
 
-        event_ids_aposteriori_order = [
+            if previous_iteration_time < current_iteration_time:
+                break
+
+            previous_iteration_time = time.time() - previous_iteration_timestamp
+            previous_iteration_timestamp = time.time()
+
+        # Test converge over the next 10 propagations
+        last_iteration_events_order = [
             event.id for event in sorted(mmnet.events.values())]
 
-        print(event_ids_apriori_order, file=open(
-            '/home/ric/Desktop/apriori.txt', 'w+'))
-        print(event_ids_aposteriori_order, file=open(
-            '/home/ric/Desktop/aposteriori.txt', 'w+'))
-        print([relevance_tuple[1] for relevance_tuple in sorted(
-            event_relevances.items(), key=lambda x: x[1])], file=open(
-                '/home/ric/Desktop/apriori.txt', 'a'))
-        print([
-            event.relevance for event in sorted(mmnet.events.values())], file=open(
-                '/home/ric/Desktop/aposteriori.txt', 'a'))
-
-        self.assertEqual(event_ids_apriori_order,
-                         event_ids_aposteriori_order)
+        for _ in range(10):
+            mmnet.propagate(1, reset_propagation=False)
+            this_iteration_events_order = [
+                event.id for event in sorted(mmnet.events.values())]
+            self.assertEqual(last_iteration_events_order,
+                             this_iteration_events_order)
+            last_iteration_events_order = this_iteration_events_order

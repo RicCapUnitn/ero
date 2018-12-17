@@ -10,7 +10,7 @@ class Person():
     def __init__(self, features, do_mutation=False):
         self.best_fitness = 0.
         self.best_event = None
-        self.features = features
+        self.features = features[:]
         self.features_weights = [0.5] * len(features)
         self.do_mutation = do_mutation
 

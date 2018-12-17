@@ -1,12 +1,9 @@
 import unittest
-import warnings
 
 import numpy
 
 from tools import features_generator
 from eroproject.features import *
-
-# warnings.simplefilter("ignore")
 
 
 @unittest.skip('tests are broken')

@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import time
 import unittest
 
@@ -11,6 +9,7 @@ from eroproject.ero_event import Event
 from eroproject.ero_person import Person
 
 
+@unittest.skip('Time-demanding tests, uncomment to try ~40s')
 class TestEventOptimizationAlgorithm(unittest.TestCase):
 
     def setUp(self):
@@ -22,9 +21,9 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
             self.test_folder)
         self.ero = ero.Ero(do_crossover=True)
 
-    @unittest.skip("Not tested")
-    def test_one_person_apriori_order_maintanance(self):
-        '''Test with 0.edges network that '''
+    def test_events_distribution_importance_few_edges(self):
+        '''Test with 0.edges network that the apriori order is not maintained
+        when each event reaches 1/12 of the network directly'''
         ego_node_id = 0
         folder_path = 'test/facebook/'
         self.ero.import_ego_network(ego_node_id, folder_path)
@@ -45,7 +44,7 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
         numpy.random.seed(None)
 
         # Import events after the persons are added to the network
-        mmnet.EVENT_PERSON_EDGES_MU = 30
+        mmnet.EVENT_PERSON_EDGES_MU = number_of_people // 6
         self.ero.import_events('test/events/events.json')
 
         # Save the a-propri event relevances
@@ -64,14 +63,65 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
 
             mmnet.propagate(1, reset_propagation=True)
 
-            for iteration in range(50):
+            for iteration in range(20):
                 mmnet.propagate(1, reset_propagation=False)
 
             event_ids_aposteriori_order = [
                 event.id for event in sorted(mmnet.events.values())]
 
-            self.assertEqual(event_ids_apriori_order,
-                             event_ids_aposteriori_order)
+            self.assertNotEqual(event_ids_apriori_order,
+                                event_ids_aposteriori_order)
+
+    def test_events_distribution_importance_many_edges(self):
+        '''Test with 0.edges network that the apriori order is maintained when
+        each event reaches 1/3 of the network directly'''
+        ego_node_id = 0
+        folder_path = 'test/facebook/'
+        self.ero.import_ego_network(ego_node_id, folder_path)
+        mmnet = self.ero.mmnet
+
+        # generate person with seed 0
+        numpy.random.seed(0)
+
+        number_of_people = mmnet.mmnet.GetModeNetByName("Person").GetNodes()
+        features = self.generator.generate_one()
+
+        for person_id in range(number_of_people + 100):
+            person_features = features
+            person = Person(person_features, do_mutation=True)
+            mmnet.people[person_id] = person
+
+        # generate events with random seed
+        numpy.random.seed(None)
+
+        # Import events after the persons are added to the network
+        mmnet.EVENT_PERSON_EDGES_MU = number_of_people // 3
+        self.ero.import_events('test/events/events.json')
+
+        # Save the a-propri event relevances
+        event_relevances = {event_id: 0. for event_id in mmnet.events.keys()}
+
+        for person in mmnet.people.values():
+            for event in mmnet.events.values():
+                fitness = person.fitness(event)
+                event_relevances[event.id] += fitness
+
+        event_ids_apriori_order = [relevance_tuple[0] for relevance_tuple in sorted(
+            event_relevances.items(), key=lambda x: x[1])]
+
+        test_iterations = 5
+        for _ in range(test_iterations):
+
+            mmnet.propagate(1, reset_propagation=True)
+
+            for iteration in range(20):
+                mmnet.propagate(1, reset_propagation=False)
+
+            event_ids_aposteriori_order = [
+                event.id for event in sorted(mmnet.events.values())]
+
+            self.assertEqual(event_ids_apriori_order[5:],
+                             event_ids_aposteriori_order[5:])
 
     def test_convergence_large_network(self):
         '''Test that the algorthm converges on large networks

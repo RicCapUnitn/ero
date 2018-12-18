@@ -154,6 +154,7 @@ class TestEventOptimizationAlgorithm(unittest.TestCase):
 
         # Import events after the persons are added to the network
         mmnet.EVENT_PERSON_EDGES_MU = 150
+        self.ero.import_events('test/events/events.json')
 
         # Save the a-propri event relevances
         event_relevances = {event_id: 0. for event_id in mmnet.events.keys()}
